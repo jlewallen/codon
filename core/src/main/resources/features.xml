@@ -5,21 +5,19 @@
 		<feature>spring</feature>
 		<feature>spring-dm</feature>
 
-    <!--
+    	<!--
 		<feature version="${servicemix.version}">camel-nmr</feature>
-    -->
+    	-->
 		<feature version="${camel.version}">camel-spring</feature>
 		<feature version="${camel.version}">camel-jaxb</feature>
 		<feature version="${camel.version}">camel-amqp</feature>
-    	<!--
-    	<feature>war</feature>
-    	-->
 
 		<bundle>mvn:${project.groupId}/core/${project.version}</bundle>
 		<bundle>mvn:org.springframework.osgi/spring-osgi-web/1.2.1</bundle>
 		<bundle>mvn:org.springframework/spring-core/${spring.version}</bundle>
 		<bundle>mvn:org.springframework/spring-context/${spring.version}</bundle>
     	<!--
+    	<feature>war</feature>
     	<bundle>mvn:org.springframework/spring-web/${spring.version}</bundle>
     	<bundle>mvn:org.springframework/spring-webmvc/${spring.version}</bundle>
     	-->

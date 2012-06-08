@@ -1,7 +1,5 @@
 package com.page5of4.ms.impl;
 
-import static org.apache.camel.component.amqp.AMQPComponent.amqpComponent;
-
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
@@ -28,9 +26,8 @@ public class Bootstrap {
       logger.info("Starting");
 
       try {
-         camelContext.addComponent("amqp", amqpComponent("amqp://guest:guest@/test?brokerlist='tcp://localhost:5672'"));
          ProducerTemplate producer = camelContext.createProducerTemplate();
-         producer.sendBody("amqp:dev.testing", "Hello, World!");
+         producer.sendBody("activemq:dev.testing", "Hello, World!");
       }
       catch(Exception e) {
          System.out.println(e);

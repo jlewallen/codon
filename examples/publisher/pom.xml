@@ -9,7 +9,6 @@
     </parent>
 
     <artifactId>publisher</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
     <properties>

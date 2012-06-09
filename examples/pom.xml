@@ -9,7 +9,6 @@
     </parent>
 
     <artifactId>examples</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -22,5 +21,6 @@
     <modules>
         <module>publisher</module>
         <module>subscriber</module>
+        <module>webapp</module>
     </modules>
 </project>

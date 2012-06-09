@@ -35,4 +35,18 @@
 		<bundle>mvn:${project.groupId}/subscriber/${project.version}</bundle>
 	</feature>
 
+  <feature name="ms-example-webapp" version="${project.version}">
+    <feature>spring</feature>
+    <feature>spring-dm</feature>
+    <feature>war</feature>
+    
+    <bundle>mvn:${project.groupId}/webapp/${project.version}/war</bundle>
+    
+    <bundle>mvn:org.springframework.osgi/spring-osgi-web/${spring.osgi.version}</bundle>
+    <bundle>mvn:org.springframework/spring-web/${spring.version}</bundle>
+    <bundle>mvn:org.springframework/spring-webmvc/${spring.version}</bundle>
+    <!-- 
+    <bundle>mvn:javax.servlet/com.springsource.javax.servlet.jsp.jstl/1.2.0.v20110728</bundle>
+    -->
+  </feature>
 </features>

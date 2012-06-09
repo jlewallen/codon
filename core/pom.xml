@@ -39,9 +39,11 @@
 							org.springframework.osgi.web.context.support; version="[1.2,2.0)",
 							org.springframework.stereotype; version=${spring.version},
 							org.springframework.context.annotation; version=${spring.version},
+              				<!--
 							org.apache.camel.component.amqp; version=${camel.version},
-						 	org.apache.activemq.camel.component,
-						    org.apache.camel,
+              				-->
+							org.apache.activemq.camel.component,
+							org.apache.camel,
 							net.sf.cglib.proxy,
 							net.sf.cglib.core,
 							net.sf.cglib.reflect,
@@ -88,14 +90,18 @@
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-jaxb</artifactId>
 		</dependency>
+    	<!--
 		<dependency>
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-amqp</artifactId>
 		</dependency>
+    	-->
+    	<!--
 		<dependency>
 			<groupId>org.springframework.osgi</groupId>
 			<artifactId>spring-osgi-core</artifactId>
 		</dependency>
+		-->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>

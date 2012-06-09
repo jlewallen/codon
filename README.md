@@ -5,7 +5,6 @@ features:addUrl mvn:org.apache.activemq/activemq-karaf/5.5.0/xml/features
 features:install activemq
 features:install camel-jms
 osgi:install -s mvn:org.apache.activemq/activemq-camel/5.5.0
-
 osgi:install -s mvn:org.codehaus.jackson/jackson-core-asl/1.7.5
 osgi:install -s mvn:org.codehaus.jackson/jackson-mapper-asl/1.7.5
 

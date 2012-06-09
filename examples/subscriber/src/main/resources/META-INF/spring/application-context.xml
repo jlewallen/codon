@@ -19,4 +19,6 @@
   <context:annotation-config />
   <context:component-scan base-package="com.page5of4.ms.examples.subscriber.config"/>
   <camel:camelContext trace="false" />
+  
+  <osgi:reference id="bus" interface="com.page5of4.ms.Bus" />
 </beans>

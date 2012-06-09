@@ -30,6 +30,14 @@
 		<bundle start-level='91'>mvn:${project.groupId}/subscriber/${project.version}</bundle>
 	</feature>
 
+	<feature name="ms-example" version="${project.version}">
+		<feature>ms-core</feature>
+
+		<bundle start-level='90'>mvn:${project.groupId}/messages/${project.version}</bundle>
+		<bundle start-level='91'>mvn:${project.groupId}/subscriber/${project.version}</bundle>
+		<bundle start-level='92'>mvn:${project.groupId}/publisher/${project.version}</bundle>
+	</feature>
+
 	<feature name="ms-example-webapp" version="${project.version}">
 		<feature>spring</feature>
 		<feature>spring-dm</feature>

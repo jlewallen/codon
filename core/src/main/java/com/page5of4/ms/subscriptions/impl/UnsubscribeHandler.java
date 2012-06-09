@@ -4,12 +4,13 @@ import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.page5of4.ms.AutomaticallySubscribe;
 import com.page5of4.ms.MessageHandler;
 import com.page5of4.ms.subscriptions.Subscription;
 import com.page5of4.ms.subscriptions.SubscriptionStorage;
 import com.page5of4.ms.subscriptions.messages.UnsubscribeMessage;
 
-@MessageHandler
+@MessageHandler(autoSubscribe = AutomaticallySubscribe.NEVER)
 public class UnsubscribeHandler {
    private final SubscriptionStorage storage;
 

@@ -43,15 +43,14 @@ public class HandlerRegistry {
       }
    }
 
-   public List<Class<?>> getMessageTypesThereAreHandlersFor() {
-      List<Class<?>> types = new ArrayList<Class<?>>();
+   public List<HandlerBinding> getBindings() {
+      List<HandlerBinding> bindings = new ArrayList<HandlerBinding>();
       for(HandlerDescriptor descriptor : descriptors.values()) {
          for(HandlerBinding binding : descriptor.getBindings()) {
-            logger.info("Listening for {}", binding.getMessageType());
-            types.add(binding.getMessageType());
+            bindings.add(binding);
          }
       }
-      return types;
+      return bindings;
    }
 
    public List<HandlerBinding> getBindingsFor(Class<? extends Object> messageType) {

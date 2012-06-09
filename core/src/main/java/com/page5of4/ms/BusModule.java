@@ -5,6 +5,7 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.page5of4.ms.impl.HandlerInspector.HandlerBinding;
 import com.page5of4.ms.impl.HandlerRegistry;
 import com.page5of4.ms.impl.TopologyConfiguration;
 import com.page5of4.ms.impl.Transport;
@@ -25,16 +26,19 @@ public class BusModule {
 
    @PostConstruct
    public void initialize() {
-      logger.info("Starting Module...");
+      logger.info("Starting module...");
 
       handlerRegistry.initialize();
 
-      for(Class<?> messageType : handlerRegistry.getMessageTypesThereAreHandlersFor()) {
-         bus.subscribe(messageType);
+      for(HandlerBinding binding : handlerRegistry.getBindings()) {
+         Class<?> messageType = binding.getMessageType();
+         if(binding.shouldSubscribe()) {
+            logger.info("Subscribing and listening for {}", messageType);
+            bus.subscribe(binding.getMessageType());
+         }
          transport.listen(topologyConfiguration.getLocalAddressOf(messageType));
-         transport.listen(topologyConfiguration.getSubscriptionAddressOf(messageType));
       }
 
-      logger.info("Started");
+      logger.info("Module started");
    }
 }

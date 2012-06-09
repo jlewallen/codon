@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.page5of4.ms.AutomaticallySubscribe;
 import com.page5of4.ms.MessageHandler;
 
 public class HandlerInspector {
@@ -19,11 +20,13 @@ public class HandlerInspector {
       public HandlerDescriptor(Class<?> handlerType) {
          super();
          this.handlerType = handlerType;
+         MessageHandler classAnnotation = handlerType.getAnnotation(MessageHandler.class);
          for(Method method : handlerType.getMethods()) {
-            if(method.getAnnotation(MessageHandler.class) != null) {
+            MessageHandler methodAnnotation = method.getAnnotation(MessageHandler.class);
+            if(methodAnnotation != null) {
                Class<?> messageType = getMessageTypeFromParameters(method);
                if(messageType != null) {
-                  bindings.add(new HandlerBinding(handlerType, messageType, method));
+                  bindings.add(new HandlerBinding(handlerType, messageType, method, classAnnotation.autoSubscribe().or(methodAnnotation.autoSubscribe())));
                }
             }
          }
@@ -58,6 +61,11 @@ public class HandlerInspector {
       private final Class<?> handlerType;
       private final Class<?> messageType;
       private final Method method;
+      private final AutomaticallySubscribe automaticallySubscribe;
+
+      public boolean shouldSubscribe() {
+         return getAutomaticallySubscribe().shouldSubscribe();
+      }
 
       public Class<?> getHandlerType() {
          return handlerType;
@@ -71,11 +79,16 @@ public class HandlerInspector {
          return method;
       }
 
-      public HandlerBinding(Class<?> handlerType, Class<?> messageType, Method method) {
+      public AutomaticallySubscribe getAutomaticallySubscribe() {
+         return automaticallySubscribe;
+      }
+
+      public HandlerBinding(Class<?> handlerType, Class<?> messageType, Method method, AutomaticallySubscribe automaticallySubscribe) {
          super();
          this.handlerType = handlerType;
          this.messageType = messageType;
          this.method = method;
+         this.automaticallySubscribe = automaticallySubscribe;
       }
    }
 }

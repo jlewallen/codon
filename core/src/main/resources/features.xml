@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <features name="message-stream-${project.version}">
 
-	<feature name="ms-core" version="${project.version}">
+	<feature name="ms-dependencies" version="${project.version}">
 		<feature>spring</feature>
 		<feature>spring-dm</feature>
-
 		<feature version="${camel.version}">camel-spring</feature>
-		<feature version="${camel.version}">camel-jaxb</feature>
-		<feature version="${camel.version}">camel-amqp</feature>
 
 		<bundle start-level='70'>mvn:org.apache.activemq/activemq-camel/5.5.0</bundle>
 		<bundle start-level='71'>mvn:org.springframework/spring-core/${spring.version}</bundle>
 		<bundle start-level='72'>mvn:org.springframework/spring-context/${spring.version}</bundle>
 
+		<bundle start-level='73'>mvn:org.codehaus.jackson/jackson-core-asl/1.7.5</bundle>
+		<bundle start-level='74'>mvn:org.codehaus.jackson/jackson-mapper-asl/1.7.5</bundle>
+		<bundle start-level='75'>mvn:org.springframework.osgi/spring-osgi-web/${spring.osgi.version}</bundle>
+		<bundle start-level='76'>mvn:org.springframework/spring-web/${spring.version}</bundle>
+		<bundle start-level='76'>mvn:org.springframework/spring-webmvc/${spring.version}</bundle>
+	</feature>
+
+	<feature name="ms-core" version="${project.version}">
 		<bundle start-level='90'>mvn:${project.groupId}/core/${project.version}</bundle>
 	</feature>
 
@@ -31,14 +36,14 @@
 	</feature>
 
 	<feature name="ms-example" version="${project.version}">
-		<feature>ms-core</feature>
-
+		<bundle start-level='80'>mvn:${project.groupId}/core/${project.version}</bundle>
 		<bundle start-level='90'>mvn:${project.groupId}/messages/${project.version}</bundle>
 		<bundle start-level='91'>mvn:${project.groupId}/subscriber/${project.version}</bundle>
 		<bundle start-level='92'>mvn:${project.groupId}/publisher/${project.version}</bundle>
 	</feature>
 
 	<feature name="ms-example-webapp" version="${project.version}">
+		<!--
 		<feature>spring</feature>
 		<feature>spring-dm</feature>
 		<feature>war</feature>
@@ -48,7 +53,7 @@
 		<bundle start-level='72'>mvn:org.springframework.osgi/spring-osgi-web/${spring.osgi.version}</bundle>
 		<bundle start-level='73'>mvn:org.springframework/spring-web/${spring.version}</bundle>
 		<bundle start-level='74'>mvn:org.springframework/spring-webmvc/${spring.version}</bundle>
-
+		-->
 		<bundle start-level='90'>mvn:${project.groupId}/webapp/${project.version}/war</bundle>
 	</feature>
 </features>

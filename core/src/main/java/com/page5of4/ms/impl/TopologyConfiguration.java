@@ -16,14 +16,14 @@ public class TopologyConfiguration {
    }
 
    public EndpointAddress getOwner(Class<?> message) {
-      return null;
+      return new EndpointAddress(String.format("dev.%s", message.getName()));
    }
 
    public EndpointAddress getLocalAddressOf(Class<?> message) {
-      return null;
+      return new EndpointAddress(String.format("dev.%s", message.getName()));
    }
 
-   public EndpointAddress getSubscriptionAddressOf(Class<?> messageType) {
-      return null;
+   public EndpointAddress getSubscriptionAddressOf(Class<?> message) {
+      return new EndpointAddress(String.format("dev.%s.subscribe", message.getName()));
    }
 }

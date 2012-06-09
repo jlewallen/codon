@@ -6,13 +6,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class HandlerRouteBuilder extends RouteBuilder {
    private final String fromAddress;
+   private final InvokeHandlerProcessor invokeHandlerProcessor;
 
-   public HandlerRouteBuilder(String fromAddress) {
+   public HandlerRouteBuilder(String fromAddress, InvokeHandlerProcessor invokeHandlerProcessor) {
       this.fromAddress = fromAddress;
+      this.invokeHandlerProcessor = invokeHandlerProcessor;
    }
 
    @Override
    public void configure() throws Exception {
-      from(fromAddress).process(new InvokeHandlerProcessor());
+      from(fromAddress).process(invokeHandlerProcessor);
    }
 }

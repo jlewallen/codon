@@ -10,17 +10,20 @@ import org.springframework.stereotype.Service;
 import com.page5of4.ms.BusException;
 import com.page5of4.ms.EndpointAddress;
 import com.page5of4.ms.camel.HandlerRouteBuilder;
+import com.page5of4.ms.camel.InvokeHandlerProcessor;
 
 @Service
 public class Transport {
    private static final Logger logger = LoggerFactory.getLogger(Transport.class);
    private final CamelContext camelContext;
    private final ProducerTemplate producer;
+   private final InvokeHandlerProcessor invokeHandlerProcessor;
 
    @Autowired
-   public Transport(CamelContext camelContext) {
+   public Transport(CamelContext camelContext, InvokeHandlerProcessor invokeHandlerProcessor) {
       super();
       this.camelContext = camelContext;
+      this.invokeHandlerProcessor = invokeHandlerProcessor;
       this.producer = camelContext.createProducerTemplate();
    }
 
@@ -36,7 +39,7 @@ public class Transport {
 
    public void listen(EndpointAddress address) {
       try {
-         camelContext.addRoutes(new HandlerRouteBuilder(toCamelUrl(address)));
+         camelContext.addRoutes(new HandlerRouteBuilder(toCamelUrl(address), invokeHandlerProcessor));
       }
       catch(Exception e) {
          throw new BusException(String.format("Unable to listen on '%s'", address), e);

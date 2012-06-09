@@ -8,12 +8,16 @@ import org.springframework.context.annotation.Configuration;
 
 import com.page5of4.ms.Bus;
 import com.page5of4.ms.BusModule;
+import com.page5of4.ms.camel.InvokeHandlerProcessor;
 import com.page5of4.ms.impl.AddressNamingConvention;
 import com.page5of4.ms.impl.Bootstrap;
 import com.page5of4.ms.impl.DefaultBus;
+import com.page5of4.ms.impl.HandlerRegistry;
 import com.page5of4.ms.impl.TopologyConfiguration;
 import com.page5of4.ms.impl.Transport;
 import com.page5of4.ms.subscriptions.SubscriptionStorage;
+import com.page5of4.ms.subscriptions.impl.SubscribeHandler;
+import com.page5of4.ms.subscriptions.impl.UnsubscribeHandler;
 import com.page5of4.ms.subscriptions.impl.XmlSubscriptionStorage;
 
 @Configuration
@@ -45,11 +49,31 @@ public class CoreConfig {
 
    @Bean
    public Transport transport() {
-      return new Transport(camelContext);
+      return new Transport(camelContext, invokeHandlerProcessor());
    }
 
    @Bean
-   public BusModule module() {
-      return new BusModule(applicationContext, topologyConfiguration(), transport(), bus());
+   public InvokeHandlerProcessor invokeHandlerProcessor() {
+      return new InvokeHandlerProcessor(handlerRegistry());
+   }
+
+   @Bean
+   public HandlerRegistry handlerRegistry() {
+      return new HandlerRegistry(applicationContext);
+   }
+
+   @Bean
+   public BusModule busModule() {
+      return new BusModule(handlerRegistry(), topologyConfiguration(), transport(), bus());
+   }
+
+   @Bean
+   public SubscribeHandler subscribeHandler() {
+      return new SubscribeHandler(subscriptionStorage());
+   }
+
+   @Bean
+   public UnsubscribeHandler unsubscribeHandler() {
+      return new UnsubscribeHandler(subscriptionStorage());
    }
 }

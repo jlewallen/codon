@@ -1,0 +1,81 @@
+package com.page5of4.ms.impl;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.page5of4.ms.MessageHandler;
+
+public class HandlerInspector {
+   public HandlerDescriptor discoverBindings(Object object) {
+      return new HandlerDescriptor(object.getClass());
+   }
+
+   public static class HandlerDescriptor {
+      private final Class<?> handlerType;
+      private final List<String> problems = new ArrayList<String>();
+      private final List<HandlerBinding> bindings = new ArrayList<HandlerBinding>();
+
+      public HandlerDescriptor(Class<?> handlerType) {
+         super();
+         this.handlerType = handlerType;
+         for(Method method : handlerType.getMethods()) {
+            if(method.getAnnotation(MessageHandler.class) != null) {
+               Class<?> messageType = getMessageTypeFromParameters(method);
+               if(messageType != null) {
+                  bindings.add(new HandlerBinding(handlerType, messageType, method));
+               }
+            }
+         }
+         if(bindings.isEmpty()) {
+            problems.add(String.format("Class '%s' has no handler methods.", handlerType.getName()));
+         }
+      }
+
+      private Class<?> getMessageTypeFromParameters(Method method) {
+         Class<?>[] parameterTypes = method.getParameterTypes();
+         for(Class<?> type : parameterTypes) {
+            return type;
+         }
+         problems.add(String.format("Method '%s::%s' has no valid message parameters.", handlerType.getName(), method.getName()));
+         return null;
+      }
+
+      public List<String> getProblems() {
+         return problems;
+      }
+
+      public Class<?> getHandlerType() {
+         return handlerType;
+      }
+
+      public List<HandlerBinding> getBindings() {
+         return bindings;
+      }
+   }
+
+   public static class HandlerBinding {
+      private final Class<?> handlerType;
+      private final Class<?> messageType;
+      private final Method method;
+
+      public Class<?> getHandlerType() {
+         return handlerType;
+      }
+
+      public Class<?> getMessageType() {
+         return messageType;
+      }
+
+      public Method getMethod() {
+         return method;
+      }
+
+      public HandlerBinding(Class<?> handlerType, Class<?> messageType, Method method) {
+         super();
+         this.handlerType = handlerType;
+         this.messageType = messageType;
+         this.method = method;
+      }
+   }
+}

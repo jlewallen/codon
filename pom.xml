@@ -21,6 +21,8 @@
 		<spring.osgi.version>1.2.1</spring.osgi.version>
 		<pax.logging.version>1.5.3</pax.logging.version>
 		<org.slf4j.version>1.6.1</org.slf4j.version>
+		<junit.version>4.7</junit.version>
+		<org.easytesting.fest.version>1.4</org.easytesting.fest.version>
 	</properties>
 
 	<repositories>
@@ -221,6 +223,19 @@
 				<groupId>org.ops4j.pax.logging</groupId>
 				<artifactId>pax-logging-api</artifactId>
 				<version>${pax.logging.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.easytesting</groupId>
+				<artifactId>fest-assert</artifactId>
+				<version>${org.easytesting.fest.version}</version>
+				<scope>test</scope>
 			</dependency>
 
 			<dependency>

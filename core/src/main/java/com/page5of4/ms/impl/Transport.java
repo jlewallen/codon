@@ -7,13 +7,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.page5of4.ms.BusException;
 import com.page5of4.ms.EndpointAddress;
+import com.page5of4.ms.camel.HandlerRouteBuilder;
 
 @Service
 public class Transport {
    private static final Logger logger = LoggerFactory.getLogger(Transport.class);
    private final CamelContext camelContext;
-   private ProducerTemplate producer;
+   private final ProducerTemplate producer;
 
    @Autowired
    public Transport(CamelContext camelContext) {
@@ -28,12 +30,17 @@ public class Transport {
          producer.sendBody(toCamelUrl(address), message);
       }
       catch(Exception e) {
-         throw new RuntimeException(String.format("Unable to send %s to %s", message, address), e);
+         throw new BusException(String.format("Unable to send %s to %s", message, address), e);
       }
    }
 
    public void listen(EndpointAddress address) {
-
+      try {
+         camelContext.addRoutes(new HandlerRouteBuilder(toCamelUrl(address)));
+      }
+      catch(Exception e) {
+         throw new BusException(String.format("Unable to listen on '%s'", address), e);
+      }
    }
 
    private String toCamelUrl(EndpointAddress address) {

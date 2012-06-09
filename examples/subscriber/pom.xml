@@ -28,6 +28,7 @@
 						<Import-Package>
 							com.page5of4.ms,
 							com.page5of4.ms.config,
+							com.page5of4.ms.subscriptions.messages,
 							com.page5of4.ms.examples.messages,
 							<!-- common -->
 							org.springframework.beans.factory.config,

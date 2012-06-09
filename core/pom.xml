@@ -34,7 +34,8 @@
 					<instructions>
 						<Export-Package>
 							com.page5of4.ms,
-							com.page5of4.ms.config
+							com.page5of4.ms.config,
+							com.page5of4.ms.subscriptions.messages
 						</Export-Package>
 						<Import-Package>
 							org.springframework.beans.factory.config,

@@ -5,11 +5,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class HandlerRouteBuilder extends RouteBuilder {
+   private final String fromAddress;
+
+   public HandlerRouteBuilder(String fromAddress) {
+      this.fromAddress = fromAddress;
+   }
+
    @Override
    public void configure() throws Exception {
-      String[] froms = new String[] { "activemq:dev.testing.1", "activemq:dev.testing.2" };
-      for(String a : froms) {
-         from(a).to("direct:nowhere");
-      }
+      from(fromAddress).process(new InvokeHandlerProcessor());
    }
 }

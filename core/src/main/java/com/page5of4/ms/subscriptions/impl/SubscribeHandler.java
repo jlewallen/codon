@@ -11,7 +11,8 @@ import com.page5of4.ms.subscriptions.SubscriptionStorage;
 import com.page5of4.ms.subscriptions.messages.SubscribeMessage;
 
 @Service
-public class SubscribeHandler implements MessageHandler<SubscribeMessage> {
+@MessageHandler
+public class SubscribeHandler {
    private final SubscriptionStorage storage;
 
    @Autowired
@@ -20,7 +21,7 @@ public class SubscribeHandler implements MessageHandler<SubscribeMessage> {
       this.storage = storage;
    }
 
-   @Override
+   @MessageHandler
    public void handle(SubscribeMessage message) {
       storage.addSubscriptions(Collections.singleton(new Subscription(message.getAddress(), message.getMessageType())));
    }

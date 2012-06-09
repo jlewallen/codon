@@ -37,12 +37,8 @@
 						</Export-Package>
 						<Import-Package>
 							org.springframework.beans.factory.config,
-							org.springframework.osgi.web.context.support; version="[1.2,2.0)",
 							org.springframework.stereotype; version=${spring.version},
 							org.springframework.context.annotation; version=${spring.version},
-              				<!--
-							org.apache.camel.component.amqp; version=${camel.version},
-              				-->
 							org.apache.activemq.camel.component,
 							org.apache.camel,
 							net.sf.cglib.proxy,

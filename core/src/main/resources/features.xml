@@ -10,9 +10,8 @@
 		<feature version="${camel.version}">camel-amqp</feature>
 
 		<bundle start-level='70'>mvn:org.apache.activemq/activemq-camel/5.5.0</bundle>
-		<bundle start-level='71'>mvn:org.springframework.osgi/spring-osgi-web/1.2.1</bundle>
-		<bundle start-level='72'>mvn:org.springframework/spring-core/${spring.version}</bundle>
-		<bundle start-level='73'>mvn:org.springframework/spring-context/${spring.version}</bundle>
+		<bundle start-level='71'>mvn:org.springframework/spring-core/${spring.version}</bundle>
+		<bundle start-level='72'>mvn:org.springframework/spring-context/${spring.version}</bundle>
 
 		<bundle start-level='90'>mvn:${project.groupId}/core/${project.version}</bundle>
 	</feature>

@@ -30,7 +30,6 @@
 							com.page5of4.ms.examples.messages,
 							<!-- common -->
 							org.springframework.beans.factory.config,
-							org.springframework.osgi.web.context.support; version="[1.2,2.0)",
 							org.springframework.stereotype; version=${spring.version},
 							org.springframework.context.annotation; version=${spring.version},
 							org.apache.activemq.camel.component,

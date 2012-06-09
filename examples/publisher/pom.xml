@@ -27,7 +27,8 @@
 					<instructions>
 						<Import-Package>
 							com.page5of4.ms,
-                            <!-- common -->
+							com.page5of4.ms.examples.messages,
+							<!-- common -->
 							org.springframework.beans.factory.config,
 							org.springframework.osgi.web.context.support; version="[1.2,2.0)",
 							org.springframework.stereotype; version=${spring.version},
@@ -63,6 +64,11 @@
 			<artifactId>spring-beans</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>messages</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>core</artifactId>

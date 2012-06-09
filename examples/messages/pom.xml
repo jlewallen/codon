@@ -8,9 +8,9 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>subscriber</artifactId>
+	<artifactId>messages</artifactId>
 	<packaging>bundle</packaging>
-	<name>MS - Examples - Subscriber</name>
+	<name>MS - Examples - Messages</name>
 
 	<properties>
 	</properties>
@@ -25,10 +25,12 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
+						<Export-Package>
+							com.page5of4.ms.examples.messages,
+						</Export-Package>
 						<Import-Package>
 							com.page5of4.ms,
-							com.page5of4.ms.examples.messages,
-							<!-- common -->
+                            <!-- common -->
 							org.springframework.beans.factory.config,
 							org.springframework.osgi.web.context.support; version="[1.2,2.0)",
 							org.springframework.stereotype; version=${spring.version},
@@ -64,11 +66,6 @@
 			<artifactId>spring-beans</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>messages</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>core</artifactId>

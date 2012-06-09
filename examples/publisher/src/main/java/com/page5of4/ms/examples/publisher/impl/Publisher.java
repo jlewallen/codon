@@ -1,5 +1,8 @@
 package com.page5of4.ms.examples.publisher.impl;
 
+import java.util.Date;
+import java.util.UUID;
+
 import javax.annotation.PostConstruct;
 
 import org.slf4j.Logger;
@@ -8,11 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.page5of4.ms.Bus;
+import com.page5of4.ms.examples.messages.UserRegisteredMessage;
 
 @Service
 public class Publisher {
    private static final Logger logger = LoggerFactory.getLogger(Publisher.class);
-
    private final Bus bus;
 
    @Autowired
@@ -23,6 +26,6 @@ public class Publisher {
 
    @PostConstruct
    public void publish() {
-      logger.info("Publishing!");
+      bus.publish(new UserRegisteredMessage(UUID.randomUUID(), "Jacob", "Lewallen", new Date()));
    }
 }

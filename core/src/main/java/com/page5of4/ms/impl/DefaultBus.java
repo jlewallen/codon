@@ -16,16 +16,16 @@ public class DefaultBus implements Bus {
 
    @Override
    public <T> void publish(T message) {
-
+      logger.info("Publish {}", message);
    }
 
    @Override
    public <T> void send(T message) {
-
+      logger.info("Send {}", message);
    }
 
    @Override
    public <T> void sendLocal(T message) {
-
+      logger.info("SendLocall {}", message);
    }
 }

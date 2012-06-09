@@ -1,10 +1,10 @@
-package com.page5of4.ms;
+package com.page5of4.ms.camel;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TestBuilder extends RouteBuilder {
+public class HandlerRouteBuilder extends RouteBuilder {
    @Override
    public void configure() throws Exception {
       String[] froms = new String[] { "activemq:dev.testing.1", "activemq:dev.testing.2" };

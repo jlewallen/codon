@@ -33,7 +33,8 @@
 				<configuration>
 					<instructions>
 						<Export-Package>
-							com.page5of4.ms
+							com.page5of4.ms,
+							com.page5of4.ms.config
 						</Export-Package>
 						<Import-Package>
 							org.springframework.beans.factory.config,

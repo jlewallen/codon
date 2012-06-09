@@ -21,7 +21,7 @@ public class CoreConfig {
 
    @Bean
    public Bootstrap bootstrap() {
-      return new Bootstrap(camelContext);
+      return new Bootstrap();
    }
 
    @Bean

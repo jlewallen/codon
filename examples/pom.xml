@@ -10,6 +10,7 @@
 
     <artifactId>examples</artifactId>
     <packaging>pom</packaging>
+	<name>MS - Examples</name>
 
     <properties>
     </properties>

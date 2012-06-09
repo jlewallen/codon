@@ -10,6 +10,7 @@
 
 	<artifactId>core</artifactId>
 	<packaging>bundle</packaging>
+	<name>MS - Core</name>
 
 	<properties>
 	</properties>

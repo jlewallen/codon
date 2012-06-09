@@ -4,7 +4,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 import org.apache.camel.CamelContext;
-import org.apache.camel.ProducerTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +23,6 @@ public class Bootstrap {
    @PostConstruct
    public void startup() {
       logger.info("Starting");
-
-      try {
-         ProducerTemplate producer = camelContext.createProducerTemplate();
-         producer.sendBody("activemq:dev.testing", "Hello, World!");
-      }
-      catch(Exception e) {
-         System.out.println(e);
-      }
       logger.info("Ready");
    }
 

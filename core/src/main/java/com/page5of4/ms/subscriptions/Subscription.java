@@ -1,5 +1,7 @@
 package com.page5of4.ms.subscriptions;
 
+import com.page5of4.ms.EndpointAddress;
+
 public class Subscription {
    private final String address;
    private final String messageType;
@@ -16,6 +18,10 @@ public class Subscription {
 
    public String getMessageType() {
       return messageType;
+   }
+
+   public EndpointAddress toEndpointAddress() {
+      return new EndpointAddress(getAddress());
    }
 
    @Override

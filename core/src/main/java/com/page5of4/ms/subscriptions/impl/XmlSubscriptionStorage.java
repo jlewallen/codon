@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.page5of4.ms.EndpointAddress;
 import com.page5of4.ms.subscriptions.Subscription;
 import com.page5of4.ms.subscriptions.SubscriptionStorage;
 
@@ -26,6 +27,11 @@ public class XmlSubscriptionStorage implements SubscriptionStorage {
    @Override
    public List<Subscription> findAllSubscriptions() {
       return new ArrayList<Subscription>(read());
+   }
+
+   @Override
+   public List<EndpointAddress> findAllSubscribers(String messageType) {
+      return SubscriptionUtils.filter(findAllSubscriptions(), messageType);
    }
 
    @Override

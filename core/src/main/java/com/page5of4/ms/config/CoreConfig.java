@@ -7,9 +7,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.page5of4.ms.Bus;
+import com.page5of4.ms.BusConfiguration;
 import com.page5of4.ms.BusModule;
 import com.page5of4.ms.camel.InvokeHandlerProcessor;
-import com.page5of4.ms.impl.AddressNamingConvention;
 import com.page5of4.ms.impl.Bootstrap;
 import com.page5of4.ms.impl.DefaultBus;
 import com.page5of4.ms.impl.HandlerRegistry;
@@ -26,6 +26,8 @@ public class CoreConfig {
    private CamelContext camelContext;
    @Autowired
    private ApplicationContext applicationContext;
+   @Autowired
+   private BusConfiguration busConfiguration;
 
    @Bean
    public Bootstrap bootstrap() {
@@ -35,11 +37,6 @@ public class CoreConfig {
    @Bean
    public Bus bus() {
       return new DefaultBus(topologyConfiguration(), transport(), subscriptionStorage());
-   }
-
-   @Bean
-   public TopologyConfiguration topologyConfiguration() {
-      return new TopologyConfiguration(new AddressNamingConvention());
    }
 
    @Bean
@@ -65,6 +62,11 @@ public class CoreConfig {
    @Bean
    public BusModule busModule() {
       return new BusModule(handlerRegistry(), topologyConfiguration(), transport(), bus());
+   }
+
+   @Bean
+   public TopologyConfiguration topologyConfiguration() {
+      return new TopologyConfiguration(busConfiguration);
    }
 
    @Bean

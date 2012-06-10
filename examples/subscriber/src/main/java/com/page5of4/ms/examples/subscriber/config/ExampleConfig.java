@@ -10,7 +10,7 @@ import com.page5of4.ms.config.CoreConfig;
 import com.page5of4.ms.examples.subscriber.impl.UserRegisteredHandler;
 
 @Configuration
-@Import(value = CoreConfig.class)
+@Import(value = { EnvironmentConfig.class, CoreConfig.class })
 public class ExampleConfig {
    @Autowired
    private Bus bus;

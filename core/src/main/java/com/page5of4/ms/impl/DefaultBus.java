@@ -48,13 +48,13 @@ public class DefaultBus implements Bus {
    public void subscribe(Class<?> messageType) {
       logger.info("Subscribing {}", messageType);
       EndpointAddress local = topologyConfiguration.getLocalAddressOf(messageType);
-      transport.send(topologyConfiguration.getSubscriptionAddressOf(messageType), new SubscribeMessage(local.toString(), MessageUtils.getMessageType(messageType)));
+      transport.send(topologyConfiguration.getSubscriptionAddressOf(messageType, SubscribeMessage.class), new SubscribeMessage(local.toString(), MessageUtils.getMessageType(messageType)));
    }
 
    @Override
    public void unsubscribe(Class<?> messageType) {
       logger.info("Unsubscribing {}", messageType);
       EndpointAddress local = topologyConfiguration.getLocalAddressOf(messageType);
-      transport.send(topologyConfiguration.getSubscriptionAddressOf(messageType), new UnsubscribeMessage(local.toString(), MessageUtils.getMessageType(messageType)));
+      transport.send(topologyConfiguration.getSubscriptionAddressOf(messageType, UnsubscribeMessage.class), new UnsubscribeMessage(local.toString(), MessageUtils.getMessageType(messageType)));
    }
 }

@@ -22,14 +22,4 @@
   <camel:camelContext><camel:contextScan/></camel:camelContext>
   
   <osgi:service ref="ourApplicationService" interface="com.page5of4.ms.examples.publisher.OurApplicationService" />
-  
-  <bean id="jacob" class="org.apache.camel.component.jms.JmsComponent">
-    <property name="connectionFactory">
-      <bean class="org.apache.activemq.ActiveMQConnectionFactory">
-        <property name="brokerURL" value="tcp://127.0.0.1:61616" />
-        <property name="copyMessageOnSend" value="false"/>
-        <property name="useAsyncSend" value="true"/>
-      </bean>
-    </property>
-  </bean>
 </beans>

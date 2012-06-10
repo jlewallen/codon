@@ -16,6 +16,7 @@
         <cxf.version>2.3.3-fuse-01-09</cxf.version>
         -->
 		<camel.version>2.9.2</camel.version>
+		<activemq.version>5.5.0</activemq.version>
 		<osgi.core.version>4.1.0</osgi.core.version>
 		<spring.version>3.0.6.RELEASE</spring.version>
 		<spring.osgi.version>1.2.1</spring.osgi.version>
@@ -173,8 +174,18 @@
 			</dependency>
 			<dependency>
 				<groupId>org.apache.camel</groupId>
+				<artifactId>camel-jms</artifactId>
+				<version>${camel.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.camel</groupId>
 				<artifactId>camel-amqp</artifactId>
 				<version>${camel.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.activemq</groupId>
+				<artifactId>activemq-camel</artifactId>
+				<version>${activemq.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.cxf</groupId>

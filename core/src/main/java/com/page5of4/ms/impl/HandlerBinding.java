@@ -43,7 +43,7 @@ public class HandlerBinding {
 
    public void invoke(Object message) {
       try {
-         method.invoke(resolver.resolve(), message);
+         method.invoke(resolver.resolve(handlerType), message);
       }
       catch(Exception e) {
          throw new BusException(String.format("Error invoking '%s' with '%s'", method, message), e);

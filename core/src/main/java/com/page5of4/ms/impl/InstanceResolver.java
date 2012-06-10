@@ -1,5 +1,5 @@
 package com.page5of4.ms.impl;
 
 public interface InstanceResolver {
-   Object resolve();
+   Object resolve(Class<?> klass);
 }

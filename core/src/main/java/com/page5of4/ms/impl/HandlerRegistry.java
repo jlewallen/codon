@@ -28,7 +28,7 @@ public class HandlerRegistry {
       Map<String, Object> handlers = applicationContext.getBeansWithAnnotation(MessageHandler.class);
       for(Map.Entry<String, Object> entry : handlers.entrySet()) {
          logger.info("Inspecting {}", entry.getValue());
-         HandlerDescriptor descriptor = inspector.discoverBindings(entry.getValue());
+         HandlerDescriptor descriptor = inspector.discoverBindings(entry.getValue().getClass(), new ApplicationContextResolver(applicationContext));
          descriptors.put(entry.getValue(), descriptor);
          problems.addAll(descriptor.getProblems());
       }

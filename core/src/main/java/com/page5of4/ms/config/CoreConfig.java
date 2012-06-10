@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import com.page5of4.ms.Bus;
 import com.page5of4.ms.BusConfiguration;
 import com.page5of4.ms.BusModule;
+import com.page5of4.ms.camel.CamelTransport;
 import com.page5of4.ms.camel.InvokeHandlerProcessor;
 import com.page5of4.ms.impl.ApplicationContextResolver;
 import com.page5of4.ms.impl.Bootstrap;
@@ -47,7 +48,7 @@ public class CoreConfig {
 
    @Bean
    public Transport transport() {
-      return new Transport(camelContext, invokeHandlerProcessor());
+      return new CamelTransport(camelContext, invokeHandlerProcessor());
    }
 
    @Bean

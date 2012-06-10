@@ -13,7 +13,6 @@ import com.page5of4.ms.impl.HandlerBinding;
 import com.page5of4.ms.impl.HandlerDispatcher;
 import com.page5of4.ms.impl.HandlerRegistry;
 import com.page5of4.ms.impl.InstanceResolver;
-import com.page5of4.ms.impl.Transport;
 
 public class InvokeHandlerProcessor implements Processor {
    private static final Logger logger = LoggerFactory.getLogger(InvokeHandlerProcessor.class);
@@ -31,11 +30,11 @@ public class InvokeHandlerProcessor implements Processor {
       Message message = exchange.getIn();
       Object body = message.getBody();
       Map<String, Object> headers = message.getHeaders();
-      if(!headers.containsKey(Transport.MESSAGE_TYPE_KEY)) {
+      if(!headers.containsKey(CamelTransport.MESSAGE_TYPE_KEY)) {
          throw new BusException("No message type key on message!");
       }
 
-      String messageType = headers.get(Transport.MESSAGE_TYPE_KEY).toString();
+      String messageType = headers.get(CamelTransport.MESSAGE_TYPE_KEY).toString();
       logger.debug(String.format("Processing: %s %s", messageType, body));
       for(HandlerBinding binding : handlerRegistry.getBindingsFor(body.getClass())) {
          logger.debug("Invoking {}", binding.getMethod());

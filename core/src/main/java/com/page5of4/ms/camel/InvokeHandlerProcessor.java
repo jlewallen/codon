@@ -8,11 +8,11 @@ import org.apache.camel.Processor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.page5of4.ms.BusException;
 import com.page5of4.ms.impl.HandlerBinding;
 import com.page5of4.ms.impl.HandlerDispatcher;
 import com.page5of4.ms.impl.HandlerRegistry;
 import com.page5of4.ms.impl.InstanceResolver;
+import com.page5of4.ms.impl.MessageUtils;
 
 public class InvokeHandlerProcessor implements Processor {
    private static final Logger logger = LoggerFactory.getLogger(InvokeHandlerProcessor.class);
@@ -29,12 +29,15 @@ public class InvokeHandlerProcessor implements Processor {
    public void process(Exchange exchange) throws Exception {
       Message message = exchange.getIn();
       Object body = message.getBody();
+      String messageType = MessageUtils.getMessageType(body);
       Map<String, Object> headers = message.getHeaders();
-      if(!headers.containsKey(CamelTransport.MESSAGE_TYPE_KEY)) {
-         throw new BusException("No message type key on message!");
+      if(headers.containsKey(CamelTransport.MESSAGE_TYPE_KEY)) {
+         messageType = headers.get(CamelTransport.MESSAGE_TYPE_KEY).toString();
+      }
+      else {
+         logger.warn("No message type on message, assuming no conversion necessary: '{}'", messageType);
       }
 
-      String messageType = headers.get(CamelTransport.MESSAGE_TYPE_KEY).toString();
       logger.debug(String.format("Processing: %s %s", messageType, body));
       for(HandlerBinding binding : handlerRegistry.getBindingsFor(body.getClass())) {
          logger.debug("Invoking {}", binding.getMethod());

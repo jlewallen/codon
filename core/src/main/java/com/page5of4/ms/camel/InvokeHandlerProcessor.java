@@ -1,5 +1,6 @@
 package com.page5of4.ms.camel;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.camel.Exchange;
@@ -29,6 +30,7 @@ public class InvokeHandlerProcessor implements Processor {
    public void process(Exchange exchange) throws Exception {
       Message message = exchange.getIn();
       Object body = message.getBody();
+      Class<?> bodyClass = body.getClass();
       String messageType = MessageUtils.getMessageType(body);
       Map<String, Object> headers = message.getHeaders();
       if(headers.containsKey(CamelTransport.MESSAGE_TYPE_KEY)) {
@@ -38,10 +40,14 @@ public class InvokeHandlerProcessor implements Processor {
          logger.warn("No message type on message, assuming no conversion necessary: '{}'", messageType);
       }
 
-      logger.debug(String.format("Processing: %s %s", messageType, body));
-      for(HandlerBinding binding : handlerRegistry.getBindingsFor(body.getClass())) {
+      logger.debug(String.format("Processing: %s/%s '%s'", messageType, bodyClass.getName(), body));
+      List<HandlerBinding> bindings = handlerRegistry.getBindingsFor(bodyClass);
+      for(HandlerBinding binding : bindings) {
          logger.debug("Invoking {}", binding.getMethod());
          new HandlerDispatcher(resolver, binding).dispatch(body);
+      }
+      if(bindings.isEmpty()) {
+         logger.warn("No handlers registered for {}/{}", messageType, bodyClass.getName());
       }
    }
 }

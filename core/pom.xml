@@ -35,6 +35,7 @@
 						<Export-Package>
 							com.page5of4.ms,
 							com.page5of4.ms.config,
+							com.page5of4.ms.camel,
 							com.page5of4.ms.subscriptions,
 							com.page5of4.ms.subscriptions.messages
 						</Export-Package>

@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import com.page5of4.ms.Bus;
+import com.page5of4.ms.camel.OutgoingProcessor;
 import com.page5of4.ms.config.CoreConfig;
 import com.page5of4.ms.examples.messages.LaunchWorkMessage;
 import com.page5of4.ms.examples.publisher.OurApplicationService;
@@ -39,7 +40,9 @@ public class ExampleConfig {
    public static class JobRouteBuilder extends RouteBuilder {
       @Override
       public void configure() throws Exception {
-         from("timer://job?fixedRate=true&period=1000").transform(constant(new LaunchWorkMessage(UUID.randomUUID(), 1L))).to("activemq:publisher.com.page5of4.ms.examples.messages.LaunchWorkMessage");
+         from("timer://job?fixedRate=true&period=1000").
+               process(new OutgoingProcessor(new LaunchWorkMessage(UUID.randomUUID(), 1L))).
+               to("activemq:publisher.com.page5of4.ms.examples.messages.LaunchWorkMessage");
       }
    }
 }

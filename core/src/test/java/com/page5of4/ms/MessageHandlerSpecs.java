@@ -4,8 +4,8 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import org.junit.Test;
 
+import com.page5of4.ms.impl.HandlerDescriptor;
 import com.page5of4.ms.impl.HandlerInspector;
-import com.page5of4.ms.impl.HandlerInspector.HandlerDescriptor;
 
 public class MessageHandlerSpecs {
    private HandlerInspector inspector = new HandlerInspector();

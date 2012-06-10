@@ -3,8 +3,12 @@ package com.page5of4.ms.subscriptions;
 import com.page5of4.ms.EndpointAddress;
 
 public class Subscription {
-   private final String address;
-   private final String messageType;
+   private String address;
+   private String messageType;
+
+   public Subscription() {
+      super();
+   }
 
    public Subscription(String address, String messageType) {
       super();
@@ -16,8 +20,16 @@ public class Subscription {
       return address;
    }
 
+   public void setAddress(String address) {
+      this.address = address;
+   }
+
    public String getMessageType() {
       return messageType;
+   }
+
+   public void setMessageType(String messageType) {
+      this.messageType = messageType;
    }
 
    public EndpointAddress toEndpointAddress() {

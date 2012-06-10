@@ -6,7 +6,7 @@ import org.apache.camel.Processor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.page5of4.ms.impl.HandlerInspector.HandlerBinding;
+import com.page5of4.ms.impl.HandlerBinding;
 import com.page5of4.ms.impl.HandlerRegistry;
 
 public class InvokeHandlerProcessor implements Processor {
@@ -27,6 +27,7 @@ public class InvokeHandlerProcessor implements Processor {
 
       for(HandlerBinding binding : handlerRegistry.getBindingsFor(body.getClass())) {
          logger.debug("Invoking {}", binding.getMethod());
+         binding.invoke(body);
       }
    }
 }

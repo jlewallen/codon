@@ -11,8 +11,6 @@ import org.springframework.context.ApplicationContext;
 
 import com.page5of4.ms.BusException;
 import com.page5of4.ms.MessageHandler;
-import com.page5of4.ms.impl.HandlerInspector.HandlerBinding;
-import com.page5of4.ms.impl.HandlerInspector.HandlerDescriptor;
 
 public class HandlerRegistry {
    private static final Logger logger = LoggerFactory.getLogger(HandlerRegistry.class);
@@ -29,7 +27,7 @@ public class HandlerRegistry {
       List<String> problems = new ArrayList<String>();
       Map<String, Object> handlers = applicationContext.getBeansWithAnnotation(MessageHandler.class);
       for(Map.Entry<String, Object> entry : handlers.entrySet()) {
-         logger.info("{} {}", entry.getKey(), entry.getValue());
+         logger.info("Inspecting {}", entry.getValue());
          HandlerDescriptor descriptor = inspector.discoverBindings(entry.getValue());
          descriptors.put(entry.getValue(), descriptor);
          problems.addAll(descriptor.getProblems());

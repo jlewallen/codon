@@ -5,7 +5,7 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.page5of4.ms.impl.HandlerInspector.HandlerBinding;
+import com.page5of4.ms.impl.HandlerBinding;
 import com.page5of4.ms.impl.HandlerRegistry;
 import com.page5of4.ms.impl.TopologyConfiguration;
 import com.page5of4.ms.impl.Transport;

@@ -51,6 +51,6 @@ public class CamelTransport implements Transport {
    }
 
    private String toCamelUrl(EndpointAddress address) {
-      return String.format("activemq:%s", address);
+      return String.format("jacob:%s", address);
    }
 }

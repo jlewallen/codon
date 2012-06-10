@@ -43,7 +43,7 @@ public class CoreConfig {
 
    @Bean
    public SubscriptionStorage subscriptionStorage() {
-      return new XmlSubscriptionStorage();
+      return new XmlSubscriptionStorage(busConfiguration);
    }
 
    @Bean

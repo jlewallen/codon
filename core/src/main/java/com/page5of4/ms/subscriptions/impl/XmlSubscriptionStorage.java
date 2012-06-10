@@ -13,15 +13,21 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.page5of4.ms.BusConfiguration;
 import com.page5of4.ms.EndpointAddress;
 import com.page5of4.ms.subscriptions.Subscription;
 import com.page5of4.ms.subscriptions.SubscriptionStorage;
 
 public class XmlSubscriptionStorage implements SubscriptionStorage {
    private static final String FILENAME = "com.page5of4.ms.subscriptions.xml";
+   private BusConfiguration configuration;
 
-   public XmlSubscriptionStorage() {
+   @Autowired
+   public XmlSubscriptionStorage(BusConfiguration configuration) {
       super();
+      this.configuration = configuration;
    }
 
    @Override
@@ -76,6 +82,6 @@ public class XmlSubscriptionStorage implements SubscriptionStorage {
    }
 
    private String getPath() {
-      return new File(System.getProperty("user.home"), FILENAME).toString();
+      return new File(System.getProperty("user.home"), configuration.getApplicationName() + "." + FILENAME).toString();
    }
 }

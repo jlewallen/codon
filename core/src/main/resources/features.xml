@@ -18,28 +18,29 @@
 	</feature>
 
 	<feature name="ms-core" version="${project.version}">
-		<bundle start-level='90'>mvn:${project.groupId}/core/${project.version}</bundle>
+		<bundle start-level='90'>mvn:${main.project.groupId}/core/${project.version}</bundle>
 	</feature>
 
 	<feature name="ms-example-publisher" version="${project.version}">
 		<feature>ms-core</feature>
 
-		<bundle start-level='90'>mvn:${project.groupId}/messages/${project.version}</bundle>
-		<bundle start-level='91'>mvn:${project.groupId}/publisher/${project.version}</bundle>
+		<bundle start-level='90'>mvn:${examples.project.groupId}/messages/${project.version}</bundle>
+		<bundle start-level='91'>mvn:${examples.project.groupId}/publisher/${project.version}</bundle>
 	</feature>
 
 	<feature name="ms-example-subscriber" version="${project.version}">
 		<feature>ms-core</feature>
 
-		<bundle start-level='90'>mvn:${project.groupId}/messages/${project.version}</bundle>
-		<bundle start-level='91'>mvn:${project.groupId}/subscriber/${project.version}</bundle>
+		<bundle start-level='90'>mvn:${examples.project.groupId}/messages/${project.version}</bundle>
+		<bundle start-level='91'>mvn:${examples.project.groupId}/subscriber/${project.version}</bundle>
 	</feature>
 
 	<feature name="ms-example" version="${project.version}">
-		<bundle start-level='80'>mvn:${project.groupId}/core/${project.version}</bundle>
-		<bundle start-level='90'>mvn:${project.groupId}/messages/${project.version}</bundle>
-		<bundle start-level='91'>mvn:${project.groupId}/subscriber/${project.version}</bundle>
-		<bundle start-level='92'>mvn:${project.groupId}/publisher/${project.version}</bundle>
+		<bundle start-level='80'>mvn:${main.project.groupId}/core/${project.version}</bundle>
+
+		<bundle start-level='90'>mvn:${examples.project.groupId}/messages/${project.version}</bundle>
+		<bundle start-level='91'>mvn:${examples.project.groupId}/subscriber/${project.version}</bundle>
+		<bundle start-level='92'>mvn:${examples.project.groupId}/publisher/${project.version}</bundle>
 	</feature>
 
 	<feature name="ms-example-webapp" version="${project.version}">
@@ -54,6 +55,6 @@
 		<bundle start-level='73'>mvn:org.springframework/spring-web/${spring.version}</bundle>
 		<bundle start-level='74'>mvn:org.springframework/spring-webmvc/${spring.version}</bundle>
 		-->
-		<bundle start-level='90'>mvn:${project.groupId}/webapp/${project.version}/war</bundle>
+		<bundle start-level='90'>mvn:${examples.project.groupId}/webapp/${project.version}/war</bundle>
 	</feature>
 </features>

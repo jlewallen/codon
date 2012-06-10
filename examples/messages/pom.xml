@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.page5of4.ms</groupId>
+		<groupId>com.page5of4.ms.examples</groupId>
 		<artifactId>examples</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
@@ -66,7 +66,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>${project.groupId}</groupId>
+			<groupId>com.page5of4.ms</groupId>
 			<artifactId>core</artifactId>
 			<version>${project.version}</version>
 		</dependency>

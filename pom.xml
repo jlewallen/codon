@@ -23,6 +23,8 @@
 		<org.slf4j.version>1.6.1</org.slf4j.version>
 		<junit.version>4.7</junit.version>
 		<org.easytesting.fest.version>1.4</org.easytesting.fest.version>
+		<main.project.groupId>${project.groupId}</main.project.groupId>
+		<examples.project.groupId>${project.groupId}.examples</examples.project.groupId>
 	</properties>
 
 	<repositories>

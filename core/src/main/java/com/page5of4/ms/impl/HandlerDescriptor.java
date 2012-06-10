@@ -11,7 +11,7 @@ public class HandlerDescriptor {
    private final List<String> problems = new ArrayList<String>();
    private final List<HandlerBinding> bindings = new ArrayList<HandlerBinding>();
 
-   public HandlerDescriptor(Class<?> handlerType, InstanceResolver resolver) {
+   public HandlerDescriptor(Class<?> handlerType) {
       super();
       this.handlerType = handlerType;
       MessageHandler classAnnotation = handlerType.getAnnotation(MessageHandler.class);
@@ -20,7 +20,7 @@ public class HandlerDescriptor {
          if(methodAnnotation != null) {
             Class<?> messageType = getMessageTypeFromParameters(method);
             if(messageType != null) {
-               bindings.add(new HandlerBinding(handlerType, messageType, method, resolver, classAnnotation.autoSubscribe().or(methodAnnotation.autoSubscribe())));
+               bindings.add(new HandlerBinding(handlerType, messageType, method, classAnnotation.autoSubscribe().or(methodAnnotation.autoSubscribe())));
             }
          }
       }

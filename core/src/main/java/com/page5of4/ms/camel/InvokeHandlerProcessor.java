@@ -10,16 +10,20 @@ import org.slf4j.LoggerFactory;
 
 import com.page5of4.ms.BusException;
 import com.page5of4.ms.impl.HandlerBinding;
+import com.page5of4.ms.impl.HandlerDispatcher;
 import com.page5of4.ms.impl.HandlerRegistry;
+import com.page5of4.ms.impl.InstanceResolver;
 import com.page5of4.ms.impl.Transport;
 
 public class InvokeHandlerProcessor implements Processor {
    private static final Logger logger = LoggerFactory.getLogger(InvokeHandlerProcessor.class);
    private final HandlerRegistry handlerRegistry;
+   private final InstanceResolver resolver;
 
-   public InvokeHandlerProcessor(HandlerRegistry handlerRegistry) {
+   public InvokeHandlerProcessor(HandlerRegistry handlerRegistry, InstanceResolver resolver) {
       super();
       this.handlerRegistry = handlerRegistry;
+      this.resolver = resolver;
    }
 
    @Override
@@ -35,7 +39,7 @@ public class InvokeHandlerProcessor implements Processor {
       logger.debug(String.format("Processing: %s %s", messageType, body));
       for(HandlerBinding binding : handlerRegistry.getBindingsFor(body.getClass())) {
          logger.debug("Invoking {}", binding.getMethod());
-         binding.invoke(body);
+         new HandlerDispatcher(resolver, binding).dispatch(body);
       }
    }
 }

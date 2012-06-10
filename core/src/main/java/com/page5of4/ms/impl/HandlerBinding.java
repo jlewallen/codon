@@ -3,13 +3,11 @@ package com.page5of4.ms.impl;
 import java.lang.reflect.Method;
 
 import com.page5of4.ms.AutomaticallySubscribe;
-import com.page5of4.ms.BusException;
 
 public class HandlerBinding {
    private final Class<?> handlerType;
    private final Class<?> messageType;
    private final Method method;
-   private final InstanceResolver resolver;
    private final AutomaticallySubscribe automaticallySubscribe;
 
    public boolean shouldSubscribe() {
@@ -32,21 +30,12 @@ public class HandlerBinding {
       return automaticallySubscribe;
    }
 
-   public HandlerBinding(Class<?> handlerType, Class<?> messageType, Method method, InstanceResolver resolver, AutomaticallySubscribe automaticallySubscribe) {
+   public HandlerBinding(Class<?> handlerType, Class<?> messageType, Method method, AutomaticallySubscribe automaticallySubscribe) {
       super();
       this.handlerType = handlerType;
       this.messageType = messageType;
       this.method = method;
-      this.resolver = resolver;
       this.automaticallySubscribe = automaticallySubscribe;
    }
 
-   public void invoke(Object message) {
-      try {
-         method.invoke(resolver.resolve(handlerType), message);
-      }
-      catch(Exception e) {
-         throw new BusException(String.format("Error invoking '%s' with '%s'", method, message), e);
-      }
-   }
 }

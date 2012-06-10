@@ -10,6 +10,7 @@ import com.page5of4.ms.Bus;
 import com.page5of4.ms.BusConfiguration;
 import com.page5of4.ms.BusModule;
 import com.page5of4.ms.camel.InvokeHandlerProcessor;
+import com.page5of4.ms.impl.ApplicationContextResolver;
 import com.page5of4.ms.impl.Bootstrap;
 import com.page5of4.ms.impl.DefaultBus;
 import com.page5of4.ms.impl.HandlerRegistry;
@@ -51,7 +52,7 @@ public class CoreConfig {
 
    @Bean
    public InvokeHandlerProcessor invokeHandlerProcessor() {
-      return new InvokeHandlerProcessor(handlerRegistry());
+      return new InvokeHandlerProcessor(handlerRegistry(), new ApplicationContextResolver(applicationContext));
    }
 
    @Bean

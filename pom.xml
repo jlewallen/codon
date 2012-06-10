@@ -24,6 +24,8 @@
 		<org.slf4j.version>1.6.1</org.slf4j.version>
 		<junit.version>4.7</junit.version>
 		<org.easytesting.fest.version>1.4</org.easytesting.fest.version>
+		<atomikos.version>3.8.0</atomikos.version>
+		<h2.version>1.3.167</h2.version>
 		<main.project.groupId>${project.groupId}</main.project.groupId>
 		<examples.project.groupId>${project.groupId}.examples</examples.project.groupId>
 	</properties>
@@ -236,6 +238,23 @@
 				<groupId>org.ops4j.pax.logging</groupId>
 				<artifactId>pax-logging-api</artifactId>
 				<version>${pax.logging.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.atomikos</groupId>
+				<artifactId>transactions</artifactId>
+				<version>${atomikos.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.atomikos</groupId>
+				<artifactId>transactions-jta</artifactId>
+				<version>${atomikos.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>${h2.version}</version>
 			</dependency>
 
 			<dependency>

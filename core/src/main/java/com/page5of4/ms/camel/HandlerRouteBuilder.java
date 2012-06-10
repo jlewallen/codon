@@ -15,6 +15,6 @@ public class HandlerRouteBuilder extends RouteBuilder {
 
    @Override
    public void configure() throws Exception {
-      from(fromAddress).process(invokeHandlerProcessor);
+      from(fromAddress).transacted().process(invokeHandlerProcessor);
    }
 }

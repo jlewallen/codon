@@ -11,6 +11,7 @@ Rough idea of provisioning a Karaf instance for using this.
     osgi:install -s mvn:org.apache.activemq/activemq-camel/5.5.0
     osgi:install -s mvn:org.codehaus.jackson/jackson-core-asl/1.7.5
     osgi:install -s mvn:org.codehaus.jackson/jackson-mapper-asl/1.7.5
+    osgi:install -s mvn:com.atomikos/transactions-osgi/3.8.0
 
 # Scratch Area
 

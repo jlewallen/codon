@@ -17,6 +17,8 @@
 
 	<osgi:reference id="configurationAdmin" interface="org.osgi.service.cm.ConfigurationAdmin" />
 
+	<osgi:reference id="ourApplicationService" interface="com.page5of4.ms.examples.publisher.OurApplicationService" />
+
 	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 		<property name="mediaTypes">
 			<map>
@@ -42,5 +44,4 @@
 			</list>
 		</property>
 	</bean>
-
 </beans>

@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Import;
 
 import com.page5of4.ms.Bus;
 import com.page5of4.ms.config.CoreConfig;
+import com.page5of4.ms.examples.publisher.OurApplicationService;
+import com.page5of4.ms.examples.publisher.impl.OurApplicationServiceImpl;
 import com.page5of4.ms.examples.publisher.impl.Publisher;
 
 @Configuration
@@ -20,4 +22,8 @@ public class ExampleConfig {
       return new Publisher(bus);
    }
 
+   @Bean
+   public OurApplicationService ourApplicationService() {
+      return new OurApplicationServiceImpl(bus);
+   }
 }

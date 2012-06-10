@@ -2,6 +2,7 @@ package com.page5of4.ms.examples.webapp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.page5of4.ms.examples.publisher.OurApplicationService;
+import com.page5of4.ms.examples.publisher.StuffParameters;
+
 @Controller
 @RequestMapping(value = "/")
 public class HomeController {
@@ -22,14 +26,13 @@ public class HomeController {
 
    @Autowired
    BundleContext bundleContext;
-
    @Autowired
    ConfigurationAdmin configurationAdmin;
+   @Autowired
+   OurApplicationService ourApplicationService;
 
    @RequestMapping(method = RequestMethod.GET)
    public ModelAndView home() throws Exception {
-      ModelAndView mav = new ModelAndView("home");
-
       logger.info("ConfigurationAdmin: {}", configurationAdmin);
       logger.info("BundleContext: {}", bundleContext);
 
@@ -44,6 +47,14 @@ public class HomeController {
          vm.getConfiguration().add(new ConfigurationViewModel(configuration.getPid()));
       }
       return new ModelAndView("home", "model", vm);
+   }
+
+   @RequestMapping(value = "/begin", method = RequestMethod.GET)
+   public ModelAndView begin() {
+      UUID id = UUID.randomUUID();
+      StuffParameters parameters = new StuffParameters(id, "Jacob", 10L);
+      ourApplicationService.startDoingStuff(parameters);
+      return new ModelAndView("home", "model", parameters);
    }
 
    public static class ViewModel {

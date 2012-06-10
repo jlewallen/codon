@@ -11,9 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.page5of4.ms.Bus;
+import com.page5of4.ms.MessageHandler;
+import com.page5of4.ms.examples.messages.LaunchWorkMessage;
 import com.page5of4.ms.examples.messages.UserRegisteredMessage;
 
 @Service
+@MessageHandler
 public class Publisher {
    private static final Logger logger = LoggerFactory.getLogger(Publisher.class);
    private final Bus bus;
@@ -22,6 +25,11 @@ public class Publisher {
    public Publisher(Bus bus) {
       super();
       this.bus = bus;
+   }
+
+   @MessageHandler
+   public void launchWork(LaunchWorkMessage message) {
+      bus.publish(new UserRegisteredMessage(UUID.randomUUID(), "Jacob", "Lewallen", new Date()));
    }
 
    @PostConstruct

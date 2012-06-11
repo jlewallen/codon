@@ -1,5 +1,8 @@
 package com.page5of4.ms.camel;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
 import org.slf4j.Logger;
@@ -26,6 +29,26 @@ public class CamelTransport implements Transport {
       this.componentTemplate = componentTemplate;
       this.invokeHandlerProcessor = invokeHandlerProcessor;
       this.producer = camelContext.createProducerTemplate();
+   }
+
+   @PostConstruct
+   public void start() {
+      try {
+         camelContext.start();
+      }
+      catch(Exception e) {
+         throw new BusException(e);
+      }
+   }
+
+   @PreDestroy
+   public void stop() {
+      try {
+         camelContext.stop();
+      }
+      catch(Exception e) {
+         throw new BusException(e);
+      }
    }
 
    public void send(EndpointAddress address, Object message) {

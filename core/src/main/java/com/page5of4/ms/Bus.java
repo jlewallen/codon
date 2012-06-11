@@ -7,6 +7,8 @@ public interface Bus {
 
    <T> void sendLocal(T message);
 
+   <T> void send(EndpointAddress address, T message);
+
    void subscribe(Class<?> messageType);
 
    void unsubscribe(Class<?> messageType);

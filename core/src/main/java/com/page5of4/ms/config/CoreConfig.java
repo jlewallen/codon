@@ -1,7 +1,7 @@
 package com.page5of4.ms.config;
 
-import org.apache.camel.CamelContext;
 import org.apache.camel.spi.TransactedPolicy;
+import org.apache.camel.spring.SpringCamelContext;
 import org.apache.camel.spring.spi.SpringTransactionPolicy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -11,6 +11,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import com.page5of4.ms.Bus;
 import com.page5of4.ms.BusConfiguration;
+import com.page5of4.ms.BusException;
 import com.page5of4.ms.BusModule;
 import com.page5of4.ms.camel.ActiveMQComponentResolver;
 import com.page5of4.ms.camel.CamelTransport;
@@ -30,8 +31,6 @@ import com.page5of4.ms.subscriptions.impl.XmlSubscriptionStorage;
 
 @Configuration
 public class CoreConfig {
-   @Autowired
-   private CamelContext camelContext;
    @Autowired
    private ApplicationContext applicationContext;
    @Autowired
@@ -54,7 +53,14 @@ public class CoreConfig {
 
    @Bean
    public Transport transport() {
-      return new CamelTransport(camelContext, componentResolver(), invokeHandlerProcessor());
+      try {
+         SpringCamelContext camelContext = new SpringCamelContext(applicationContext);
+         camelContext.afterPropertiesSet();
+         return new CamelTransport(camelContext, componentResolver(), invokeHandlerProcessor());
+      }
+      catch(Exception e) {
+         throw new BusException(e);
+      }
    }
 
    @Bean

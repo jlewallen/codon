@@ -21,7 +21,6 @@ public class DefaultBus implements Bus {
       this.topologyConfiguration = topologyConfiguration;
       this.transport = transport;
       this.subscriptionStorage = subscriptionStorage;
-      logger.info("Constructed");
    }
 
    @Override
@@ -42,6 +41,12 @@ public class DefaultBus implements Bus {
    public <T> void sendLocal(T message) {
       logger.info("SendLocal {}", message);
       transport.send(topologyConfiguration.getLocalAddressOf(message.getClass()), message);
+   }
+
+   @Override
+   public <T> void send(EndpointAddress address, T message) {
+      logger.info("Send {} -> {}", message, address);
+      transport.send(address, message);
    }
 
    @Override

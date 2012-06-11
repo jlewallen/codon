@@ -20,6 +20,7 @@ public class OutgoingProcessor implements Processor {
    public void process(Exchange exchange) throws Exception {
       Message in = exchange.getIn();
       in.setHeader(CamelTransport.MESSAGE_TYPE_KEY, MessageUtils.getMessageType(message));
+      in.setHeader(CamelTransport.REPLY_TO_ADDRESS_KEY, "");
       in.setBody(message);
    }
 }

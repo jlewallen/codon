@@ -1,3 +1,25 @@
+# TODO
+
+1. Flexible configuration of:
+    1. Naming convention - primarily Application name.
+    1. Creation of destination Components, which uses ActiveMQ by default now.
+1. Archetypes that do database access and provide web UIs.
+1. Grid and webconsole for managing things.
+
+# Grid TODO
+
+1. Publish NodeAddedMessage, NodeRemovedMessage, NodePaused, NodeRemoved
+1. Respond to PauseNode, ResumeNode
+
+# Web Console TODO
+
+1. Connect to ActiveMQ/JMS broker via JMX and display:
+    1. All Queues
+        1. Oldest message information.
+        1. Queue length.
+    1. Posion Queues
+        1. Reprocess poison messages.
+
 # Provisioning Karaf
 
 Rough idea of provisioning a Karaf instance for using this.

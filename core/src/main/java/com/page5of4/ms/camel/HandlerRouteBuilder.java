@@ -3,18 +3,20 @@ package com.page5of4.ms.camel;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Service;
 
+import com.page5of4.ms.config.CoreConfig;
+
 @Service
 public class HandlerRouteBuilder extends RouteBuilder {
-   private final String fromAddress;
    private final InvokeHandlerProcessor invokeHandlerProcessor;
+   private final String fromAddress;
 
-   public HandlerRouteBuilder(String fromAddress, InvokeHandlerProcessor invokeHandlerProcessor) {
-      this.fromAddress = fromAddress;
+   public HandlerRouteBuilder(InvokeHandlerProcessor invokeHandlerProcessor, String fromAddress) {
       this.invokeHandlerProcessor = invokeHandlerProcessor;
+      this.fromAddress = fromAddress;
    }
 
    @Override
    public void configure() throws Exception {
-      from(fromAddress).transacted().process(invokeHandlerProcessor);
+      from(fromAddress).transacted(CoreConfig.TRANSACTION_POLICY_NAME).process(invokeHandlerProcessor);
    }
 }

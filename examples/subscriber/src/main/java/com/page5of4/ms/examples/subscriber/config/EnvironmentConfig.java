@@ -13,6 +13,6 @@ public class EnvironmentConfig {
 
    @Bean
    public BusConfiguration busConfiguration() {
-      return new BusConfiguration(applicationName);
+      return new BusConfiguration(applicationName, "local-server");
    }
 }

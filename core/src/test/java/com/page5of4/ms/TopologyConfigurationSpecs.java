@@ -16,7 +16,7 @@ public class TopologyConfigurationSpecs {
 
    @Before
    public void before() {
-      BusConfiguration configuration = new BusConfiguration("test");
+      BusConfiguration configuration = new BusConfiguration("test", "testing-server");
       Map<String, String> properties = new HashMap<String, String>();
       properties.put("bus.owner.com.page5of4.ms", "remote.{messageType}@server");
       configuration.addProperties(properties);
@@ -35,7 +35,7 @@ public class TopologyConfigurationSpecs {
 
    @Test
    public void when_getting_local_address_of_message() {
-      assertThat(topology.getLocalAddressOf(ExampleMessage.class)).isEqualTo(new EndpointAddress("test.com.page5of4.ms.TopologyConfigurationSpecs$ExampleMessage@jacob"));
+      assertThat(topology.getLocalAddressOf(ExampleMessage.class)).isEqualTo(new EndpointAddress("test.com.page5of4.ms.TopologyConfigurationSpecs$ExampleMessage@testing-server"));
    }
 
    @Test

@@ -21,7 +21,7 @@ public class SendLocalProcessorSpecs extends CamelTestSupport {
    protected RouteBuilder createRouteBuilder() throws Exception {
       HandlerRegistry handlerRegistry = new HandlerRegistry(null);
       InstanceResolver resolver = new ApplicationContextResolver(null);
-      final Bus bus = new DefaultBus(new TopologyConfiguration(new BusConfiguration("test")), new CamelTransport(context, new ActiveMQComponentResolver(), new InvokeHandlerProcessor(handlerRegistry, resolver)), new InMemorySubscriptionStorage());
+      final Bus bus = new DefaultBus(new TopologyConfiguration(new BusConfiguration("test", "testing-server")), new CamelTransport(context, new ActiveMQComponentResolver(), new InvokeHandlerProcessor(handlerRegistry, resolver)), new InMemorySubscriptionStorage());
       return new RouteBuilder() {
          @Override
          public void configure() throws Exception {
@@ -33,13 +33,13 @@ public class SendLocalProcessorSpecs extends CamelTestSupport {
    @Override
    protected CamelContext createCamelContext() throws Exception {
       CamelContext context = super.createCamelContext();
-      context.addComponent("jacob", new MockComponent());
+      context.addComponent("testing-server", new MockComponent());
       return context;
    }
 
    @Test
    public void when_processing_message() throws Exception {
-      MockEndpoint mock = getMockEndpoint("jacob:test.java.lang.String");
+      MockEndpoint mock = getMockEndpoint("testing-server:test.java.lang.String");
       mock.expectedMessageCount(1);
       mock.expectedBodiesReceived("Message body");
 

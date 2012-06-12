@@ -12,9 +12,14 @@ public class BusConfiguration {
    private static final String BUS_OWNER = "bus.owner.";
    private final Map<String, String> properties = new HashMap<String, String>();
    private final String applicationName;
+   private final String localComponentName;
 
    public String getApplicationName() {
       return applicationName;
+   }
+
+   public String getLocalComponentName() {
+      return localComponentName;
    }
 
    @Value("classpath:/META-INF/spring/application.properties")
@@ -33,9 +38,10 @@ public class BusConfiguration {
       this.properties.putAll(properties);
    }
 
-   public BusConfiguration(String applicationName) {
+   public BusConfiguration(String applicationName, String localComponentName) {
       super();
       this.applicationName = applicationName;
+      this.localComponentName = localComponentName;
       if(applicationName == null || applicationName.length() == 0) throw new BusException("Application name is required.");
    }
 
@@ -56,6 +62,6 @@ public class BusConfiguration {
    }
 
    public String getLocalAddress(String messageType) {
-      return String.format("%s.{messageType}@jacob", applicationName);
+      return String.format("%s.{messageType}@%s", applicationName, localComponentName);
    }
 }

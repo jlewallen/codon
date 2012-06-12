@@ -25,11 +25,11 @@ public class InMemorySubscriptionStorage implements SubscriptionStorage {
 
    @Override
    public void addSubscriptions(Collection<Subscription> subscriptions) {
-      subscriptions.addAll(subscriptions);
+      this.subscriptions.addAll(subscriptions);
    }
 
    @Override
    public void removeSubscriptions(Collection<Subscription> subscriptions) {
-      subscriptions.removeAll(subscriptions);
+      this.subscriptions.removeAll(subscriptions);
    }
 }

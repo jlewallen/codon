@@ -29,6 +29,10 @@ public class BusConfiguration {
       }
    }
 
+   public void addProperties(Map<String, String> properties) {
+      this.properties.putAll(properties);
+   }
+
    public BusConfiguration(String applicationName) {
       super();
       this.applicationName = applicationName;

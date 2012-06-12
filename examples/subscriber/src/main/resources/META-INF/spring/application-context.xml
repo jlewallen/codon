@@ -19,9 +19,6 @@
   <context:annotation-config />
   <context:property-placeholder />
   <context:component-scan base-package="com.page5of4.ms.examples.subscriber.config"/>
-  <!--
-  <camel:camelContext><camel:contextScan/></camel:camelContext>
-  -->
   
   <osgi:reference id="osgiPlatformTransactionManager" interface="org.springframework.transaction.PlatformTransactionManager" /> 
   <osgi:reference id="osgiJtaTransactionManager" interface="javax.transaction.TransactionManager" /> 

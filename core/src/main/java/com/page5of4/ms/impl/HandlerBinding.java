@@ -11,7 +11,7 @@ public class HandlerBinding {
    private final AutomaticallySubscribe automaticallySubscribe;
 
    public boolean shouldSubscribe() {
-      return getAutomaticallySubscribe().shouldSubscribe();
+      return automaticallySubscribe.shouldSubscribe();
    }
 
    public Class<?> getHandlerType() {
@@ -26,10 +26,6 @@ public class HandlerBinding {
       return method;
    }
 
-   public AutomaticallySubscribe getAutomaticallySubscribe() {
-      return automaticallySubscribe;
-   }
-
    public HandlerBinding(Class<?> handlerType, Class<?> messageType, Method method, AutomaticallySubscribe automaticallySubscribe) {
       super();
       this.handlerType = handlerType;
@@ -37,5 +33,4 @@ public class HandlerBinding {
       this.method = method;
       this.automaticallySubscribe = automaticallySubscribe;
    }
-
 }

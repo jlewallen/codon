@@ -1,7 +1,6 @@
 package com.page5of4.ms.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +13,7 @@ import com.page5of4.ms.MessageHandler;
 
 public class HandlerRegistry {
    private static final Logger logger = LoggerFactory.getLogger(HandlerRegistry.class);
-   private final Map<Object, HandlerDescriptor> descriptors = new HashMap<Object, HandlerDescriptor>();
+   private final List<HandlerDescriptor> descriptors = new ArrayList<HandlerDescriptor>();
    private final ApplicationContext applicationContext;
 
    public HandlerRegistry(ApplicationContext applicationContext) {
@@ -23,13 +22,21 @@ public class HandlerRegistry {
    }
 
    public void initialize() {
-      HandlerInspector inspector = new HandlerInspector();
-      List<String> problems = new ArrayList<String>();
+      List<Class<?>> classes = new ArrayList<Class<?>>();
       Map<String, Object> handlers = applicationContext.getBeansWithAnnotation(MessageHandler.class);
       for(Map.Entry<String, Object> entry : handlers.entrySet()) {
-         logger.info("Inspecting {}", entry.getValue());
-         HandlerDescriptor descriptor = inspector.discoverBindings(entry.getValue().getClass());
-         descriptors.put(entry.getValue(), descriptor);
+         classes.add(entry.getValue().getClass());
+      }
+      addAll(classes);
+   }
+
+   public void addAll(List<Class<?>> classes) {
+      HandlerInspector inspector = new HandlerInspector();
+      List<String> problems = new ArrayList<String>();
+      for(Class<?> klass : classes) {
+         logger.info("Inspecting {}", klass);
+         HandlerDescriptor descriptor = inspector.discoverBindings(klass);
+         descriptors.add(descriptor);
          problems.addAll(descriptor.getProblems());
       }
       if(!problems.isEmpty()) {
@@ -43,7 +50,7 @@ public class HandlerRegistry {
 
    public List<HandlerBinding> getBindings() {
       List<HandlerBinding> bindings = new ArrayList<HandlerBinding>();
-      for(HandlerDescriptor descriptor : descriptors.values()) {
+      for(HandlerDescriptor descriptor : descriptors) {
          for(HandlerBinding binding : descriptor.getBindings()) {
             bindings.add(binding);
          }
@@ -53,7 +60,7 @@ public class HandlerRegistry {
 
    public List<HandlerBinding> getBindingsFor(Class<? extends Object> messageType) {
       List<HandlerBinding> bindings = new ArrayList<HandlerBinding>();
-      for(HandlerDescriptor descriptor : descriptors.values()) {
+      for(HandlerDescriptor descriptor : descriptors) {
          for(HandlerBinding binding : descriptor.getBindings()) {
             if(binding.getMessageType().isAssignableFrom(messageType)) {
                bindings.add(binding);

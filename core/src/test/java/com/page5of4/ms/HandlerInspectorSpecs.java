@@ -7,20 +7,20 @@ import org.junit.Test;
 import com.page5of4.ms.impl.HandlerDescriptor;
 import com.page5of4.ms.impl.HandlerInspector;
 
-public class MessageHandlerSpecs {
+public class HandlerInspectorSpecs {
    private HandlerInspector inspector = new HandlerInspector();
 
    @Test
    public void when_handler_has_zero_handler_methods() {
       HandlerDescriptor descriptor = inspector.discoverBindings(EmptyHandler.class);
-      assertThat(descriptor.getProblems()).containsOnly("Class 'com.page5of4.ms.MessageHandlerSpecs$EmptyHandler' has no handler methods.");
+      assertThat(descriptor.getProblems()).containsOnly("Class 'com.page5of4.ms.HandlerInspectorSpecs$EmptyHandler' has no handler methods.");
       assertThat(descriptor.getBindings()).isEmpty();
    }
 
    @Test
    public void when_handler_has_invalid_handler_method() {
       HandlerDescriptor descriptor = inspector.discoverBindings(BadHandlerMethodHandler.class);
-      assertThat(descriptor.getProblems()).containsOnly("Method 'com.page5of4.ms.MessageHandlerSpecs$BadHandlerMethodHandler::handle' has no valid message parameters.", "Class 'com.page5of4.ms.MessageHandlerSpecs$BadHandlerMethodHandler' has no handler methods.");
+      assertThat(descriptor.getProblems()).containsOnly("Method 'com.page5of4.ms.HandlerInspectorSpecs$BadHandlerMethodHandler::handle' has no valid message parameters.", "Class 'com.page5of4.ms.HandlerInspectorSpecs$BadHandlerMethodHandler' has no handler methods.");
       assertThat(descriptor.getBindings()).isEmpty();
    }
 

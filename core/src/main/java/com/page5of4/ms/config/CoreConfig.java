@@ -19,7 +19,6 @@ import com.page5of4.ms.camel.ComponentResolver;
 import com.page5of4.ms.camel.EmptyTransactionPolicy;
 import com.page5of4.ms.camel.InvokeHandlerProcessor;
 import com.page5of4.ms.impl.ApplicationContextResolver;
-import com.page5of4.ms.impl.Bootstrap;
 import com.page5of4.ms.impl.DefaultBus;
 import com.page5of4.ms.impl.HandlerRegistry;
 import com.page5of4.ms.impl.TopologyConfiguration;
@@ -35,11 +34,6 @@ public class CoreConfig {
    private ApplicationContext applicationContext;
    @Autowired
    private BusConfiguration busConfiguration;
-
-   @Bean
-   public Bootstrap bootstrap() {
-      return new Bootstrap();
-   }
 
    @Bean
    public Bus bus() {

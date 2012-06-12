@@ -10,16 +10,16 @@ public class EndpointAddress implements Serializable {
    public EndpointAddress(String address) {
       super();
       this.address = address;
-      this.parts = address.split("@");
+      this.parts = address.split(":");
       if(parts.length != 2) throw new BusException(String.format("Malformed EndpointAddress: '%s'", address));
    }
 
    public String getPath() {
-      return parts[0];
+      return parts[1];
    }
 
    public String getHost() {
-      return parts[1];
+      return parts[0];
    }
 
    @Override

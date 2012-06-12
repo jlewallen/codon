@@ -18,7 +18,7 @@ public class TopologyConfigurationSpecs {
    public void before() {
       BusConfiguration configuration = new BusConfiguration("test", "testing-server");
       Map<String, String> properties = new HashMap<String, String>();
-      properties.put("bus.owner.com.page5of4.ms", "remote.{messageType}@server");
+      properties.put("bus.owner.com.page5of4.ms", "server:remote.{messageType}");
       configuration.addProperties(properties);
       topology = new TopologyConfiguration(configuration);
    }
@@ -30,17 +30,17 @@ public class TopologyConfigurationSpecs {
 
    @Test
    public void when_getting_owning_address_of_message() {
-      assertThat(topology.getOwner(ExampleMessage.class)).isEqualTo(new EndpointAddress("remote.com.page5of4.ms.TopologyConfigurationSpecs$ExampleMessage@server"));
+      assertThat(topology.getOwner(ExampleMessage.class)).isEqualTo(new EndpointAddress("server:remote.com.page5of4.ms.TopologyConfigurationSpecs$ExampleMessage"));
    }
 
    @Test
    public void when_getting_local_address_of_message() {
-      assertThat(topology.getLocalAddressOf(ExampleMessage.class)).isEqualTo(new EndpointAddress("test.com.page5of4.ms.TopologyConfigurationSpecs$ExampleMessage@testing-server"));
+      assertThat(topology.getLocalAddressOf(ExampleMessage.class)).isEqualTo(new EndpointAddress("testing-server:test.com.page5of4.ms.TopologyConfigurationSpecs$ExampleMessage"));
    }
 
    @Test
    public void when_getting_subscription_address_of_message() {
-      assertThat(topology.getSubscriptionAddressOf(ExampleMessage.class, SubscribeMessage.class)).isEqualTo(new EndpointAddress("remote.com.page5of4.ms.subscriptions.messages.SubscribeMessage@server"));
+      assertThat(topology.getSubscriptionAddressOf(ExampleMessage.class, SubscribeMessage.class)).isEqualTo(new EndpointAddress("server:remote.com.page5of4.ms.subscriptions.messages.SubscribeMessage"));
    }
 
    public static class ExampleMessage {}

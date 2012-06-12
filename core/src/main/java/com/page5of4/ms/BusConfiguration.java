@@ -62,6 +62,6 @@ public class BusConfiguration {
    }
 
    public String getLocalAddress(String messageType) {
-      return String.format("%s.{messageType}@%s", applicationName, localComponentName);
+      return String.format("%s:%s.{messageType}", localComponentName, applicationName);
    }
 }

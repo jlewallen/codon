@@ -30,12 +30,12 @@
 		<property name="viewResolvers">
 			<list>
 				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
-				<!--
-				<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-					<property name="prefix" value="/WEB-INF/jsp/" />
-					<property name="suffix" value=".jsp" />
-				</bean>
-				-->
+				<bean class="com.page5of4.mustache.spring.MustacheViewResolver">
+				    <property name="viewClass" value="com.page5of4.mustache.spring.MustacheView" />
+				    <property name="engine">
+				        <bean class="com.page5of4.mustache.MustacheViewEngine" autowire="byType" />
+				    </property>
+				</bean>	
 			</list>
 		</property>
 		<property name="defaultViews">
@@ -44,4 +44,7 @@
 			</list>
 		</property>
 	</bean>
+
+	
+	<bean class="com.page5of4.mustache.DefaultLayoutViewModelFactory" autowire="byType" />
 </beans>

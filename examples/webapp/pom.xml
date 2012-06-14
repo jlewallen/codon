@@ -46,6 +46,19 @@
 			<artifactId>publisher</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.page5of4.commons</groupId>
+			<artifactId>mustache-mvc</artifactId>
+			<version>1.2.3-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -90,13 +103,16 @@
 							javax.servlet.http; version="[2.4.0, 4.0.0)",
 							javax.servlet.resources; version="[2.4.0, 4.0.0)",
 							org.springframework.beans.factory.config,
-							org.springframework.osgi.web.context.support; version="[1.2,2.0)",
+							org.springframework.osgi.web.context.support;
+							version="[1.2,2.0)",
 							org.springframework.stereotype,
 							org.springframework.web.bind.annotation,
 							org.springframework.web.servlet,
 							org.springframework.web.servlet.view,
 							org.springframework.web.servlet.view.json,
 							org.codehaus.jackson.map,
+							com.page5of4.mustache,
+							com.page5of4.mustache.spring,
 							*
 						</Import-Package>
 						<Bundle-ClassPath>

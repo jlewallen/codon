@@ -34,6 +34,11 @@ Rough idea of provisioning a Karaf instance for using this.
     osgi:install -s mvn:org.codehaus.jackson/jackson-core-asl/1.7.5
     osgi:install -s mvn:org.codehaus.jackson/jackson-mapper-asl/1.7.5
     osgi:install -s mvn:com.atomikos/transactions-osgi/3.8.0
+    
+    osgi:install -s mvn:commons-io/commons-io/2.0.1
+    osgi:install -s mvn:commons-lang/commons-lang/2.5
+    osgi:install -s mvn:com.googlecode.guava-osgi/guava-osgi/9.0.0
+    osgi:install -s mvn:com.page5of4.commons/mustache-mvc/1.2.3-SNAPSHOT
 
 # Scratch Area
 

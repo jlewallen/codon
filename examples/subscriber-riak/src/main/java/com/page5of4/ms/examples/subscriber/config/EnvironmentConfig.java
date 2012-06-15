@@ -8,7 +8,7 @@ import com.page5of4.ms.BusConfiguration;
 
 @Configuration
 public class EnvironmentConfig {
-   @Value("${application.name:subscriber}")
+   @Value("${application.name:subscriber-riak}")
    private String applicationName;
 
    @Bean

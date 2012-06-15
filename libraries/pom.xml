@@ -21,6 +21,7 @@
       com.basho.riak.client.convert,
       com.basho.riak.client.query,
       com.basho.riak.client.mapreduce,
+      com.basho.riak.client.operations,
       com.esotericsoftware.kryo,
       com.esotericsoftware.kryo.io,
       com.esotericsoftware.kryo.serializers

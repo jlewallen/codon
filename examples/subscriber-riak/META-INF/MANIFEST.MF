@@ -1,0 +1,26 @@
+Manifest-Version: 1
+Bnd-LastModified: 1339735469874
+Build-Jdk: 1.6.0_31
+Built-By: jlewallen
+Bundle-ClassPath: .,riak-client-1.0.5.pom
+Bundle-ManifestVersion: 2
+Bundle-Name: MS - Examples - Subscriber (Riak)
+Bundle-SymbolicName: com.page5of4.ms.examples.subscriber-riak
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Embed-Dependency: riak-client,kyro
+Export-Package: com.page5of4.ms.examples.subscriber.config;uses:="org.sp
+ ringframework.beans.factory.annotation,com.page5of4.ms,org.springframew
+ ork.context.annotation,com.page5of4.ms.config";version="1.0.0.SNAPSHOT"
+Import-Package: com.page5of4.ms;version="[1.0,2)",com.page5of4.ms.config
+ ;version="[1.0,2)",com.page5of4.ms.examples.messages;version="[1.0,2)",
+ com.page5of4.ms.subscriptions;version="[1.0,2)",com.page5of4.ms.subscri
+ ptions.messages;version="[1.0,2)",javax.transaction,net.sf.cglib.core,n
+ et.sf.cglib.proxy,net.sf.cglib.reflect,org.apache.activemq.camel.compon
+ ent;version="[5.5,6)",org.apache.camel;version="[2.9,3)",org.slf4j;vers
+ ion="[1.5,2)",org.springframework.beans.factory.annotation;version="[3.
+ 0,4)",org.springframework.beans.factory.config;version="[3.0,4)",org.sp
+ ringframework.context.annotation;version="3.0.6.RELEASE",org.springfram
+ ework.stereotype;version="3.0.6.RELEASE",org.springframework.transactio
+ n;version="[3.0,4)"
+Tool: Bnd-1.43.0

@@ -294,6 +294,7 @@
 
 	<modules>
 		<module>core</module>
+		<module>libraries</module>
 		<module>examples</module>
 	</modules>
 </project>

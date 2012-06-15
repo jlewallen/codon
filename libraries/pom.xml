@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.page5of4.ms</groupId>
+		<artifactId>message-stream</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<groupId>com.page5of4.ms</groupId>
+	<artifactId>libraries</artifactId>
+	<packaging>bundle</packaging>
+	<name>MS - Libraries</name>
+
+	<properties>
+    <exported.packages>
+      com.basho.riak.client,
+      com.basho.riak.client.bucket,
+      com.basho.riak.client.builders,
+      com.basho.riak.client.convert,
+      com.basho.riak.client.query,
+      com.basho.riak.client.mapreduce,
+      com.esotericsoftware.kryo,
+      com.esotericsoftware.kryo.io,
+      com.esotericsoftware.kryo.serializers
+    </exported.packages>
+	</properties>
+
+	<build>
+		<defaultGoal>install</defaultGoal>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+          <unpackBundle>false</unpackBundle>
+					<instructions>
+            <Export-Package>${exported.packages}</Export-Package>
+            <_exportcontents>${exported.packages}</_exportcontents>
+            <Import-Package>*;resolution:=optional</Import-Package>
+            <Private-Package>!*</Private-Package>
+						<!--Embed-Dependency>*;scope=provided;type=!pom;inline=true</Embed-Dependency-->
+						<Embed-Dependency>*</Embed-Dependency>
+						<Embed-Transitive>true</Embed-Transitive>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.basho.riak</groupId>
+			<artifactId>riak-client</artifactId>
+			<version>1.0.5</version>
+      <scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.esotericsoftware.kryo</groupId>
+			<artifactId>kryo</artifactId>
+			<version>2.14</version>
+      <scope>provided</scope>
+		</dependency>
+	</dependencies>
+</project>

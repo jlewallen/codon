@@ -5,6 +5,7 @@
     1. Creation of destination Components, which uses ActiveMQ by default now.
 1. Archetypes that do database access and provide web UIs.
 1. Grid and webconsole for managing things.
+1. JMS to JMS store and forwarding (primarily from local queue to local/froeign servers)
 
 # Grid TODO
 
@@ -39,6 +40,7 @@ Rough idea of provisioning a Karaf instance for using this.
     osgi:install -s mvn:commons-lang/commons-lang/2.5
     osgi:install -s mvn:com.googlecode.guava-osgi/guava-osgi/9.0.0
     osgi:install -s mvn:com.page5of4.commons/mustache-mvc/1.2.3-SNAPSHOT
+    osgi:install -s mvn:com.page5of4.ms/libraries/1.0.0-SNAPSHOT
 
 # Scratch Area
 

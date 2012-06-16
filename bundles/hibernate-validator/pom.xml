@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+    <groupId>com.page5of4.ms.bundles</groupId>
+		<artifactId>bundles</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<groupId>com.page5of4.ms.bundles</groupId>
+	<artifactId>hibernate-validator</artifactId>
+	<version>4.0.2.GA</version>
+	<name>MS - Bundles - Hibernate Validator</name>
+	<packaging>bundle</packaging>
+
+	<properties>
+		<export.packages>*</export.packages>
+		<import.packages>!javax.persistence.*,!org.hibernate.validator.*,!com.googlecode.jtype.*,!org.apache.tools.ant.*,!org.slf4j.*,*</import.packages>
+		<private.packages>!*</private.packages>
+		<symbolic.name>${project.groupId}.${project.artifactId}</symbolic.name>
+		<embed-dep>*;scope=provided;type=!pom;inline=true</embed-dep>
+		<unpack-bundle>false</unpack-bundle>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<unpackBundle>${unpack.bundle}</unpackBundle>
+					<instructions>
+            <!--
+						<Fragment-Host>com.springsource.javax.validation</Fragment-Host>
+            -->
+						<Bundle-Classpath>.</Bundle-Classpath>
+						<Bundle-Name>${project.artifactId}</Bundle-Name>
+						<Bundle-SymbolicName>${symbolic.name}</Bundle-SymbolicName>
+						<Bundle-Description>${project.name}</Bundle-Description>
+						<Import-Package>${import.packages}</Import-Package>
+						<Private-Package>${private.packages}</Private-Package>
+						<Embed-Dependency>${embed-dep}</Embed-Dependency>
+						<_exportcontents>${export.packages}</_exportcontents>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

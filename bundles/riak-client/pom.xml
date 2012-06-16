@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+    <groupId>com.page5of4.ms.bundles</groupId>
+		<artifactId>bundles</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<groupId>com.page5of4.ms.bundles</groupId>
+	<artifactId>riak-client</artifactId>
+	<packaging>bundle</packaging>
+	<name>MS - Bundles - Riak Client</name>
+
+	<properties>
+    <exported.packages>
+      com.basho.riak.client,
+      com.basho.riak.client.bucket,
+      com.basho.riak.client.builders,
+      com.basho.riak.client.convert,
+      com.basho.riak.client.query,
+      com.basho.riak.client.mapreduce,
+      com.basho.riak.client.operations
+    </exported.packages>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.basho.riak</groupId>
+			<artifactId>riak-client</artifactId>
+			<version>1.0.5</version>
+      <scope>provided</scope>
+		</dependency>
+	</dependencies>
+</project>

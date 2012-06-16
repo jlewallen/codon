@@ -10,9 +10,10 @@
 
 	<groupId>com.page5of4.ms.bundles</groupId>
 	<artifactId>hibernate</artifactId>
-	<version>3.5.2.Final</version>
-	<name>MS - Bundles - Hibernate</name>
+	<version>${hibernate-version}</version>
 	<packaging>bundle</packaging>
+
+	<name>MS - Bundles - Hibernate</name>
 
 	<properties>
 		<export.packages>org.hibernate.*,javax.persistence.*</export.packages>
@@ -28,6 +29,7 @@
 			<artifactId>hibernate-core</artifactId>
 			<scope>provided</scope>
 		</dependency>
+    <!--
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-annotations</artifactId>
@@ -38,6 +40,7 @@
 			<artifactId>hibernate-commons-annotations</artifactId>
 			<scope>provided</scope>
 		</dependency>
+    -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
@@ -74,6 +77,7 @@
 									<overWrite>false</overWrite>
 									<outputDirectory>${project.build.outputDirectory}</outputDirectory>
 								</artifactItem>
+                <!--
 								<artifactItem>
 									<groupId>org.hibernate</groupId>
 									<artifactId>hibernate-annotations</artifactId>
@@ -86,6 +90,7 @@
 									<overWrite>false</overWrite>
 									<outputDirectory>${project.build.outputDirectory}</outputDirectory>
 								</artifactItem>
+                -->
 								<artifactItem>
 									<groupId>org.hibernate</groupId>
 									<artifactId>hibernate-entitymanager</artifactId>

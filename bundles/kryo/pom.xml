@@ -10,7 +10,9 @@
 
 	<groupId>com.page5of4.ms.bundles</groupId>
 	<artifactId>kryo</artifactId>
+	<version>2.14</version>
 	<packaging>bundle</packaging>
+
 	<name>MS - Bundles - Kryo</name>
 
 	<properties>
@@ -25,7 +27,6 @@
 		<dependency>
 			<groupId>com.esotericsoftware.kryo</groupId>
 			<artifactId>kryo</artifactId>
-			<version>2.14</version>
       <scope>provided</scope>
 		</dependency>
 	</dependencies>

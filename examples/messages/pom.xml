@@ -10,7 +10,8 @@
 
 	<artifactId>messages</artifactId>
 	<packaging>bundle</packaging>
-	<name>MS - Examples - Messages</name>
+	
+  <name>MS - Examples - Messages</name>
 
 	<properties>
 	</properties>

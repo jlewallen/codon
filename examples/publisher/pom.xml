@@ -10,7 +10,8 @@
 
 	<artifactId>publisher</artifactId>
 	<packaging>bundle</packaging>
-	<name>MS - Examples - Publisher</name>
+	
+  <name>MS - Examples - Publisher</name>
 
 	<properties>
 	</properties>

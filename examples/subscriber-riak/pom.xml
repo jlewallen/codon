@@ -10,7 +10,8 @@
 
 	<artifactId>subscriber-riak</artifactId>
 	<packaging>bundle</packaging>
-	<name>MS - Examples - Subscriber (Riak)</name>
+	
+  <name>MS - Examples - Subscriber (Riak)</name>
 
 	<properties>
 	</properties>
@@ -65,12 +66,10 @@
 		<dependency>
 			<groupId>com.basho.riak</groupId>
 			<artifactId>riak-client</artifactId>
-			<version>1.0.5</version>
 		</dependency>
 		<dependency>
 			<groupId>com.esotericsoftware.kryo</groupId>
 			<artifactId>kryo</artifactId>
-			<version>2.14</version>
 		</dependency>
 
 		<dependency>

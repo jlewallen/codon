@@ -11,8 +11,9 @@
 	<groupId>com.page5of4.ms.bundles</groupId>
 	<artifactId>hibernate-validator</artifactId>
 	<version>4.0.2.GA</version>
-	<name>MS - Bundles - Hibernate Validator</name>
 	<packaging>bundle</packaging>
+	
+  <name>MS - Bundles - Hibernate Validator</name>
 
 	<properties>
 		<export.packages>*</export.packages>

@@ -10,8 +10,9 @@
 
 	<groupId>com.page5of4.ms.bundles</groupId>
 	<artifactId>jacc</artifactId>
-	<packaging>bundle</packaging>
   <version>1.0</version>
+	<packaging>bundle</packaging>
+
 	<name>MS - Bundles - Jacc</name>
     
   <properties>

@@ -35,6 +35,18 @@
 		<bundle start-level='91'>mvn:${examples.project.groupId}/subscriber/${project.version}</bundle>
 	</feature>
 
+	<feature name="ms-example-subscriber-hibernate" version="${project.version}">
+		<feature>ms-core</feature>
+
+		<bundle start-level='91'>mvn:${examples.project.groupId}/subscriber-hibernate/${project.version}</bundle>
+	</feature>
+
+	<feature name="ms-example-subscriber-riak" version="${project.version}">
+		<feature>ms-core</feature>
+
+		<bundle start-level='91'>mvn:${examples.project.groupId}/subscriber-riak/${project.version}</bundle>
+	</feature>
+
 	<feature name="ms-example" version="${project.version}">
 		<bundle start-level='80'>mvn:${main.project.groupId}/core/${project.version}</bundle>
 

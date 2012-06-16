@@ -10,7 +10,8 @@
 
 	<artifactId>subscriber</artifactId>
 	<packaging>bundle</packaging>
-	<name>MS - Examples - Subscriber</name>
+	
+  <name>MS - Examples - Subscriber</name>
 
 	<properties>
 	</properties>

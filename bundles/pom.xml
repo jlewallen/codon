@@ -11,9 +11,13 @@
 	<groupId>com.page5of4.ms.bundles</groupId>
 	<artifactId>bundles</artifactId>
 	<packaging>pom</packaging>
+
 	<name>MS - Bundles</name>
 
 	<properties>
+    <exported.packages></exported.packages>
+    <imported.packages>*;resolution:=optional</imported.packages>
+    <embedded.dependencies>*</embedded.dependencies>
 	</properties>
 
 	<build>
@@ -31,7 +35,7 @@
             <_exportcontents>${exported.packages}</_exportcontents>
             <Import-Package>*;resolution:=optional</Import-Package>
             <Private-Package>!*</Private-Package>
-						<Embed-Dependency>*</Embed-Dependency>
+						<Embed-Dependency>${embedded.dependencies}</Embed-Dependency>
 						<Embed-Transitive>true</Embed-Transitive>
 					</instructions>
 				</configuration>
@@ -40,11 +44,14 @@
 	</build>
 
 	<modules>
+		<module>mustache-mvc</module>
 		<module>kryo</module>
 		<module>riak-client</module>
 		<module>jacc</module>
+    <!--
 		<module>hibernate-core</module>
 		<module>hibernate-validator</module>
     <module>spring-orm-persistence</module>
+    -->
 	</modules>
 </project>

@@ -10,7 +10,9 @@
 
 	<groupId>com.page5of4.ms.bundles</groupId>
 	<artifactId>riak-client</artifactId>
+	<version>1.0.5</version>
 	<packaging>bundle</packaging>
+
 	<name>MS - Bundles - Riak Client</name>
 
 	<properties>
@@ -29,7 +31,6 @@
 		<dependency>
 			<groupId>com.basho.riak</groupId>
 			<artifactId>riak-client</artifactId>
-			<version>1.0.5</version>
       <scope>provided</scope>
 		</dependency>
 	</dependencies>

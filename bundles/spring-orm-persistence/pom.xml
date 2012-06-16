@@ -11,6 +11,7 @@
 	<groupId>com.page5of4.ms.bundles</groupId>
 	<artifactId>spring-orm-persistence</artifactId>
 	<packaging>bundle</packaging>
+
 	<name>MS - Bundles - Spring ORM Persistence Fragment</name>
     
   <properties>

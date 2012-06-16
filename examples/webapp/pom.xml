@@ -10,7 +10,8 @@
 
 	<artifactId>webapp</artifactId>
 	<packaging>war</packaging>
-	<name>MS - Examples - Webapp</name>
+	
+  <name>MS - Examples - Webapp</name>
 
 	<dependencies>
 		<dependency>
@@ -24,7 +25,6 @@
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.7.5</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -50,13 +50,11 @@
 		<dependency>
 			<groupId>com.page5of4.commons</groupId>
 			<artifactId>mustache-mvc</artifactId>
-			<version>1.2.3-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>

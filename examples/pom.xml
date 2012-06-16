@@ -24,6 +24,7 @@
 		<module>messages</module>
 		<module>publisher</module>
 		<module>subscriber</module>
+		<module>subscriber-hibernate</module>
 		<module>subscriber-riak</module>
 		<module>webapp</module>
 	</modules>

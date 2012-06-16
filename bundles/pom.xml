@@ -14,9 +14,6 @@
 	<name>MS - Bundles</name>
 
 	<properties>
-    <hibernate-version>3.5.2-Final</hibernate-version>
-    <hibernate-validator-version>4.0.0</hibernate-validator-version>
-    <hibernate-common-annotations-version>3.2.0.Final</hibernate-common-annotations-version>
 	</properties>
 
 	<build>
@@ -42,67 +39,12 @@
 		</plugins>
 	</build>
 
-  <dependencyManagement>
-    <dependencies>
-      <!-- Hibernate Dependencies -->
-      <dependency>
-        <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-jpa-2.0-api</artifactId>
-        <version>${hibernate-version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-core</artifactId>
-        <version>${hibernate-version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-annotations</artifactId>
-        <version>${hibernate-version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-entitymanager</artifactId>
-        <version>${hibernate-version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-validator</artifactId>
-        <version>4.1.0.Final</version>
-        <exclusions>
-          <exclusion>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-          </exclusion>
-          <exclusion>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-      <dependency>
-        <groupId>org.hibernate</groupId>
-        <artifactId>com.springsource.org.hibernate.validator</artifactId>
-        <version>${hibernate-validator-version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-commons-annotations</artifactId>
-        <version>${hibernate-common-annotations-version}</version>
-      </dependency>
-      <dependency>
-        <groupId>net.sf.ehcache</groupId>
-        <artifactId>ehcache-core</artifactId>
-        <version>${ehcache-version}</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
 	<modules>
 		<module>kryo</module>
 		<module>riak-client</module>
 		<module>jacc</module>
 		<module>hibernate-core</module>
 		<module>hibernate-validator</module>
+    <module>spring-orm-persistence</module>
 	</modules>
 </project>

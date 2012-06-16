@@ -15,7 +15,7 @@
 	<packaging>bundle</packaging>
 
 	<properties>
-		<export.packages>*</export.packages>
+		<export.packages>org.hibernate.*,javax.persistence.*</export.packages>
 		<import.packages>!javax.microedition.io.*,!bitronix.tm.*,!com.sun.*,!com.ibm.*,!org.apache.tools.ant.*,!org.gjt.xpp.*,!org.jaxen.*,!org.objectweb.*,!org.slf4j.*,!org.relaxng.*,!org.xmlpull.*,*</import.packages>
 		<private.packages>!*</private.packages>
 		<symbolic.name>${project.groupId}.${project.artifactId}</symbolic.name>

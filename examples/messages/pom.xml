@@ -10,8 +10,8 @@
 
 	<artifactId>messages</artifactId>
 	<packaging>bundle</packaging>
-	
-  <name>MS - Examples - Messages</name>
+
+	<name>MS - Examples - Messages</name>
 
 	<properties>
 	</properties>
@@ -40,15 +40,6 @@
 						</Export-Package>
 						<Import-Package>
 							com.page5of4.ms,
-                            <!-- common -->
-							org.springframework.beans.factory.config,
-							org.springframework.stereotype; version=${spring.version},
-							org.springframework.context.annotation; version=${spring.version},
-							org.apache.activemq.camel.component,
-							org.apache.camel,
-							net.sf.cglib.proxy,
-							net.sf.cglib.core,
-							net.sf.cglib.reflect,
 							*
 						</Import-Package>
 					</instructions>

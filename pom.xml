@@ -433,5 +433,6 @@
 		<module>bundles</module>
 		<module>core</module>
 		<module>examples</module>
+		<module>tests</module>
 	</modules>
 </project>

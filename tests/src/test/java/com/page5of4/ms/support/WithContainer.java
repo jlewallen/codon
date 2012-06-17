@@ -1,11 +1,16 @@
 package com.page5of4.ms.support;
 
+import static org.openengsb.labs.paxexam.karaf.options.KarafDistributionOption.editConfigurationFilePut;
 import static org.openengsb.labs.paxexam.karaf.options.KarafDistributionOption.karafDistributionConfiguration;
+import static org.openengsb.labs.paxexam.karaf.options.KarafDistributionOption.keepRuntimeFolder;
+import static org.openengsb.labs.paxexam.karaf.options.KarafDistributionOption.logLevel;
+import static org.ops4j.pax.exam.CoreOptions.junitBundles;
 import static org.ops4j.pax.exam.CoreOptions.maven;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 
 import javax.inject.Inject;
 
+import org.openengsb.labs.paxexam.karaf.options.LogLevelOption;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.TestProbeBuilder;
 import org.ops4j.pax.exam.junit.ProbeBuilder;
@@ -17,6 +22,7 @@ import org.osgi.framework.Constants;
 public class WithContainer {
    @Inject
    private BundleContext bundleContext;
+
    private CommandExecutor executor;
 
    public CommandExecutor executor() {
@@ -32,9 +38,20 @@ public class WithContainer {
       return probe;
    }
 
-   public Option commonConfiguration() {
-      return karafDistributionConfiguration().frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").versionAsInProject().type("zip")).karafVersion("2.2.4").name("Apache Karaf");
+   public CompositeOption commonConfiguration() {
+      return new DefaultCompositeOption(
+            karafDistributionConfiguration().frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").versionAsInProject().type("zip")).karafVersion("2.2.4").name("Apache Karaf"),
+            runtimeFolderOption(),
+            editConfigurationFilePut("etc/system.properties", "page5of4.main.version", "1.0.0-SNAPSHOT"),
+            logLevel(LogLevelOption.LogLevel.INFO),
+            festAssert(),
+            junitBundles());
 
+   }
+
+   private Option runtimeFolderOption() {
+      if(false) return keepRuntimeFolder();
+      return new Option() {};
    }
 
    public CompositeOption festAssert() {

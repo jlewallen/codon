@@ -15,22 +15,16 @@ import com.page5of4.ms.support.WithContainer;
 
 @RunWith(JUnit4TestRunner.class)
 @ExamReactorStrategy(AllConfinedStagedReactorFactory.class)
-public class WhenInstallingRiak extends WithContainer {
+public class WhenInstallingZookeeper extends WithContainer {
    @Configuration
    public Option[] config() {
       return new Option[] { commonConfiguration(),
-            mavenBundle().groupId("com.page5of4.ms.bundles").artifactId("riak-client").version("1.0.5"),
-            mavenBundle().groupId("com.page5of4.ms.bundles").artifactId("kryo").version("2.14")
+            mavenBundle().groupId("org.apache.zookeeper").artifactId("zookeeper").version("3.4.3")
       };
    }
 
    @Test
-   public void riak_bundle_is_installed() {
-      assertThat(executor().getInstalledBundle("com.page5of4.ms.bundles.riak-client")).isActive();
-   }
-
-   @Test
-   public void kryo_bundle_is_installed() {
-      assertThat(executor().getInstalledBundle("com.page5of4.ms.bundles.kryo")).isActive();
+   public void zookeeper_bundle_is_installed() {
+      assertThat(executor().getInstalledBundle("org.apache.hadoop.zookeeper")).isActive();
    }
 }

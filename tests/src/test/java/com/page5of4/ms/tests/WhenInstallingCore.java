@@ -1,19 +1,17 @@
 package com.page5of4.ms.tests;
 
-import static org.fest.assertions.Assertions.assertThat;
-import static org.openengsb.labs.paxexam.karaf.options.KarafDistributionOption.logLevel;
-import static org.ops4j.pax.exam.CoreOptions.junitBundles;
-import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
+import static com.page5of4.ms.support.BundleAssert.assertThat;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openengsb.labs.paxexam.karaf.options.LogLevelOption;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.ExamReactorStrategy;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 import org.ops4j.pax.exam.spi.reactors.AllConfinedStagedReactorFactory;
 
+import com.page5of4.ms.support.Provision;
 import com.page5of4.ms.support.WithContainer;
 
 @RunWith(JUnit4TestRunner.class)
@@ -21,13 +19,17 @@ import com.page5of4.ms.support.WithContainer;
 public class WhenInstallingCore extends WithContainer {
    @Configuration
    public Option[] config() {
-      return new Option[] { commonConfiguration(), logLevel(LogLevelOption.LogLevel.WARN), festAssert(), junitBundles(),
-            mavenBundle().groupId("com.page5of4.ms").artifactId("core").versionAsInProject()
+      return new Option[] { commonConfiguration(),
       };
+   }
+
+   @Before
+   public void before() {
+      Provision.with(executor()).base().core();
    }
 
    @Test
    public void bundle_is_installed() {
-      assertThat(executor().getInstalledBundle("com.page5of4.ms.core")).isNotNull();
+      assertThat(executor().getInstalledBundle("com.page5of4.ms.core")).isActive();
    }
 }

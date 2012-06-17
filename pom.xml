@@ -30,7 +30,8 @@
 		<hibernate-common-annotations-version>3.2.0.Final</hibernate-common-annotations-version>
 		<hibernate-javax-persistence-version>1.0.0.Final</hibernate-javax-persistence-version>
 
-		<jackson-version>1.7.5</jackson-version>
+		<jackson.version>1.7.5</jackson.version>
+		<zookeeper.version>3.4.3</zookeeper.version>
 
 		<com.page5of4.mustache-mvc.version>1.2.3-SNAPSHOT</com.page5of4.mustache-mvc.version>
 	</properties>
@@ -412,7 +413,13 @@
 			<dependency>
 				<groupId>org.codehaus.jackson</groupId>
 				<artifactId>jackson-mapper-asl</artifactId>
-				<version>${jackson-version}</version>
+				<version>${jackson.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.zookeeper</groupId>
+				<artifactId>zookeeper</artifactId>
+				<version>${zookeeper.version}</version>
 			</dependency>
 
 			<dependency>

@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.TestProbeBuilder;
 import org.ops4j.pax.exam.junit.ProbeBuilder;
+import org.ops4j.pax.exam.options.CompositeOption;
+import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 
@@ -35,7 +37,9 @@ public class WithContainer {
 
    }
 
-   public Option festAssert() {
-      return mavenBundle().groupId("org.easytesting").artifactId("fest-assert").versionAsInProject();
+   public CompositeOption festAssert() {
+      return new DefaultCompositeOption(
+            mavenBundle().groupId("org.easytesting").artifactId("fest-assert").versionAsInProject(),
+            mavenBundle().groupId("org.easytesting").artifactId("fest-util").versionAsInProject());
    }
 }

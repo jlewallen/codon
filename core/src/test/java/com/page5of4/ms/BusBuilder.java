@@ -38,6 +38,6 @@ public class BusBuilder {
    }
 
    public Bus build() {
-      return new DefaultBus(new TopologyConfiguration(new BusConfiguration("test", "testing-server")), new CamelTransport(camelContext, template, new InvokeHandlerProcessor(handlerRegistry, resolver)), subscriptionStorage);
+      return new DefaultBus(new TopologyConfiguration(new PropertiesConfiguration("test", "testing-server")), new CamelTransport(camelContext, template, new InvokeHandlerProcessor(handlerRegistry, resolver)), subscriptionStorage);
    }
 }

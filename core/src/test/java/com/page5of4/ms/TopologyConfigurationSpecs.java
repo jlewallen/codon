@@ -16,7 +16,7 @@ public class TopologyConfigurationSpecs {
 
    @Before
    public void before() {
-      BusConfiguration configuration = new BusConfiguration("test", "testing-server");
+      PropertiesConfiguration configuration = new PropertiesConfiguration("test", "testing-server");
       Map<String, String> properties = new HashMap<String, String>();
       properties.put("bus.owner.com.page5of4.ms", "server:remote.{messageType}");
       configuration.addProperties(properties);

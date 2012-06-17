@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.page5of4.ms.BusConfiguration;
+import com.page5of4.ms.PropertiesConfiguration;
 
 @Configuration
 public class EnvironmentConfig {
@@ -13,6 +14,6 @@ public class EnvironmentConfig {
 
    @Bean
    public BusConfiguration busConfiguration() {
-      return new BusConfiguration(applicationName, "local-server");
+      return new PropertiesConfiguration(applicationName, "local-server");
    }
 }

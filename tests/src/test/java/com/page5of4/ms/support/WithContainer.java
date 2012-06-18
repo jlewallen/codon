@@ -42,16 +42,22 @@ public class WithContainer {
       return new DefaultCompositeOption(
             karafDistributionConfiguration().frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").versionAsInProject().type("zip")).karafVersion("2.2.4").name("Apache Karaf"),
             runtimeFolderOption(),
-            editConfigurationFilePut("etc/system.properties", "page5of4.main.version", "1.0.0-SNAPSHOT"),
+            systemProperties(),
             logLevel(LogLevelOption.LogLevel.INFO),
             festAssert(),
             junitBundles());
 
    }
 
+   private Option systemProperties() {
+      if(false) return new Option() {};
+      return editConfigurationFilePut("etc/system.properties", "page5of4.main.version", "1.0.0-SNAPSHOT");
+
+   }
+
    private Option runtimeFolderOption() {
-      if(false) return keepRuntimeFolder();
-      return new Option() {};
+      if(true) return new Option() {};
+      return keepRuntimeFolder();
    }
 
    public CompositeOption festAssert() {

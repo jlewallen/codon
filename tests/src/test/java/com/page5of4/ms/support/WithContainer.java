@@ -51,7 +51,7 @@ public class WithContainer {
 
    private Option systemProperties() {
       if(false) return new Option() {};
-      return editConfigurationFilePut("etc/system.properties", "page5of4.main.version", "1.0.0-SNAPSHOT");
+      return editConfigurationFilePut("etc/system.properties", "page5of4.project.version", TestsConfiguration.getProjectVersion());
 
    }
 

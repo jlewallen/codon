@@ -15,7 +15,7 @@ import com.page5of4.ms.support.WithContainer;
 
 @RunWith(JUnit4TestRunner.class)
 @ExamReactorStrategy(AllConfinedStagedReactorFactory.class)
-public class WhenInstallingH2 extends WithContainer {
+public class WhenUsingHibernate extends WithContainer {
    @Configuration
    public Option[] config() {
       return new Option[] { commonConfiguration() };
@@ -23,11 +23,14 @@ public class WhenInstallingH2 extends WithContainer {
 
    @Before
    public void before() {
-      executor().executeCommand("osgi:install -s mvn:com.h2database/h2/1.3.167");
+      executor().executeCommand("osgi:install -s mvn:javax.persistence/com.springsource.javax.persistence/2.0.0/");
+      executor().executeCommand("osgi:install -s mvn:javax.transaction/com.springsource.javax.transaction/1.1.0/");
+      executor().executeCommand("osgi:install -s mvn:org.apache.commons/com.springsource.org.apache.commons.collections/3.2.1");
+      executor().executeCommand("osgi:install -s mvn:com.page5of4.ms.bundles/hibernate/4.0.0");
    }
 
    @Test
-   public void h2_bundle_is_installed() {
-      assertThat(executor().getInstalledBundle("org.h2")).isActive();
+   public void bundle_is_installed() {
+      assertThat(executor().getInstalledBundle("com.page5of4.ms.bundles.hibernate")).isActive();
    }
 }

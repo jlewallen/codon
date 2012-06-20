@@ -1,4 +1,4 @@
-package com.page5of4.ms.examples.subscriber.impl;
+package com.page5of4.ms.examples.subscriber.model;
 
 import java.util.Date;
 import java.util.UUID;

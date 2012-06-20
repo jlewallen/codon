@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.page5of4.ms.Bus;
 import com.page5of4.ms.MessageHandler;
 import com.page5of4.ms.examples.messages.UserRegisteredMessage;
+import com.page5of4.ms.examples.subscriber.model.User;
 
 @Service
 @MessageHandler

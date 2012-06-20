@@ -17,6 +17,8 @@ import org.osgi.service.jpa.EntityManagerFactoryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.page5of4.ms.examples.subscriber.model.User;
+
 public class CommandLineService {
    private static final Logger logger = LoggerFactory.getLogger(CommandLineService.class);
    private static final Object STUDENTS_UNIT = "jpa.example";
@@ -49,8 +51,8 @@ public class CommandLineService {
                }
             }
             {
-               TypedQuery<Object> query = em.createQuery("SELECT u FROM User u", Object.class);
-               List<Object> result = query.getResultList();
+               TypedQuery<User> query = em.createQuery("SELECT u FROM User u", User.class);
+               List<User> result = query.getResultList();
                if(result != null) {
                   logger.info(String.format("Students: %d", result.size()));
                   for(Object dude : result) {

@@ -26,6 +26,9 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
+						<Export-Package>
+							com.page5of4.ms.examples.subscriber.model
+						</Export-Package>
 						<Import-Package>
 							com.page5of4.ms,
 							com.page5of4.ms.config,

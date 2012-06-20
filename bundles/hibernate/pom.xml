@@ -41,7 +41,7 @@
 			!javax.swing.*,
 			!org.apache.tools.ant.*
 		</imported.packages>
-		<embedded.dependencies>antlr;inline=true,dom4j;inline=true</embedded.dependencies>
+		<embedded.dependencies>antlr;inline=true,dom4j;inline=true,jboss-logging;inline=true</embedded.dependencies>
 		<bundle.activator>com.page5of4.ms.bundles.hibernate.Activator</bundle.activator>
 		<private.packages>com.page5of4.ms.bundles.hibernate.*</private.packages>
 	</properties>

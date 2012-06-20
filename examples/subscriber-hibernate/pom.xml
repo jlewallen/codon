@@ -41,8 +41,13 @@
 							net.sf.cglib.proxy,
 							net.sf.cglib.core,
 							net.sf.cglib.reflect,
+							org.hibernate.proxy,
+							javassist.util.proxy,
 							*
 						</Import-Package>
+						<Bundle-Activator>com.page5of4.ms.examples.subscriber.impl.Activator</Bundle-Activator>
+						<JPA-PersistenceUnits>jpa.example</JPA-PersistenceUnits>
+						<Meta-Persistence>META-INF/persistence.xml</Meta-Persistence>
 					</instructions>
 				</configuration>
 			</plugin>
@@ -135,8 +140,8 @@
 			<artifactId>org.osgi.enterprise</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.geronimo.specs</groupId>
-			<artifactId>geronimo-jpa_2.0_spec</artifactId>
+			<groupId>javax.persistence</groupId>
+			<artifactId>com.springsource.javax.persistence</artifactId>
 		</dependency>
 
 		<dependency>

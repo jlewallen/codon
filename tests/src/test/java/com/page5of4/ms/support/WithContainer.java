@@ -7,6 +7,8 @@ import static org.openengsb.labs.paxexam.karaf.options.KarafDistributionOption.l
 import static org.ops4j.pax.exam.CoreOptions.junitBundles;
 import static org.ops4j.pax.exam.CoreOptions.maven;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
+import static org.ops4j.pax.exam.CoreOptions.systemTimeout;
+import static org.ops4j.pax.exam.CoreOptions.vmOption;
 
 import javax.inject.Inject;
 
@@ -41,12 +43,20 @@ public class WithContainer {
    public CompositeOption commonConfiguration() {
       return new DefaultCompositeOption(
             karafDistributionConfiguration().frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").versionAsInProject().type("zip")).karafVersion("2.2.4").name("Apache Karaf"),
+            debuggingOptions(),
             runtimeFolderOption(),
             systemProperties(),
             logLevel(LogLevelOption.LogLevel.INFO),
             festAssert(),
             junitBundles());
 
+   }
+
+   private Option debuggingOptions() {
+      if(true) return new Option() {};
+      return new DefaultCompositeOption(
+            vmOption("-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005"),
+            systemTimeout(1000 * 60 * 60));
    }
 
    private Option systemProperties() {

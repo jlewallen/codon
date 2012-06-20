@@ -104,7 +104,7 @@ public class CommandExecutor {
 
       try {
          executor.submit(commandFuture);
-         response = commandFuture.get(COMMAND_TIMEOUT, TimeUnit.MILLISECONDS);
+         response = commandFuture.get(COMMAND_TIMEOUT * commands.length, TimeUnit.MILLISECONDS);
       }
       catch(Exception e) {
          e.printStackTrace(System.err);

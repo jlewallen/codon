@@ -1,19 +1,8 @@
 package com.page5of4.ms.examples.subscriber.config;
 
-import java.util.Properties;
-
-import javax.persistence.EntityManagerFactory;
-
-import org.apache.commons.dbcp.BasicDataSource;
-import org.hibernate.ejb.HibernatePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.util.StringUtils;
 
 import com.page5of4.ms.Bus;
 import com.page5of4.ms.config.CoreConfig;
@@ -76,6 +65,7 @@ public class ExampleConfig {
    }
    */
 
+   /*
    @Bean
    public BasicDataSource dataSource() {
       BasicDataSource dataSource = new BasicDataSource();
@@ -134,4 +124,5 @@ public class ExampleConfig {
       entityManagerFactory.afterPropertiesSet();
       return entityManagerFactory.getObject();
    }
+   */
 }

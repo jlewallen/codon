@@ -3,6 +3,7 @@ package com.page5of4.ms;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -34,7 +35,9 @@ public class PropertiesConfiguration implements BusConfiguration {
       try {
          Properties loaded = new Properties();
          loaded.load(resource.getInputStream());
-         properties.putAll((Map)loaded);
+         for(Entry<Object, Object> e : loaded.entrySet()) {
+            properties.put((String)e.getKey(), (String)e.getValue());
+         }
       }
       catch(IOException e) {
          throw new BusException("Error loading: " + resource, e);

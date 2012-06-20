@@ -3,57 +3,56 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-    <groupId>com.page5of4.ms.bundles</groupId>
+		<groupId>com.page5of4.ms.bundles</groupId>
 		<artifactId>bundles</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>com.page5of4.ms.bundles</groupId>
 	<artifactId>jacc</artifactId>
-  <version>1.0</version>
+	<version>1.0</version>
 	<packaging>bundle</packaging>
 
 	<name>MS - Bundles - Jacc</name>
-    
-  <properties>
-    <export.packages>javax.security.jacc;version=1.0</export.packages>
-    <import.packages>*</import.packages>
-    <private.packages>!*</private.packages>
-    <symbolic.name>${project.groupId}.${project.artifactId}</symbolic.name>
-    <embed-dep>*;scope=provided;type=!pom;inline=true</embed-dep>
-    <unpack-bundle>false</unpack-bundle>
-  </properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>javax.security</groupId>
-      <artifactId>jacc</artifactId>
-      <version>${project.version}</version>
-      <scope>provided</scope>
-    </dependency>
-  </dependencies>
+	<properties>
+		<export.packages>javax.security.jacc;version=1.0</export.packages>
+		<import.packages>*</import.packages>
+		<private.packages>!*</private.packages>
+		<symbolic.name>${project.groupId}.${project.artifactId}</symbolic.name>
+		<embed-dep>*;scope=provided;type=!pom;inline=true</embed-dep>
+		<unpack-bundle>false</unpack-bundle>
+	</properties>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
+	<dependencies>
+		<dependency>
+			<groupId>javax.security</groupId>
+			<artifactId>jacc</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 
-        <configuration>
-          <unpackBundle>${unpack.bundle}</unpackBundle>
-          <instructions>
-            <Bundle-Name>${project.artifactId}</Bundle-Name>
-            <Bundle-SymbolicName>${symbolic.name}</Bundle-SymbolicName>
-            <Bundle-Description>${project.name}</Bundle-Description>
-            <Import-Package>${import.packages}</Import-Package>
-            <Private-Package>${private.packages}</Private-Package>
-            <Include-Resource>${include.resources}</Include-Resource>
-            <Embed-Dependency>${embed-dep}</Embed-Dependency>
-            <_exportcontents>${export.packages}</_exportcontents>
-          </instructions>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+
+				<configuration>
+					<unpackBundle>${unpack.bundle}</unpackBundle>
+					<instructions>
+						<Bundle-Name>${project.artifactId}</Bundle-Name>
+						<Bundle-SymbolicName>${symbolic.name}</Bundle-SymbolicName>
+						<Bundle-Description>${project.name}</Bundle-Description>
+						<Import-Package>${import.packages}</Import-Package>
+						<Private-Package>${private.packages}</Private-Package>
+						<Include-Resource>${include.resources}</Include-Resource>
+						<Embed-Dependency>${embed-dep}</Embed-Dependency>
+						<_exportcontents>${export.packages}</_exportcontents>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

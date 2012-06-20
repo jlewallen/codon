@@ -60,6 +60,7 @@ public class XmlSubscriptionStorage implements SubscriptionStorage {
          if(!file.exists()) return new ArrayList<Subscription>();
          FileInputStream fileStream = new FileInputStream(getPath());
          XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(fileStream));
+         @SuppressWarnings("unchecked")
          Collection<Subscription> o = (Collection<Subscription>)decoder.readObject();
          decoder.close();
          return o;

@@ -12,7 +12,7 @@
 	<artifactId>examples</artifactId>
 	<packaging>pom</packaging>
 	
-  <name>MS - Examples</name>
+	<name>MS - Examples</name>
 
 	<properties>
 	</properties>

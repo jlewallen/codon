@@ -8,12 +8,11 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>com.page5of4.ms.bundles</groupId>
-	<artifactId>hibernate-validator</artifactId>
+	<artifactId>com.page5of4.ms.bundles.hibernate-validator</artifactId>
 	<version>4.0.2.GA</version>
 	<packaging>bundle</packaging>
 	
-  <name>MS - Bundles - Hibernate Validator</name>
+	<name>MS - Bundles - Hibernate Validator</name>
 
 	<properties>
 		<export.packages>*</export.packages>
@@ -41,9 +40,9 @@
 				<configuration>
 					<unpackBundle>${unpack.bundle}</unpackBundle>
 					<instructions>
-            <!--
+						<!--
 						<Fragment-Host>com.springsource.javax.validation</Fragment-Host>
-            -->
+						-->
 						<Bundle-Classpath>.</Bundle-Classpath>
 						<Bundle-Name>${project.artifactId}</Bundle-Name>
 						<Bundle-SymbolicName>${symbolic.name}</Bundle-SymbolicName>

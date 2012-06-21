@@ -38,6 +38,7 @@
 						<Import-Package>${imported.packages}</Import-Package>
 						<Embed-Dependency>${embedded.dependencies}</Embed-Dependency>
 						<DynamicImport-Package>${packages.imported.dynamic}</DynamicImport-Package>
+						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Bundle-Activator>${bundle.activator}</Bundle-Activator>
 						<_exportcontents>${exported.packages.contents}</_exportcontents>
 						<Private-Package>${private.packages}</Private-Package>

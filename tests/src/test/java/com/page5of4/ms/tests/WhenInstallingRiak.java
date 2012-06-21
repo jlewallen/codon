@@ -19,8 +19,8 @@ public class WhenInstallingRiak extends WithContainer {
    @Configuration
    public Option[] config() {
       return new Option[] { commonConfiguration(),
-            mavenBundle().groupId("com.page5of4.ms.bundles").artifactId("riak-client").version("1.0.5"),
-            mavenBundle().groupId("com.page5of4.ms.bundles").artifactId("kryo").version("2.14")
+            mavenBundle().groupId("com.page5of4.ms.bundles").artifactId("com.page5of4.ms.bundles.riak-client").version("1.0.5"),
+            mavenBundle().groupId("com.page5of4.ms.bundles").artifactId("com.page5of4.ms.bundles.kryo").version("2.14")
       };
    }
 

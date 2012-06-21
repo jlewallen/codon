@@ -26,7 +26,7 @@ public class WhenUsingHibernate extends WithContainer {
       executor().executeCommand("osgi:install -s mvn:javax.persistence/com.springsource.javax.persistence/2.0.0/");
       executor().executeCommand("osgi:install -s mvn:javax.transaction/com.springsource.javax.transaction/1.1.0/");
       executor().executeCommand("osgi:install -s mvn:org.apache.commons/com.springsource.org.apache.commons.collections/3.2.1");
-      executor().executeCommand("osgi:install -s mvn:com.page5of4.ms.bundles/hibernate/4.0.0");
+      executor().executeCommand("osgi:install -s mvn:com.page5of4.ms.bundles/com.page5of4.ms.bundles.hibernate/4.0.0");
    }
 
    @Test

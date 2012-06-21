@@ -8,18 +8,17 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>com.page5of4.ms.bundles</groupId>
-	<artifactId>spring-orm-persistence</artifactId>
+	<artifactId>com.page5of4.ms.bundles.spring-orm-persistence</artifactId>
 	<packaging>bundle</packaging>
 
 	<name>MS - Bundles - Spring ORM Persistence Fragment</name>
     
-  <properties>
-    <import.packages>javax.persistence</import.packages>
-    <private.packages>!*</private.packages>
-    <symbolic.name>${project.groupId}.${project.artifactId}</symbolic.name>
-    <unpack-bundle>true</unpack-bundle>
-  </properties>
+	<properties>
+		<import.packages>javax.persistence</import.packages>
+		<private.packages>!*</private.packages>
+		<symbolic.name>${project.groupId}.${project.artifactId}</symbolic.name>
+		<unpack-bundle>true</unpack-bundle>
+	</properties>
 
 	<dependencies>
 		<!--dependency>

@@ -8,7 +8,7 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>tests</artifactId>
+	<artifactId>codon-tests</artifactId>
 
 	<name>Codon - Integration Tests</name>
 
@@ -167,17 +167,17 @@
 
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>core</artifactId>
+			<artifactId>codon-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${examples.project.groupId}</groupId>
-			<artifactId>publisher</artifactId>
+			<artifactId>codon-examples-publisher</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${examples.project.groupId}</groupId>
-			<artifactId>subscriber</artifactId>
+			<artifactId>codon-examples-subscriber</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>

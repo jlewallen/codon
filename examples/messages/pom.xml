@@ -8,7 +8,7 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>messages</artifactId>
+	<artifactId>codon-examples-messages</artifactId>
 	<packaging>bundle</packaging>
 
 	<name>Codon - Examples - Messages</name>
@@ -42,6 +42,7 @@
 							com.page5of4.codon,
 							*
 						</Import-Package>
+						<Bundle-SymbolicName>com.page5of4.codon.examples.messages</Bundle-SymbolicName>
 					</instructions>
 				</configuration>
 			</plugin>
@@ -51,7 +52,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.page5of4.codon</groupId>
-			<artifactId>core</artifactId>
+			<artifactId>codon-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>

@@ -8,7 +8,7 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>extender</artifactId>
+	<artifactId>codon-extender</artifactId>
 	<packaging>bundle</packaging>
 
 	<name>Codon - Extender</name>
@@ -40,6 +40,7 @@
 							*
 						</Import-Package>
 						<Bundle-Activator>com.page5of4.codon.extender.Activator</Bundle-Activator>
+						<Bundle-SymbolicName>com.page5of4.codon.extender</Bundle-SymbolicName>
 					</instructions>
 				</configuration>
 			</plugin>

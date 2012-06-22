@@ -16,7 +16,7 @@ public class Provision {
       executor.executeCommands(
             "features:addurl mvn:org.apache.camel.karaf/apache-camel/2.9.2/xml/features",
             "features:addurl mvn:org.apache.activemq/activemq-karaf/5.5.0/xml/features",
-            "features:addurl mvn:com.page5of4.codon/core/" + TestsConfiguration.getProjectVersion() + "/xml/features"
+            "features:addurl mvn:com.page5of4.codon/codon-core/" + TestsConfiguration.getProjectVersion() + "/xml/features"
             );
       executor.executeCommands(
             "features:install camel-jms",
@@ -32,7 +32,7 @@ public class Provision {
    }
 
    public Provision core() {
-      executor.executeCommand("features:install ms-core");
+      executor.executeCommand("features:install codon-core");
       return this;
    }
 }

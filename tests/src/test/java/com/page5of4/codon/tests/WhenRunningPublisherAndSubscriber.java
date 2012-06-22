@@ -31,9 +31,8 @@ public class WhenRunningPublisherAndSubscriber extends WithContainer {
    @Test
    public void bundle_is_installed() throws InterruptedException {
       executor().executeCommands(
-            "features:install ms-core",
-            "features:install ms-example",
-            "osgi:list -t 0 -s"
+            "features:install codon-core",
+            "features:install codon-example"
             );
       Thread.sleep(10000);
       assertThat(executor().getInstalledBundle("com.page5of4.codon.examples.publisher")).isActive();
@@ -41,6 +40,6 @@ public class WhenRunningPublisherAndSubscriber extends WithContainer {
 
    @After
    public void after() {
-      executor().executeCommands("features:uninstall ms-example");
+      executor().executeCommands("features:uninstall codon-example");
    }
 }

@@ -8,7 +8,7 @@
 	</parent>
 
 	<groupId>com.page5of4.codon.bundles</groupId>
-	<artifactId>bundles</artifactId>
+	<artifactId>codon-bundles</artifactId>
 	<packaging>pom</packaging>
 
 	<name>Codon - Bundles</name>

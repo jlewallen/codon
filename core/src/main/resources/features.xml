@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <features name="message-stream-${project.version}">
 
-	<feature name="ms-dependencies" version="${project.version}">
+	<feature name="codon-dependencies" version="${project.version}">
 		<feature>spring</feature>
 		<feature>spring-dm</feature>
 		<feature version="${camel.version}">camel-spring</feature>
@@ -17,46 +17,46 @@
 		<bundle start-level='76'>mvn:org.springframework/spring-webmvc/${spring.version}</bundle>
 	</feature>
 
-	<feature name="ms-core" version="${project.version}">
-		<bundle start-level='90'>mvn:${main.project.groupId}/core/${project.version}</bundle>
-		<bundle start-level='90'>mvn:${main.project.groupId}/extender/${project.version}</bundle>
+	<feature name="codon-core" version="${project.version}">
+		<bundle start-level='90'>mvn:${main.project.groupId}/codon-core/${project.version}</bundle>
+		<bundle start-level='90'>mvn:${main.project.groupId}/codon-extender/${project.version}</bundle>
 	</feature>
 
-	<feature name="ms-example-publisher" version="${project.version}">
-		<feature>ms-core</feature>
+	<feature name="codon-example-publisher" version="${project.version}">
+		<feature>codon-core</feature>
 
-		<bundle start-level='90'>mvn:${examples.project.groupId}/messages/${project.version}</bundle>
-		<bundle start-level='91'>mvn:${examples.project.groupId}/publisher/${project.version}</bundle>
+		<bundle start-level='90'>mvn:${examples.project.groupId}/codon-examples-messages/${project.version}</bundle>
+		<bundle start-level='91'>mvn:${examples.project.groupId}/codon-examples-publisher/${project.version}</bundle>
 	</feature>
 
-	<feature name="ms-example-subscriber" version="${project.version}">
-		<feature>ms-core</feature>
+	<feature name="codon-example-subscriber" version="${project.version}">
+		<feature>codon-core</feature>
 
-		<bundle start-level='90'>mvn:${examples.project.groupId}/messages/${project.version}</bundle>
-		<bundle start-level='91'>mvn:${examples.project.groupId}/subscriber/${project.version}</bundle>
+		<bundle start-level='90'>mvn:${examples.project.groupId}/codon-examples-messages/${project.version}</bundle>
+		<bundle start-level='91'>mvn:${examples.project.groupId}/codon-examples-subscriber/${project.version}</bundle>
 	</feature>
 
-	<feature name="ms-example-subscriber-hibernate" version="${project.version}">
-		<feature>ms-core</feature>
+	<feature name="codon-example-subscriber-hibernate" version="${project.version}">
+		<feature>codon-core</feature>
 
-		<bundle start-level='91'>mvn:${examples.project.groupId}/subscriber-hibernate/${project.version}</bundle>
+		<bundle start-level='91'>mvn:${examples.project.groupId}/codon-examples-subscriber-hibernate/${project.version}</bundle>
 	</feature>
 
-	<feature name="ms-example-subscriber-riak" version="${project.version}">
-		<feature>ms-core</feature>
+	<feature name="codon-example-subscriber-riak" version="${project.version}">
+		<feature>codon-core</feature>
 
-		<bundle start-level='91'>mvn:${examples.project.groupId}/subscriber-riak/${project.version}</bundle>
+		<bundle start-level='91'>mvn:${examples.project.groupId}/codon-examples-subscriber-riak/${project.version}</bundle>
 	</feature>
 
-	<feature name="ms-example" version="${project.version}">
-		<bundle start-level='80'>mvn:${main.project.groupId}/core/${project.version}</bundle>
+	<feature name="codon-example" version="${project.version}">
+		<bundle start-level='80'>mvn:${main.project.groupId}/codon-core/${project.version}</bundle>
 
-		<bundle start-level='90'>mvn:${examples.project.groupId}/messages/${project.version}</bundle>
-		<bundle start-level='91'>mvn:${examples.project.groupId}/subscriber/${project.version}</bundle>
-		<bundle start-level='92'>mvn:${examples.project.groupId}/publisher/${project.version}</bundle>
+		<bundle start-level='90'>mvn:${examples.project.groupId}/codon-examples-messages/${project.version}</bundle>
+		<bundle start-level='91'>mvn:${examples.project.groupId}/codon-examples-subscriber/${project.version}</bundle>
+		<bundle start-level='92'>mvn:${examples.project.groupId}/codon-examples-publisher/${project.version}</bundle>
 	</feature>
 
-	<feature name="ms-example-webapp" version="${project.version}">
+	<feature name="codon-example-webapp" version="${project.version}">
 		<!--
 		<feature>spring</feature>
 		<feature>spring-dm</feature>
@@ -68,11 +68,11 @@
 		<bundle start-level='73'>mvn:org.springframework/spring-web/${spring.version}</bundle>
 		<bundle start-level='74'>mvn:org.springframework/spring-webmvc/${spring.version}</bundle>
 		-->
-		<bundle start-level='80'>mvn:${main.project.groupId}/core/${project.version}</bundle>
+		<bundle start-level='80'>mvn:${main.project.groupId}/codon-core/${project.version}</bundle>
 
-		<bundle start-level='90'>mvn:${examples.project.groupId}/messages/${project.version}</bundle>
-		<bundle start-level='91'>mvn:${examples.project.groupId}/subscriber/${project.version}</bundle>
-		<bundle start-level='92'>mvn:${examples.project.groupId}/publisher/${project.version}</bundle>
-		<bundle start-level='93'>mvn:${examples.project.groupId}/webapp/${project.version}/war</bundle>
+		<bundle start-level='90'>mvn:${examples.project.groupId}/codon-examples-messages/${project.version}</bundle>
+		<bundle start-level='91'>mvn:${examples.project.groupId}/codon-examples-subscriber/${project.version}</bundle>
+		<bundle start-level='92'>mvn:${examples.project.groupId}/codon-examples-publisher/${project.version}</bundle>
+		<bundle start-level='93'>mvn:${examples.project.groupId}/codon-examples-webapp/${project.version}/war</bundle>
 	</feature>
 </features>

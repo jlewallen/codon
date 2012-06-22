@@ -24,15 +24,6 @@
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
 				<extensions>true</extensions>
-				<executions>
-					<execution>
-						<id>bundle-manifest</id>
-						<phase>process-classes</phase>
-						<goals>
-							<goal>manifest</goal>
-						</goals>
-					</execution>
-				</executions>
 				<configuration>
 					<instructions>
 						<Export-Package>
@@ -50,10 +41,5 @@
 	</build>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.page5of4.codon</groupId>
-			<artifactId>codon-core</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 	</dependencies>
 </project>

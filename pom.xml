@@ -515,11 +515,36 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<modules>
-		<module>bundles</module>
-		<module>core</module>
-		<module>extender</module>
-		<module>examples</module>
-		<module>tests</module>
-	</modules>
+	<profiles>
+		<profile>
+			<id>all</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>bundles</module>
+				<module>core</module>
+				<module>extender</module>
+				<module>examples</module>
+				<module>tests</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>cee</id>
+			<modules>
+				<module>core</module>
+				<module>extender</module>
+				<module>examples</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>no-tests</id>
+			<modules>
+				<module>bundles</module>
+				<module>core</module>
+				<module>extender</module>
+				<module>examples</module>
+			</modules>
+		</profile>
+	</profiles>
 </project>

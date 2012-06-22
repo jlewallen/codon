@@ -13,11 +13,11 @@
 
 	<mvc:annotation-driven />
 
-	<context:component-scan base-package="com.page5of4.ms.examples.webapp" />
+	<context:component-scan base-package="com.page5of4.codon.examples.webapp" />
 
 	<osgi:reference id="configurationAdmin" interface="org.osgi.service.cm.ConfigurationAdmin" />
 
-	<osgi:reference id="ourApplicationService" interface="com.page5of4.ms.examples.publisher.OurApplicationService" />
+	<osgi:reference id="ourApplicationService" interface="com.page5of4.codon.examples.publisher.OurApplicationService" />
 
 	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 		<property name="mediaTypes">

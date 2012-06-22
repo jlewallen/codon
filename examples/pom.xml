@@ -3,16 +3,16 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.page5of4.ms</groupId>
-		<artifactId>message-stream</artifactId>
+		<groupId>com.page5of4.codon</groupId>
+		<artifactId>codon-pom</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>com.page5of4.ms.examples</groupId>
+	<groupId>com.page5of4.codon.examples</groupId>
 	<artifactId>examples</artifactId>
 	<packaging>pom</packaging>
 	
-	<name>MS - Examples</name>
+	<name>Codon - Examples</name>
 
 	<properties>
 	</properties>

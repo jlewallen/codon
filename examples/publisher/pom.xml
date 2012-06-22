@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.page5of4.ms.examples</groupId>
+		<groupId>com.page5of4.codon.examples</groupId>
 		<artifactId>examples</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
@@ -11,7 +11,7 @@
 	<artifactId>publisher</artifactId>
 	<packaging>bundle</packaging>
 	
-  <name>MS - Examples - Publisher</name>
+	<name>Codon - Examples - Publisher</name>
 
 	<properties>
 	</properties>
@@ -27,14 +27,14 @@
 				<configuration>
 					<instructions>
 						<Export-Package>
-							com.page5of4.ms.examples.publisher
+							com.page5of4.codon.examples.publisher
 						</Export-Package>
 						<Import-Package>
-							com.page5of4.ms,
-							com.page5of4.ms.config,
-							com.page5of4.ms.subscriptions,
-							com.page5of4.ms.subscriptions.messages,
-							com.page5of4.ms.examples.messages,
+							com.page5of4.codon,
+							com.page5of4.codon.config,
+							com.page5of4.codon.subscriptions,
+							com.page5of4.codon.subscriptions.messages,
+							com.page5of4.codon.examples.messages,
 							<!-- common -->
 							org.springframework.beans.factory.config,
 							org.springframework.stereotype; version=${spring.version},
@@ -72,7 +72,7 @@
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.page5of4.ms</groupId>
+			<groupId>com.page5of4.codon</groupId>
 			<artifactId>core</artifactId>
 			<version>${project.version}</version>
 		</dependency>

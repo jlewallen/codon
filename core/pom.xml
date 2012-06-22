@@ -3,15 +3,15 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.page5of4.ms</groupId>
-		<artifactId>message-stream</artifactId>
+		<groupId>com.page5of4.codon</groupId>
+		<artifactId>codon-pom</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>core</artifactId>
-  <packaging>bundle</packaging>
-	
-  <name>MS - Core</name>
+	<packaging>bundle</packaging>
+
+	<name>Codon - Core</name>
 
 	<properties>
 	</properties>
@@ -34,11 +34,11 @@
 				<configuration>
 					<instructions>
 						<Export-Package>
-							com.page5of4.ms,
-							com.page5of4.ms.config,
-							com.page5of4.ms.camel,
-							com.page5of4.ms.subscriptions,
-							com.page5of4.ms.subscriptions.messages
+							com.page5of4.codon,
+							com.page5of4.codon.config,
+							com.page5of4.codon.camel,
+							com.page5of4.codon.subscriptions,
+							com.page5of4.codon.subscriptions.messages
 						</Export-Package>
 						<Import-Package>
 							org.springframework.beans.factory.config,

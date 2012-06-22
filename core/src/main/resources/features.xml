@@ -19,6 +19,7 @@
 
 	<feature name="ms-core" version="${project.version}">
 		<bundle start-level='90'>mvn:${main.project.groupId}/core/${project.version}</bundle>
+		<bundle start-level='90'>mvn:${main.project.groupId}/extender/${project.version}</bundle>
 	</feature>
 
 	<feature name="ms-example-publisher" version="${project.version}">

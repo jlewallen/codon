@@ -26,7 +26,7 @@
 Rough idea of provisioning a Karaf instance for using this.
 
     features:addurl mvn:org.apache.camel.karaf/apache-camel/2.9.2/xml/features
-    features:addurl mvn:com.page5of4.ms/core/1.0.0-SNAPSHOT/xml/features
+    features:addurl mvn:com.page5of4.codon/core/1.0.0-SNAPSHOT/xml/features
     features:addurl mvn:org.apache.servicemix.nmr/apache-servicemix-nmr/1.5.0/xml/features
     features:addUrl mvn:org.apache.activemq/activemq-karaf/5.5.0/xml/features
     features:install activemq
@@ -40,7 +40,7 @@ Rough idea of provisioning a Karaf instance for using this.
     osgi:install -s mvn:commons-lang/commons-lang/2.5
     osgi:install -s mvn:com.googlecode.guava-osgi/guava-osgi/9.0.0
     osgi:install -s mvn:com.page5of4.commons/mustache-mvc/1.2.3-SNAPSHOT
-    osgi:install -s mvn:com.page5of4.ms/libraries/1.0.0-SNAPSHOT
+    osgi:install -s mvn:com.page5of4.codon/libraries/1.0.0-SNAPSHOT
 
 # Scratch Area
 
@@ -55,5 +55,5 @@ These aren't used, but I'm keeping them around in here just in case.
     mvn:org.apache.servicemix.nmr/apache-servicemix-nmr/1.5.0-fuse-00-61/xml/features
     mvn:org.apache.camel.karaf/apache-camel/2.7.3-fuse-00-61/xml/features
     mvn:org.apache.camel.karaf/apache-camel/2.9.2/xml/features
-    mvn:com.page5of4.ms/core/1.0.0-SNAPSHOT/xml/features
+    mvn:com.page5of4.codon/core/1.0.0-SNAPSHOT/xml/features
     mvn:org.apache.karaf.assemblies.features/standard/2.2.0-fuse-00-61/xml/features

@@ -2,10 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.page5of4.ms</groupId>
-	<artifactId>message-stream</artifactId>
+	<groupId>com.page5of4.codon</groupId>
+	<artifactId>codon-pom</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0.0-SNAPSHOT</version>
+
+	<name>Codon</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -469,12 +471,54 @@
 				<artifactId>com.springsource.javax.persistence</artifactId>
 				<version>${springsource.javax.persistence.version}</version>
 			</dependency>
+
+			<dependency>
+				<groupId>org.apache.geronimo.specs</groupId>
+				<artifactId>geronimo-jta_1.1_spec</artifactId>
+				<version>1.1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.servicemix.bundles</groupId>
+				<artifactId>org.apache.servicemix.bundles.serp</artifactId>
+				<version>0.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.aries</groupId>
+				<artifactId>org.apache.aries.util</artifactId>
+				<version>0.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.aries.jpa</groupId>
+				<artifactId>org.apache.aries.jpa.api</artifactId>
+				<version>0.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.aries.jpa</groupId>
+				<artifactId>org.apache.aries.jpa.container</artifactId>
+				<version>0.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.aries.transaction</groupId>
+				<artifactId>org.apache.aries.transaction.manager</artifactId>
+				<version>0.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.derby</groupId>
+				<artifactId>derby</artifactId>
+				<version>10.8.1.2</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+				<version>3.2.1</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
 	<modules>
 		<module>bundles</module>
 		<module>core</module>
+		<module>extender</module>
 		<module>examples</module>
 		<module>tests</module>
 	</modules>

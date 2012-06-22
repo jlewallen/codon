@@ -10,7 +10,7 @@
 
 	<artifactId>codon-examples-webapp</artifactId>
 	<packaging>war</packaging>
-	
+
 	<name>Codon - Examples - Webapp</name>
 
 	<dependencies>

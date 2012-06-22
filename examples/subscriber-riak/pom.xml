@@ -10,7 +10,7 @@
 
 	<artifactId>codon-examples-subscriber-riak</artifactId>
 	<packaging>bundle</packaging>
-	
+
 	<name>Codon - Examples - Subscriber (Riak)</name>
 
 	<properties>

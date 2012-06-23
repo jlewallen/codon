@@ -25,9 +25,10 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
    }
 
    @Override
-   public void definedProject(ProjectDto projectDto) {
+   public void defineProject(ProjectDto projectDto) {
       Project project = new Project(projectDto.getId(), projectDto.getTitle(), projectDto.getOwner(), projectDto.getHoursRequired(), projectDto.getDefinedAt());
       projectRepository.add(project);
+      project.defined();
    }
 
    @Override
@@ -37,9 +38,9 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
    }
 
    @Override
-   public void abandonProject(UUID id, Date date) {
+   public void abandonProject(UUID id, Date date, String reason) {
       Project project = projectRepository.findById(id);
-      project.abandon();
+      project.abandon(reason);
    }
 
    @Override

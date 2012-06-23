@@ -9,6 +9,7 @@ public class ProjectAbandonedMessage implements Serializable {
 
    private UUID id;
    private Date abandonedAt;
+   private String reason;
 
    public UUID getId() {
       return id;
@@ -26,13 +27,22 @@ public class ProjectAbandonedMessage implements Serializable {
       this.abandonedAt = abandonedAt;
    }
 
+   public String getReason() {
+      return reason;
+   }
+
+   public void setReason(String reason) {
+      this.reason = reason;
+   }
+
    protected ProjectAbandonedMessage() {
       super();
    }
 
-   public ProjectAbandonedMessage(UUID id, Date abandonedAt) {
+   public ProjectAbandonedMessage(UUID id, Date abandonedAt, String reason) {
       super();
       this.id = id;
       this.abandonedAt = abandonedAt;
+      this.reason = reason;
    }
 }

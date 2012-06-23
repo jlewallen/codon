@@ -4,11 +4,11 @@ import java.util.Date;
 import java.util.UUID;
 
 public interface ProjectManagementService {
-   void definedProject(ProjectDto project);
+   void defineProject(ProjectDto project);
 
    void startProject(UUID id, Date date);
 
-   void abandonProject(UUID id, Date date);
+   void abandonProject(UUID id, Date date, String reason);
 
    void completeProject(UUID id, Date date);
 }

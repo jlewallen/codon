@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+import com.google.common.eventbus.EventBus;
 import com.page5of4.codon.Bus;
 import com.page5of4.codon.camel.OutgoingProcessor;
 import com.page5of4.codon.camel.SendLocalProcessor;
@@ -17,6 +18,8 @@ import com.page5of4.codon.examples.application.ProjectManagementService;
 import com.page5of4.codon.examples.application.impl.OurApplicationServiceImpl;
 import com.page5of4.codon.examples.application.impl.ProjectManagementServiceImpl;
 import com.page5of4.codon.examples.application.impl.Publisher;
+import com.page5of4.codon.examples.application.model.DomainEvents;
+import com.page5of4.codon.examples.application.model.ProjectEvents;
 import com.page5of4.codon.examples.application.model.repositories.ProjectRepository;
 import com.page5of4.codon.examples.messages.LaunchWorkMessage;
 
@@ -42,8 +45,25 @@ public class ExampleConfig {
    }
 
    @Bean
+   public DomainEvents domainEvents() {
+      return new DomainEvents(eventBus());
+   }
+
+   @Bean
+   public EventBus eventBus() {
+      return new EventBus();
+   }
+
+   @Bean
    public ProjectRepository projectRepository() {
       return new ProjectRepository();
+   }
+
+   @Bean
+   public ProjectEvents projectEvents() {
+      ProjectEvents projectEvents = new ProjectEvents(bus);
+      eventBus().register(projectEvents);
+      return projectEvents;
    }
 
    @Bean

@@ -38,7 +38,7 @@ public class ProjectsController {
 
    @RequestMapping(method = RequestMethod.POST)
    public String define(ProjectDto projectDto) {
-      projectManagementService.definedProject(projectDto);
+      projectManagementService.defineProject(projectDto);
       return "redirect:/projects";
    }
 
@@ -50,7 +50,7 @@ public class ProjectsController {
 
    @RequestMapping(value = "{id}/abandon", method = RequestMethod.POST)
    public String abandon(@PathVariable UUID id) {
-      projectManagementService.abandonProject(id, new Date());
+      projectManagementService.abandonProject(id, new Date(), "");
       return "redirect:/projects";
    }
 

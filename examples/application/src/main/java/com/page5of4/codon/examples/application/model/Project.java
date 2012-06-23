@@ -33,6 +33,7 @@ public class Project {
       this.owner = owner;
       this.hoursRequired = hoursRequired;
       this.definedAt = definedAt;
+      this.state = ProjectState.DEFINED;
    }
 
    public enum ProjectState {
@@ -42,19 +43,26 @@ public class Project {
       COMPLETED
    }
 
+   public void defined() {
+      DomainEvents.post(new ProjectEvents.Defined(this, UUID.randomUUID(), title, owner, hoursRequired, definedAt));
+   }
+
    public void start() {
       requireState(ProjectState.DEFINED);
       state = ProjectState.STARTED;
+      DomainEvents.post(new ProjectEvents.Started(this, UUID.randomUUID(), new Date()));
    }
 
-   public void abandon() {
+   public void abandon(String reason) {
       requireState(ProjectState.DEFINED, ProjectState.STARTED);
       state = ProjectState.ABANDONED;
+      DomainEvents.post(new ProjectEvents.Abandoned(this, UUID.randomUUID(), new Date(), reason));
    }
 
    public void complete() {
       requireState(ProjectState.STARTED);
       state = ProjectState.COMPLETED;
+      DomainEvents.post(new ProjectEvents.Completed(this, UUID.randomUUID(), new Date()));
    }
 
    private void requireState(ProjectState... required) {

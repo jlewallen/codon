@@ -27,15 +27,14 @@ public class WhenRunningExampleApplicationSpecs extends WithContainer {
    public void before() {
       Provision.with(executor()).base().hibernate().core();
       executor().executeCommands("features:install codon-example");
+      pause();
    }
 
    @Test
    public void bundles_are_installed_and_active() throws InterruptedException {
       String[] expected = new String[] {
             "com.page5of4.codon.examples.messages",
-            "com.page5of4.codon.examples.application",
-            "com.page5of4.codon.examples.subscriber",
-            "com.page5of4.codon.examples.subscriber.hibernate"
+            "com.page5of4.codon.examples.application"
       };
       for(String name : expected) {
          assertThat(executor().getInstalledBundle(name)).isActive();
@@ -45,5 +44,6 @@ public class WhenRunningExampleApplicationSpecs extends WithContainer {
    @After
    public void after() {
       executor().executeCommands("features:uninstall codon-example");
+      executor().executeCommands("features:uninstall codon-core");
    }
 }

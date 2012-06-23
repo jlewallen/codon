@@ -20,12 +20,23 @@ import org.ops4j.pax.exam.options.CompositeOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class WithContainer {
+   protected final Logger logger;
+   protected final boolean debuggingEnabled = false;
+   protected final boolean keepRuntimeFolder = false;
+
    @Inject
    private BundleContext bundleContext;
 
    private CommandExecutor executor;
+
+   public WithContainer() {
+      super();
+      logger = LoggerFactory.getLogger(getClass());
+   }
 
    public CommandExecutor executor() {
       if(executor == null) {
@@ -53,14 +64,13 @@ public class WithContainer {
    }
 
    private Option debuggingOptions() {
-      if(true) return new Option() {};
+      if(!debuggingEnabled) return new Option() {};
       return new DefaultCompositeOption(
             vmOption("-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005"),
             systemTimeout(1000 * 60 * 60));
    }
 
    private Option systemProperties() {
-      if(false) return new Option() {};
       return new DefaultCompositeOption(
             editConfigurationFilePut("etc/system.properties", "page5of4.project.version", TestsConfiguration.getProjectVersion()),
             editConfigurationFilePut("etc/org.ops4j.pax.url.mvn.cfg", "org.ops4j.pax.url.mvn.repositories", "http://dev.page5of4.com/nexus/content/groups/public"));
@@ -68,7 +78,7 @@ public class WithContainer {
    }
 
    private Option runtimeFolderOption() {
-      if(true) return new Option() {};
+      if(!keepRuntimeFolder) return new Option() {};
       return keepRuntimeFolder();
    }
 
@@ -76,5 +86,14 @@ public class WithContainer {
       return new DefaultCompositeOption(
             mavenBundle().groupId("org.easytesting").artifactId("fest-assert").versionAsInProject(),
             mavenBundle().groupId("org.easytesting").artifactId("fest-util").versionAsInProject());
+   }
+
+   public void pause() {
+      logger.info("Provisioned");
+      try {
+         Thread.sleep(5000);
+      }
+      catch(InterruptedException e) {
+      }
    }
 }

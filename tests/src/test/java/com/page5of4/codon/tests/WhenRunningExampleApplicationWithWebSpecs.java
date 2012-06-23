@@ -27,6 +27,7 @@ public class WhenRunningExampleApplicationWithWebSpecs extends WithContainer {
    public void before() {
       Provision.with(executor()).base().hibernate().web().core();
       executor().executeCommands("features:install codon-example-webapp");
+      pause();
    }
 
    @Test
@@ -34,8 +35,6 @@ public class WhenRunningExampleApplicationWithWebSpecs extends WithContainer {
       String[] expected = new String[] {
             "com.page5of4.codon.examples.messages",
             "com.page5of4.codon.examples.application",
-            "com.page5of4.codon.examples.subscriber",
-            "com.page5of4.codon.examples.subscriber.hibernate",
             "com.page5of4.codon.examples.webapp"
       };
       for(String name : expected) {

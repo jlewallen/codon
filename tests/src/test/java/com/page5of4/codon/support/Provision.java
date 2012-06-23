@@ -36,7 +36,7 @@ public class Provision {
             "features:install spring-dm-web",
             "osgi:install -s mvn:org.codehaus.jackson/jackson-core-asl/1.7.5",
             "osgi:install -s mvn:org.codehaus.jackson/jackson-mapper-asl/1.7.5",
-            "osgi:install -s mvn:com.googlecode.guava-osgi/guava-osgi/9.0.0",
+            "osgi:install -s mvn:com.googlecode.guava-osgi/guava-osgi/11.0.1",
             "osgi:install -s mvn:com.page5of4.codon.bundles/com.page5of4.codon.bundles.mustache-mvc/1.2.3-SNAPSHOT"
             );
       return this;

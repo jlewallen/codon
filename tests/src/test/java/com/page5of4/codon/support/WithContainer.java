@@ -61,7 +61,9 @@ public class WithContainer {
 
    private Option systemProperties() {
       if(false) return new Option() {};
-      return editConfigurationFilePut("etc/system.properties", "page5of4.project.version", TestsConfiguration.getProjectVersion());
+      return new DefaultCompositeOption(
+            editConfigurationFilePut("etc/system.properties", "page5of4.project.version", TestsConfiguration.getProjectVersion()),
+            editConfigurationFilePut("etc/org.ops4j.pax.url.mvn.cfg", "org.ops4j.pax.url.mvn.repositories", "http://dev.page5of4.com/nexus/content/groups/public"));
 
    }
 

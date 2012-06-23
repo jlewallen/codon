@@ -172,7 +172,7 @@
 		</dependency>
 		<dependency>
 			<groupId>${examples.project.groupId}</groupId>
-			<artifactId>codon-examples-publisher</artifactId>
+			<artifactId>codon-examples-application</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>

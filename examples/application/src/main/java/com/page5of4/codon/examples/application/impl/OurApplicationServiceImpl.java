@@ -1,9 +1,9 @@
-package com.page5of4.codon.examples.publisher.impl;
+package com.page5of4.codon.examples.application.impl;
 
 import com.page5of4.codon.Bus;
+import com.page5of4.codon.examples.application.OurApplicationService;
+import com.page5of4.codon.examples.application.StuffParameters;
 import com.page5of4.codon.examples.messages.LaunchWorkMessage;
-import com.page5of4.codon.examples.publisher.OurApplicationService;
-import com.page5of4.codon.examples.publisher.StuffParameters;
 
 public class OurApplicationServiceImpl implements OurApplicationService {
    private final Bus bus;

@@ -34,6 +34,8 @@
 			org.springframework.core.io.support; version="[3.0.0, 4.0.0]",
 			org.springframework.stereotype; version="[3.0.0, 4.0.0]",
 			org.codehaus.jackson.map; version="[1.0.0, 2.0.0)",
+			org.joda.time.*; resolution:=optional,
+			!sun.misc,
 			*
 		</imported.packages>
 		<embedded.dependencies>jmustache</embedded.dependencies>

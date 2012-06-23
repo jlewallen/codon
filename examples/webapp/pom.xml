@@ -42,12 +42,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>codon-examples-publisher</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-
-		<dependency>
 			<groupId>com.page5of4.commons</groupId>
 			<artifactId>mustache-mvc</artifactId>
 		</dependency>
@@ -56,6 +50,12 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>codon-examples-application</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -101,8 +101,7 @@
 							javax.servlet.http; version="[2.4.0, 4.0.0)",
 							javax.servlet.resources; version="[2.4.0, 4.0.0)",
 							org.springframework.beans.factory.config,
-							org.springframework.osgi.web.context.support;
-							version="[1.2,2.0)",
+							org.springframework.osgi.web.context.support; version="[1.2,2.0)",
 							org.springframework.stereotype,
 							org.springframework.web.bind.annotation,
 							org.springframework.web.servlet,

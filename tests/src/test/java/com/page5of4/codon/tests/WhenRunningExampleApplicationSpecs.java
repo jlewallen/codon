@@ -17,7 +17,7 @@ import com.page5of4.codon.support.WithContainer;
 
 @RunWith(JUnit4TestRunner.class)
 @ExamReactorStrategy(AllConfinedStagedReactorFactory.class)
-public class WhenRunningPublisherAndSubscriber extends WithContainer {
+public class WhenRunningExampleApplicationSpecs extends WithContainer {
    @Configuration
    public Option[] config() {
       return new Option[] { commonConfiguration() };
@@ -25,17 +25,21 @@ public class WhenRunningPublisherAndSubscriber extends WithContainer {
 
    @Before
    public void before() {
-      Provision.with(executor()).base();
+      Provision.with(executor()).base().hibernate().core();
+      executor().executeCommands("features:install codon-example");
    }
 
    @Test
-   public void bundle_is_installed() throws InterruptedException {
-      executor().executeCommands(
-            "features:install codon-core",
-            "features:install codon-example"
-            );
-      Thread.sleep(10000);
-      assertThat(executor().getInstalledBundle("com.page5of4.codon.examples.publisher")).isActive();
+   public void bundles_are_installed_and_active() throws InterruptedException {
+      String[] expected = new String[] {
+            "com.page5of4.codon.examples.messages",
+            "com.page5of4.codon.examples.application",
+            "com.page5of4.codon.examples.subscriber",
+            "com.page5of4.codon.examples.subscriber.hibernate"
+      };
+      for(String name : expected) {
+         assertThat(executor().getInstalledBundle(name)).isActive();
+      }
    }
 
    @After

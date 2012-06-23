@@ -1,6 +1,5 @@
 package com.page5of4.codon.examples.subscriber.impl;
 
-import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -17,11 +16,11 @@ import org.osgi.service.jpa.EntityManagerFactoryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.page5of4.codon.examples.subscriber.model.User;
+import com.page5of4.codon.examples.subscriber.model.Person;
 
 public class CommandLineService {
    private static final Logger logger = LoggerFactory.getLogger(CommandLineService.class);
-   private static final Object STUDENTS_UNIT = "jpa.example";
+   private static final Object PERSISTENCE_UNIT = "jpa.example";
    private final BundleContext bundleContext;
 
    public CommandLineService(BundleContext bundleContext) {
@@ -29,21 +28,21 @@ public class CommandLineService {
       this.bundleContext = bundleContext;
    }
 
-   public void lsdudes(PrintWriter out, String... args) {
+   public void listDudes() {
       try {
          ServiceReference reference = getEntityManagerFactoryServiceReference();
          try {
             EntityManagerFactory emf = (EntityManagerFactory)bundleContext.getService(reference);
             EntityManager em = emf.createEntityManager();
             {
-               User user = new User(UUID.randomUUID(), "Jacob", "Lewallen", new Date());
+               Person user = new Person(UUID.randomUUID(), "Jacob", "Lewallen", new Date());
                EntityTransaction transaction = em.getTransaction();
                transaction.begin();
                em.persist(user);
                transaction.commit();
             }
             {
-               Query query = em.createQuery("SELECT u FROM User u");
+               Query query = em.createQuery("FROM Person");
                List<?> list = query.getResultList();
                logger.info("{} {}", list, list.getClass());
                for(Object r : list) {
@@ -51,17 +50,11 @@ public class CommandLineService {
                }
             }
             {
-               TypedQuery<User> query = em.createQuery("SELECT u FROM User u", User.class);
-               List<User> result = query.getResultList();
-               if(result != null) {
-                  logger.info(String.format("Students: %d", result.size()));
-                  for(Object dude : result) {
-                     logger.info(String.format("%s %s", dude, dude.getClass()));
-                     // logger.info(String.format("%d %s %s", dude.getId(), dude.getFirstName(), dude.getLastName()));
-                  }
-               }
-               else {
-                  logger.info("Result is null");
+               TypedQuery<Person> query = em.createQuery("FROM Person", Person.class);
+               List<Person> found = query.getResultList();
+               logger.info(String.format("People: %d", found.size()));
+               for(Object dude : found) {
+                  logger.info(String.format("%s %s", dude, dude.getClass()));
                }
             }
             em.close();
@@ -76,7 +69,7 @@ public class CommandLineService {
    }
 
    private ServiceReference getEntityManagerFactoryServiceReference() throws Exception {
-      ServiceReference[] serviceReferences = bundleContext.getServiceReferences(EntityManagerFactory.class.getName(), String.format("(%s=%s)", EntityManagerFactoryBuilder.JPA_UNIT_NAME, STUDENTS_UNIT));
+      ServiceReference[] serviceReferences = bundleContext.getServiceReferences(EntityManagerFactory.class.getName(), String.format("(%s=%s)", EntityManagerFactoryBuilder.JPA_UNIT_NAME, PERSISTENCE_UNIT));
       if(serviceReferences != null && serviceReferences.length > 0) {
          return serviceReferences[0];
       }

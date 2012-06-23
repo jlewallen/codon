@@ -1,4 +1,4 @@
-package com.page5of4.codon.examples.publisher.config;
+package com.page5of4.codon.examples.application.config;
 
 import java.util.UUID;
 
@@ -12,10 +12,13 @@ import com.page5of4.codon.Bus;
 import com.page5of4.codon.camel.OutgoingProcessor;
 import com.page5of4.codon.camel.SendLocalProcessor;
 import com.page5of4.codon.config.CoreConfig;
+import com.page5of4.codon.examples.application.OurApplicationService;
+import com.page5of4.codon.examples.application.ProjectManagementService;
+import com.page5of4.codon.examples.application.impl.OurApplicationServiceImpl;
+import com.page5of4.codon.examples.application.impl.ProjectManagementServiceImpl;
+import com.page5of4.codon.examples.application.impl.Publisher;
+import com.page5of4.codon.examples.application.model.repositories.ProjectRepository;
 import com.page5of4.codon.examples.messages.LaunchWorkMessage;
-import com.page5of4.codon.examples.publisher.OurApplicationService;
-import com.page5of4.codon.examples.publisher.impl.OurApplicationServiceImpl;
-import com.page5of4.codon.examples.publisher.impl.Publisher;
 
 @Configuration
 @Import(value = { EnvironmentConfig.class, CoreConfig.class })
@@ -31,6 +34,16 @@ public class ExampleConfig {
    @Bean
    public OurApplicationService ourApplicationService() {
       return new OurApplicationServiceImpl(bus);
+   }
+
+   @Bean
+   public ProjectManagementService projectManagementService() {
+      return new ProjectManagementServiceImpl(projectRepository(), bus);
+   }
+
+   @Bean
+   public ProjectRepository projectRepository() {
+      return new ProjectRepository();
    }
 
    @Bean

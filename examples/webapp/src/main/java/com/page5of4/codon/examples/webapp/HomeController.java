@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.page5of4.codon.examples.publisher.OurApplicationService;
-import com.page5of4.codon.examples.publisher.StuffParameters;
+import com.page5of4.codon.examples.application.OurApplicationService;
+import com.page5of4.codon.examples.application.StuffParameters;
 
 @Controller
 @RequestMapping(value = "/")

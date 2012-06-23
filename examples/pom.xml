@@ -23,7 +23,7 @@
 
 	<modules>
 		<module>messages</module>
-		<module>publisher</module>
+		<module>application</module>
 		<module>subscriber</module>
 		<module>subscriber-hibernate</module>
 		<module>subscriber-riak</module>

@@ -1,4 +1,4 @@
-package com.page5of4.codon.examples.publisher.impl;
+package com.page5of4.codon.examples.application.impl;
 
 import java.util.Date;
 import java.util.UUID;

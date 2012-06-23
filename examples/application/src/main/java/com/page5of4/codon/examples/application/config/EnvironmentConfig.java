@@ -1,4 +1,4 @@
-package com.page5of4.codon.examples.publisher.config;
+package com.page5of4.codon.examples.application.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -9,7 +9,7 @@ import com.page5of4.codon.PropertiesConfiguration;
 
 @Configuration
 public class EnvironmentConfig {
-   @Value("${application.name:publisher}")
+   @Value("${application.name:application}")
    private String applicationName;
 
    @Bean

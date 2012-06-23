@@ -18,11 +18,9 @@
 
   <context:annotation-config />
   <context:property-placeholder />
-  <context:component-scan base-package="com.page5of4.codon.examples.publisher.config"/>
+  <context:component-scan base-package="com.page5of4.codon.examples.application"/>
   <camel:camelContext><camel:contextScan/></camel:camelContext>
   
-  <osgi:service ref="ourApplicationService" interface="com.page5of4.codon.examples.publisher.OurApplicationService" />
-
-  <osgi:reference id="osgiPlatformTransactionManager" interface="org.springframework.transaction.PlatformTransactionManager" /> 
-  <osgi:reference id="osgiJtaTransactionManager" interface="javax.transaction.TransactionManager" /> 
+  <osgi:service ref="ourApplicationService" interface="com.page5of4.codon.examples.application.OurApplicationService" />
+  <osgi:service ref="projectManagementService" interface="com.page5of4.codon.examples.application.ProjectManagementService" />
 </beans>

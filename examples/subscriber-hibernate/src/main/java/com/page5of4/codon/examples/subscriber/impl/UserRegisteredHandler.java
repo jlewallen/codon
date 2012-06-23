@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.page5of4.codon.Bus;
 import com.page5of4.codon.MessageHandler;
 import com.page5of4.codon.examples.messages.UserRegisteredMessage;
-import com.page5of4.codon.examples.subscriber.model.User;
+import com.page5of4.codon.examples.subscriber.model.Person;
 
 @Service
 @MessageHandler
@@ -31,7 +31,7 @@ public class UserRegisteredHandler {
    @MessageHandler
    public void handle(UserRegisteredMessage message) {
       logger.info("Received {}", message);
-      User user = new User(message.getId(), message.getFirstName(), message.getLastName(), message.getRegisteredAt());
+      Person user = new Person(message.getId(), message.getFirstName(), message.getLastName(), message.getRegisteredAt());
       entityManager.persist(user);
    }
 }

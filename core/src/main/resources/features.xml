@@ -18,6 +18,7 @@
 	</feature>
 
 	<feature name="codon-core" version="${project.version}">
+		<bundle start-level='90'>mvn:${main.project.groupId}/codon-useful/${project.version}</bundle>
 		<bundle start-level='90'>mvn:${main.project.groupId}/codon-core/${project.version}</bundle>
 		<bundle start-level='90'>mvn:${main.project.groupId}/codon-extender/${project.version}</bundle>
 	</feature>

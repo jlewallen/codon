@@ -14,7 +14,6 @@ import org.junit.Test;
 import com.google.common.eventbus.EventBus;
 import com.page5of4.codon.Bus;
 import com.page5of4.codon.examples.application.ProjectDto;
-import com.page5of4.codon.examples.application.model.DomainEvents;
 import com.page5of4.codon.examples.application.model.Project;
 import com.page5of4.codon.examples.application.model.ProjectEvents;
 import com.page5of4.codon.examples.application.model.repositories.ProjectRepository;
@@ -22,6 +21,7 @@ import com.page5of4.codon.examples.messages.ProjectAbandonedMessage;
 import com.page5of4.codon.examples.messages.ProjectCompletedMessage;
 import com.page5of4.codon.examples.messages.ProjectDefinedMessage;
 import com.page5of4.codon.examples.messages.ProjectStartedMessage;
+import com.page5of4.codon.useful.DomainEvents;
 
 public class ProjectManagementServiceSpecs {
    private ProjectRepository projectRepository;

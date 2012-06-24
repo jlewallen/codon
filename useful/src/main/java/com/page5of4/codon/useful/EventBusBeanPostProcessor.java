@@ -1,4 +1,4 @@
-package com.page5of4.codon.examples.application.config;
+package com.page5of4.codon.useful;
 
 import java.lang.reflect.Method;
 

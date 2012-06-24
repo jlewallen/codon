@@ -1,8 +1,12 @@
-package com.page5of4.codon.examples.application.model;
+package com.page5of4.codon.useful;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.eventbus.EventBus;
 
 public class DomainEvents {
+   private static final Logger logger = LoggerFactory.getLogger(DomainEvents.class);
    private static EventBus bus;
 
    public static void post(Object event) {
@@ -20,6 +24,9 @@ public class DomainEvents {
    }
 
    public DomainEvents(EventBus eventBus) {
+      if(bus != null) {
+         logger.warn("Overwriting existing DomainEvents EventBus.");
+      }
       bus = eventBus;
    }
 }

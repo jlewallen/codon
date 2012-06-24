@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.page5of4.codon.useful.DomainEvents;
 import com.sun.istack.NotNull;
 
 @Entity

@@ -1,13 +1,7 @@
 package com.page5of4.codon;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Properties;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 
 public class PropertiesConfiguration implements BusConfiguration {
    private static final String BUS_OWNER = "bus.owner.";
@@ -15,6 +9,7 @@ public class PropertiesConfiguration implements BusConfiguration {
    private final String applicationName;
    private final String localComponentName;
 
+   @Override
    public String getApplicationName() {
       return applicationName;
    }
@@ -23,29 +18,19 @@ public class PropertiesConfiguration implements BusConfiguration {
       return localComponentName;
    }
 
+   public void addProperties(Map<String, String> properties) {
+      this.properties.putAll(properties);
+   }
+
+   public void put(String key, String value) {
+      this.properties.put(key, value);
+   }
+
    public PropertiesConfiguration(String applicationName, String localComponentName) {
       super();
       this.applicationName = applicationName;
       this.localComponentName = localComponentName;
       if(applicationName == null || applicationName.length() == 0) throw new BusException("Application name is required.");
-   }
-
-   @Value("classpath:/META-INF/spring/application.properties")
-   public void setPropertiesSource(Resource resource) {
-      try {
-         Properties loaded = new Properties();
-         loaded.load(resource.getInputStream());
-         for(Entry<Object, Object> e : loaded.entrySet()) {
-            properties.put((String)e.getKey(), (String)e.getValue());
-         }
-      }
-      catch(IOException e) {
-         throw new BusException("Error loading: " + resource, e);
-      }
-   }
-
-   public void addProperties(Map<String, String> properties) {
-      this.properties.putAll(properties);
    }
 
    @Override

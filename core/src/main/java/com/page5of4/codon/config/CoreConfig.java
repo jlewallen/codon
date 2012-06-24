@@ -3,6 +3,7 @@ package com.page5of4.codon.config;
 import org.apache.camel.spi.TransactedPolicy;
 import org.apache.camel.spring.SpringCamelContext;
 import org.apache.camel.spring.spi.SpringTransactionPolicy;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -48,6 +49,7 @@ public class CoreConfig {
    @Bean
    public Transport transport() {
       try {
+         LoggerFactory.getLogger(CoreConfig.class).info("TCCL: {}", Thread.currentThread().getContextClassLoader());
          SpringCamelContext camelContext = new SpringCamelContext(applicationContext);
          camelContext.afterPropertiesSet();
          return new CamelTransport(camelContext, componentResolver(), invokeHandlerProcessor());

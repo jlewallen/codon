@@ -76,6 +76,7 @@
 			<artifactId>spring-orm</artifactId>
 		</dependency>
 
+		<!--
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
@@ -103,7 +104,6 @@
 			</exclusions>
 		</dependency>
 
-		<!--
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>

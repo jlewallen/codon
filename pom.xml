@@ -76,6 +76,10 @@
 			<id>maven2-nuxeo</id>
 			<url>https://maven.nuxeo.org/nexus/content/groups/public/</url>
 		</repository>
+		<repository>
+			<id>jboss repo</id>
+			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
+		</repository>
 	</repositories>
 
 	<pluginRepositories>

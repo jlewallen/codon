@@ -48,6 +48,7 @@
 							*
 						</Import-Package>
 						<Bundle-SymbolicName>com.page5of4.codon.examples.application</Bundle-SymbolicName>
+						<Codon-Bus>true</Codon-Bus>
 					</instructions>
 				</configuration>
 			</plugin>

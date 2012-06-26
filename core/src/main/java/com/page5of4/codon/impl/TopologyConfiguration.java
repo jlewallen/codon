@@ -20,16 +20,16 @@ public class TopologyConfiguration {
       this.configuration = configuration;
    }
 
-   public EndpointAddress getOwner(Class<?> message) {
-      String messageType = MessageUtils.getMessageType(message);
-      String ownerAddress = configuration.getOwnerAddress(messageType);
-      return new EndpointAddress(replace(ownerAddress, Collections.singletonMap(MESSAGE_TYPE, messageType)));
-   }
-
    public EndpointAddress getLocalAddressOf(Class<?> message) {
       String messageType = MessageUtils.getMessageType(message);
       String localAddress = configuration.getLocalAddress(messageType);
       return new EndpointAddress(replace(localAddress, Collections.singletonMap(MESSAGE_TYPE, messageType)));
+   }
+
+   public EndpointAddress getOwner(Class<?> message) {
+      String messageType = MessageUtils.getMessageType(message);
+      String ownerAddress = configuration.getOwnerAddress(messageType);
+      return new EndpointAddress(replace(ownerAddress, Collections.singletonMap(MESSAGE_TYPE, messageType)));
    }
 
    public EndpointAddress getSubscriptionAddressOf(Class<?> otherMessage, Class<?> message) {

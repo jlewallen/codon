@@ -3,7 +3,7 @@ package com.page5of4.codon.camel;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Service;
 
-import com.page5of4.codon.config.StandaloneConfig;
+import com.page5of4.codon.config.BusConfig;
 
 @Service
 public class HandlerRouteBuilder extends RouteBuilder {
@@ -17,6 +17,6 @@ public class HandlerRouteBuilder extends RouteBuilder {
 
    @Override
    public void configure() throws Exception {
-      from(fromAddress).transacted(StandaloneConfig.TRANSACTION_POLICY_NAME).process(invokeHandlerProcessor);
+      from(fromAddress).transacted(BusConfig.TRANSACTION_POLICY_NAME).process(invokeHandlerProcessor);
    }
 }

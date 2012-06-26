@@ -25,7 +25,7 @@ public class Activator implements BundleTrackerCustomizer, BundleActivator {
    private ServiceTracker busServiceTracker;
    private ServiceTracker bundleTracker;
    private BundleContext bundleContext;
-   private OsgiBus osgi;
+   private OsgiApplicationContextFactory osgi;
 
    @Override
    public void start(BundleContext context) throws Exception {
@@ -33,7 +33,7 @@ public class Activator implements BundleTrackerCustomizer, BundleActivator {
 
       bundleContext = context;
 
-      osgi = new OsgiBus(bundleContext);
+      osgi = new OsgiApplicationContextFactory(bundleContext);
       osgi.open();
 
       busServiceTracker = new ServiceTracker(context, Bus.class.getName(), new BusServiceTracker());

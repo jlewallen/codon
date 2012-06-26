@@ -18,11 +18,12 @@ import org.springframework.osgi.service.importer.support.OsgiServiceProxyFactory
 import com.page5of4.codon.Bus;
 import com.page5of4.codon.BusModule;
 import com.page5of4.codon.HandlerRegistry;
+import com.page5of4.codon.config.ClientConfig;
 import com.page5of4.codon.config.CoreConfig;
 import com.page5of4.codon.config.PublisherConfig;
 
 @Configuration
-@Import(value = { CoreConfig.class, PublisherConfig.class })
+@Import(value = { CoreConfig.class, PublisherConfig.class, ClientConfig.class })
 public class ExtenderConfig implements BeanClassLoaderAware {
    @Autowired
    private BundleContext bundleContext;

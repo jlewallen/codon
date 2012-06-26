@@ -34,7 +34,8 @@ public class WhenRunningExampleApplicationSpecs extends WithContainer {
    public void bundles_are_installed_and_active() throws InterruptedException {
       String[] expected = new String[] {
             "com.page5of4.codon.examples.messages",
-            "com.page5of4.codon.examples.application"
+            "com.page5of4.codon.examples.application",
+            "com.page5of4.codon.examples.subscriber"
       };
       for(String name : expected) {
          assertThat(executor().getInstalledBundle(name)).isActive();

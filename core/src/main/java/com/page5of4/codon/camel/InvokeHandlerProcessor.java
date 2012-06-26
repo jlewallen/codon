@@ -9,10 +9,9 @@ import org.apache.camel.Processor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.page5of4.codon.HandlerBinding;
 import com.page5of4.codon.HandlerRegistry;
 import com.page5of4.codon.impl.BusContextProvider;
-import com.page5of4.codon.impl.HandlerBinding;
-import com.page5of4.codon.impl.HandlerDispatcher;
 import com.page5of4.codon.impl.InstanceResolver;
 import com.page5of4.codon.impl.MessageUtils;
 
@@ -22,11 +21,11 @@ public class InvokeHandlerProcessor implements Processor {
    private final InstanceResolver resolver;
    private final BusContextProvider contextProvider;
 
-   public InvokeHandlerProcessor(HandlerRegistry handlerRegistry, InstanceResolver resolver, BusContextProvider contextProvider) {
+   public InvokeHandlerProcessor(HandlerRegistry handlerRegistry, BusContextProvider contextProvider, InstanceResolver resolver) {
       super();
       this.handlerRegistry = handlerRegistry;
-      this.resolver = resolver;
       this.contextProvider = contextProvider;
+      this.resolver = resolver;
    }
 
    @Override
@@ -47,7 +46,7 @@ public class InvokeHandlerProcessor implements Processor {
       List<HandlerBinding> bindings = handlerRegistry.getBindingsFor(bodyClass);
       for(HandlerBinding binding : bindings) {
          logger.debug("Invoking {}", binding.getMethod());
-         new HandlerDispatcher(resolver, contextProvider, binding).dispatch(body);
+         binding.dispatch(body, contextProvider);
       }
       if(bindings.isEmpty()) {
          logger.warn("No handlers registered for {}/{}", messageType, bodyClass.getName());

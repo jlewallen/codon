@@ -23,8 +23,8 @@ import com.page5of4.codon.subscriptions.impl.InMemorySubscriptionStorage;
 
 public class BusBuilder {
    private final ModelCamelContext camelContext;
-   private final HandlerRegistry handlerRegistry = new SpringHandlerRegistry(null);
    private final InstanceResolver resolver = new ApplicationContextResolver(null);
+   private final HandlerRegistry handlerRegistry = new SpringHandlerRegistry(null, resolver);
    private final ComponentResolver template = new AlwaysFailComponentResolver();
    private final InMemorySubscriptionStorage subscriptionStorage = new InMemorySubscriptionStorage();
 
@@ -44,6 +44,6 @@ public class BusBuilder {
    public Bus build() {
       TopologyConfiguration topologyConfiguration = new TopologyConfiguration(new PropertiesConfiguration("test", "testing-server"));
       BusContextProvider contextProvider = new ConstantBusContextProvider(new BusContext(topologyConfiguration, subscriptionStorage));
-      return new DefaultBus(contextProvider, new CamelTransport(camelContext, template, new InvokeHandlerProcessor(handlerRegistry, resolver, contextProvider)));
+      return new DefaultBus(contextProvider, new CamelTransport(camelContext, template, new InvokeHandlerProcessor(handlerRegistry, contextProvider, null)));
    }
 }

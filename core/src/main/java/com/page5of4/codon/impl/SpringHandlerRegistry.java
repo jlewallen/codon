@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 
 import com.page5of4.codon.BusException;
+import com.page5of4.codon.HandlerBinding;
 import com.page5of4.codon.HandlerRegistry;
 import com.page5of4.codon.MessageHandler;
 
@@ -16,12 +17,15 @@ public class SpringHandlerRegistry implements HandlerRegistry {
    private static final Logger logger = LoggerFactory.getLogger(HandlerRegistry.class);
    private final List<HandlerDescriptor> descriptors = new ArrayList<HandlerDescriptor>();
    private final ApplicationContext applicationContext;
+   private final InstanceResolver resolver;
 
-   public SpringHandlerRegistry(ApplicationContext applicationContext) {
+   public SpringHandlerRegistry(ApplicationContext applicationContext, InstanceResolver resolver) {
       super();
       this.applicationContext = applicationContext;
+      this.resolver = resolver;
    }
 
+   @Override
    public void initialize() {
       List<Class<?>> classes = new ArrayList<Class<?>>();
       Map<String, Object> handlers = applicationContext.getBeansWithAnnotation(MessageHandler.class);
@@ -31,8 +35,9 @@ public class SpringHandlerRegistry implements HandlerRegistry {
       addAll(classes);
    }
 
+   @Override
    public void addAll(List<Class<?>> classes) {
-      HandlerInspector inspector = new HandlerInspector();
+      HandlerInspector inspector = new HandlerInspector(resolver);
       List<String> problems = new ArrayList<String>();
       for(Class<?> klass : classes) {
          logger.info("Inspecting {}", klass);
@@ -49,6 +54,7 @@ public class SpringHandlerRegistry implements HandlerRegistry {
       }
    }
 
+   @Override
    public List<HandlerBinding> getBindings() {
       List<HandlerBinding> bindings = new ArrayList<HandlerBinding>();
       for(HandlerDescriptor descriptor : descriptors) {
@@ -59,6 +65,7 @@ public class SpringHandlerRegistry implements HandlerRegistry {
       return bindings;
    }
 
+   @Override
    public List<HandlerBinding> getBindingsFor(Class<? extends Object> messageType) {
       List<HandlerBinding> bindings = new ArrayList<HandlerBinding>();
       for(HandlerDescriptor descriptor : descriptors) {

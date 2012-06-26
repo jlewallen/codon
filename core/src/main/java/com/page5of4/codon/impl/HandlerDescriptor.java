@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.page5of4.codon.HandlerBinding;
 import com.page5of4.codon.MessageHandler;
 
 public class HandlerDescriptor {
@@ -11,7 +12,7 @@ public class HandlerDescriptor {
    private final List<String> problems = new ArrayList<String>();
    private final List<HandlerBinding> bindings = new ArrayList<HandlerBinding>();
 
-   public HandlerDescriptor(Class<?> handlerType) {
+   public HandlerDescriptor(Class<?> handlerType, InstanceResolver resolver) {
       super();
       this.handlerType = handlerType;
       MessageHandler classAnnotation = handlerType.getAnnotation(MessageHandler.class);
@@ -20,7 +21,7 @@ public class HandlerDescriptor {
          if(methodAnnotation != null) {
             Class<?> messageType = getMessageTypeFromParameters(method);
             if(messageType != null) {
-               bindings.add(new HandlerBinding(handlerType, messageType, method, classAnnotation.autoSubscribe().or(methodAnnotation.autoSubscribe())));
+               bindings.add(new HandlerBinding(handlerType, messageType, method, classAnnotation.autoSubscribe().or(methodAnnotation.autoSubscribe()), resolver));
             }
          }
       }

@@ -7,12 +7,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.page5of4.codon.impl.HandlerBinding;
 
 public class BusModule {
    private static final Logger logger = LoggerFactory.getLogger(BusModule.class);
    private final HandlerRegistry handlerRegistry;
    private final Bus bus;
+
+   public HandlerRegistry getHandlerRegistry() {
+      return handlerRegistry;
+   }
 
    @Autowired
    public BusModule(HandlerRegistry handlerRegistry, Bus bus) {

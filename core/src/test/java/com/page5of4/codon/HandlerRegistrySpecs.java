@@ -8,7 +8,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.page5of4.codon.impl.HandlerBinding;
 import com.page5of4.codon.impl.SpringHandlerRegistry;
 
 public class HandlerRegistrySpecs {
@@ -16,7 +15,7 @@ public class HandlerRegistrySpecs {
 
    @Before
    public void before() {
-      registry = new SpringHandlerRegistry(null);
+      registry = new SpringHandlerRegistry(null, null);
       List<Class<?>> classes = new ArrayList<Class<?>>();
       classes.add(OneHandler.class);
       classes.add(TwoHandlers.class);

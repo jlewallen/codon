@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.page5of4.codon.BusException;
+import com.page5of4.codon.HandlerBinding;
 
 public class HandlerDispatcher {
    private final InstanceResolver resolver;

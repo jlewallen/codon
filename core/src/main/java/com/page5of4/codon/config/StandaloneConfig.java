@@ -10,12 +10,12 @@ import com.page5of4.codon.BusModule;
 import com.page5of4.codon.HandlerRegistry;
 
 @Configuration
-@Import(value = { CoreConfig.class, BusConfig.class, ConstantBusContextConfig.class, PublisherConfig.class, SubscriptionStorageConfig.class })
+@Import(value = { CoreConfig.class, ClientConfig.class, BusConfig.class, ConstantBusContextConfig.class, PublisherConfig.class, SubscriptionStorageConfig.class })
 public class StandaloneConfig {
    @Autowired
-   private HandlerRegistry handlerRegistry;
-   @Autowired
    private Bus bus;
+   @Autowired
+   private HandlerRegistry handlerRegistry;
 
    @Bean
    public BusModule busModule() {

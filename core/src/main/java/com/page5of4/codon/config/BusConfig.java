@@ -14,7 +14,6 @@ import com.page5of4.codon.Transport;
 import com.page5of4.codon.camel.ActiveMQComponentResolver;
 import com.page5of4.codon.camel.CamelTransport;
 import com.page5of4.codon.camel.InvokeHandlerProcessor;
-import com.page5of4.codon.impl.ApplicationContextResolver;
 import com.page5of4.codon.impl.BusContextProvider;
 import com.page5of4.codon.impl.DefaultBus;
 
@@ -48,6 +47,6 @@ public class BusConfig {
 
    @Bean
    public InvokeHandlerProcessor invokeHandlerProcessor() {
-      return new InvokeHandlerProcessor(handlerRegistry, new ApplicationContextResolver(applicationContext), contextProvider);
+      return new InvokeHandlerProcessor(handlerRegistry, contextProvider, null);
    }
 }

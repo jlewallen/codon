@@ -8,7 +8,7 @@ import com.page5of4.codon.impl.HandlerDescriptor;
 import com.page5of4.codon.impl.HandlerInspector;
 
 public class HandlerInspectorSpecs {
-   private HandlerInspector inspector = new HandlerInspector();
+   private final HandlerInspector inspector = new HandlerInspector(null);
 
    @Test
    public void when_handler_has_zero_handler_methods() {

@@ -29,14 +29,14 @@ public class Activator implements BundleTrackerCustomizer, BundleActivator {
 
       bundleContext = context;
 
-      osgi = new OsgiApplicationContextFactory(bundleContext);
-      osgi.open();
-
       busServiceTracker = new ServiceTracker(context, Bus.class.getName(), new BusServiceTracker());
       busModuleTracker = new ServiceTracker(context, BusModule.class.getName(), new BusModuleTracker());
 
       busServiceTracker.open();
       busModuleTracker.open();
+
+      osgi = new OsgiApplicationContextFactory(bundleContext);
+      osgi.open();
 
       logger.info("Started");
    }

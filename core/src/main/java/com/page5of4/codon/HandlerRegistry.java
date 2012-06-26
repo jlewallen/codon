@@ -2,8 +2,6 @@ package com.page5of4.codon;
 
 import java.util.List;
 
-import com.page5of4.codon.impl.HandlerBinding;
-
 public interface HandlerRegistry {
    public void initialize();
 

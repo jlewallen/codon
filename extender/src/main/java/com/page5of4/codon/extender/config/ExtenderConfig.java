@@ -16,7 +16,7 @@ import org.springframework.osgi.service.importer.support.ImportContextClassLoade
 import org.springframework.osgi.service.importer.support.OsgiServiceProxyFactoryBean;
 
 import com.page5of4.codon.Bus;
-import com.page5of4.codon.BusBundle;
+import com.page5of4.codon.BusModule;
 import com.page5of4.codon.HandlerRegistry;
 import com.page5of4.codon.config.CoreConfig;
 import com.page5of4.codon.config.PublisherConfig;
@@ -42,17 +42,17 @@ public class ExtenderConfig implements BeanClassLoaderAware {
    }
 
    @Bean
-   public BusBundle busBundle() {
-      return new BusBundle(handlerRegistry, bus());
+   public BusModule busModule() {
+      return new BusModule(handlerRegistry, bus());
    }
 
    @Bean
-   public ServiceRegistration busBundleReference() throws Exception {
+   public ServiceRegistration busModuleReference() throws Exception {
       Map<String, String> properties = new HashMap<String, String>();
       OsgiServiceFactoryBean bean = new OsgiServiceFactoryBean();
       bean.setBundleContext(bundleContext);
-      bean.setTarget(busBundle());
-      bean.setInterfaces(new Class[] { BusBundle.class });
+      bean.setTarget(busModule());
+      bean.setInterfaces(new Class[] { BusModule.class });
       bean.setContextClassLoader(ExportContextClassLoader.UNMANAGED);
       bean.setServiceProperties(properties);
       bean.afterPropertiesSet();

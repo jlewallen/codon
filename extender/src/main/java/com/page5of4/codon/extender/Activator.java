@@ -13,13 +13,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.page5of4.codon.Bus;
-import com.page5of4.codon.BusBundle;
+import com.page5of4.codon.BusModule;
 
 public class Activator implements BundleTrackerCustomizer, BundleActivator {
    private static final Logger logger = LoggerFactory.getLogger(Activator.class);
    private static final String CODON_BUS = "Codon-Bus";
    private ServiceTracker busServiceTracker;
-   private ServiceTracker bundleTracker;
+   private ServiceTracker busModuleTracker;
    private BundleContext bundleContext;
    private OsgiApplicationContextFactory osgi;
 
@@ -33,10 +33,10 @@ public class Activator implements BundleTrackerCustomizer, BundleActivator {
       osgi.open();
 
       busServiceTracker = new ServiceTracker(context, Bus.class.getName(), new BusServiceTracker());
-      bundleTracker = new ServiceTracker(context, BusBundle.class.getName(), new ClientBundleTracker());
+      busModuleTracker = new ServiceTracker(context, BusModule.class.getName(), new BusModuleTracker());
 
       busServiceTracker.open();
-      bundleTracker.open();
+      busModuleTracker.open();
 
       logger.info("Started");
    }
@@ -46,7 +46,7 @@ public class Activator implements BundleTrackerCustomizer, BundleActivator {
       logger.info("Stopping...");
 
       if(busServiceTracker != null) busServiceTracker.close();
-      if(bundleTracker != null) bundleTracker.close();
+      if(busModuleTracker != null) busModuleTracker.close();
       osgi.close();
       bundleContext = null;
 

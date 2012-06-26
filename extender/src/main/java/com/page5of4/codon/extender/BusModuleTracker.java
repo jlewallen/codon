@@ -5,16 +5,16 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.page5of4.codon.BusBundle;
+import com.page5of4.codon.BusModule;
 
-public class ClientBundleTracker implements ServiceTrackerCustomizer {
-   private static final Logger logger = LoggerFactory.getLogger(ClientBundleTracker.class);
+public class BusModuleTracker implements ServiceTrackerCustomizer {
+   private static final Logger logger = LoggerFactory.getLogger(BusModuleTracker.class);
 
    @Override
    public Object addingService(ServiceReference reference) {
       logger.info("Adding {}", reference);
-      BusBundle bundle = (BusBundle)reference.getBundle().getBundleContext().getService(reference);
-      RegisteredClient registeredClient = new RegisteredClient(bundle);
+      BusModule module = (BusModule)reference.getBundle().getBundleContext().getService(reference);
+      RegisteredClient registeredClient = new RegisteredClient(module);
       registeredClient.open();
       logger.info("Added {}", reference);
       return registeredClient;
@@ -33,18 +33,18 @@ public class ClientBundleTracker implements ServiceTrackerCustomizer {
    }
 
    public static class RegisteredClient {
-      private final BusBundle bundle;
+      private final BusModule module;
 
-      public RegisteredClient(BusBundle bundle) {
-         this.bundle = bundle;
+      public RegisteredClient(BusModule module) {
+         this.module = module;
       }
 
       public void open() {
-         bundle.open();
+
       }
 
       public void close() {
-         bundle.close();
+
       }
    }
 }

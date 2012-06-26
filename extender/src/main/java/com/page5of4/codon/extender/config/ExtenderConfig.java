@@ -17,6 +17,7 @@ import org.springframework.osgi.service.importer.support.OsgiServiceProxyFactory
 
 import com.page5of4.codon.Bus;
 import com.page5of4.codon.BusModule;
+import com.page5of4.codon.BusModule.ModuleMode;
 import com.page5of4.codon.HandlerRegistry;
 import com.page5of4.codon.config.ClientConfig;
 import com.page5of4.codon.config.CoreConfig;
@@ -44,7 +45,7 @@ public class ExtenderConfig implements BeanClassLoaderAware {
 
    @Bean
    public BusModule busModule() {
-      return new BusModule(handlerRegistry, bus());
+      return new BusModule(handlerRegistry, bus(), ModuleMode.OSGI);
    }
 
    @Bean

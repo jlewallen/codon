@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Import;
 
 import com.page5of4.codon.Bus;
 import com.page5of4.codon.BusModule;
+import com.page5of4.codon.BusModule.ModuleMode;
 import com.page5of4.codon.HandlerRegistry;
 
 @Configuration
@@ -19,6 +20,6 @@ public class StandaloneConfig {
 
    @Bean
    public BusModule busModule() {
-      return new BusModule(handlerRegistry, bus);
+      return new BusModule(handlerRegistry, bus, ModuleMode.STANDALONE);
    }
 }

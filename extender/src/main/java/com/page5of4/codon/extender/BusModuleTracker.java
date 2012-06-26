@@ -40,11 +40,11 @@ public class BusModuleTracker implements ServiceTrackerCustomizer {
       }
 
       public void open() {
-
+         module.open();
       }
 
       public void close() {
-
+         module.close();
       }
    }
 }

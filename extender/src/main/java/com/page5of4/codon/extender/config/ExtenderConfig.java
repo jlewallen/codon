@@ -19,9 +19,10 @@ import com.page5of4.codon.Bus;
 import com.page5of4.codon.BusBundle;
 import com.page5of4.codon.HandlerRegistry;
 import com.page5of4.codon.config.CoreConfig;
+import com.page5of4.codon.config.PublisherConfig;
 
 @Configuration
-@Import(value = { CoreConfig.class })
+@Import(value = { CoreConfig.class, PublisherConfig.class })
 public class ExtenderConfig implements BeanClassLoaderAware {
    @Autowired
    private BundleContext bundleContext;

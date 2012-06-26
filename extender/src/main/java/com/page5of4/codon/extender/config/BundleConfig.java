@@ -9,9 +9,10 @@ import com.page5of4.codon.BusConfiguration;
 import com.page5of4.codon.PropertiesConfiguration;
 import com.page5of4.codon.config.BusConfig;
 import com.page5of4.codon.config.ConstantBusContextConfig;
+import com.page5of4.codon.config.SubscriptionStorageConfig;
 
 @Configuration
-@Import(value = { SpringConfig.class, BusConfig.class, ConstantBusContextConfig.class })
+@Import(value = { SpringConfig.class, BusConfig.class, SubscriptionStorageConfig.class, ConstantBusContextConfig.class })
 public class BundleConfig {
    @Value("${application.name:application}")
    private String applicationName;

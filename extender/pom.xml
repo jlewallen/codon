@@ -34,9 +34,13 @@
 				<configuration>
 					<instructions>
 						<Export-Package>
-							com.page5of4.codon.extender
+							com.page5of4.codon.extender,
+							com.page5of4.codon.extender.config
 						</Export-Package>
 						<Import-Package>
+							com.page5of4.codon,
+							com.page5of4.codon.camel,
+							com.page5of4.codon.subscriptions,
 							org.springframework.beans.factory.config,
 							org.springframework.stereotype; version=${spring.version},
 							org.springframework.context.annotation; version=${spring.version},
@@ -97,6 +101,11 @@
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib-nodep</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.osgi</groupId>
+			<artifactId>spring-osgi-mock</artifactId>
 			<scope>test</scope>
 		</dependency>
 

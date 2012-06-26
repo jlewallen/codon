@@ -1,6 +1,5 @@
-package com.page5of4.codon.impl;
+package com.page5of4.codon;
 
-import com.page5of4.codon.EndpointAddress;
 
 public interface Transport {
    void send(EndpointAddress address, Object message);

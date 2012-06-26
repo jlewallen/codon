@@ -6,9 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.page5of4.codon.impl.HandlerBinding;
-import com.page5of4.codon.impl.HandlerRegistry;
 import com.page5of4.codon.impl.TopologyConfiguration;
-import com.page5of4.codon.impl.Transport;
 
 public class BusModule {
    private static final Logger logger = LoggerFactory.getLogger(BusModule.class);

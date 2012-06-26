@@ -9,14 +9,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.page5of4.codon.impl.HandlerBinding;
-import com.page5of4.codon.impl.HandlerRegistry;
+import com.page5of4.codon.impl.SpringHandlerRegistry;
 
 public class HandlerRegistrySpecs {
    private HandlerRegistry registry;
 
    @Before
    public void before() {
-      registry = new HandlerRegistry(null);
+      registry = new SpringHandlerRegistry(null);
       List<Class<?>> classes = new ArrayList<Class<?>>();
       classes.add(OneHandler.class);
       classes.add(TwoHandlers.class);

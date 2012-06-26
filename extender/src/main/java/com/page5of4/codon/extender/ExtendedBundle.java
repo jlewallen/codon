@@ -18,7 +18,6 @@ import com.page5of4.codon.config.CoreConfig;
 
 public class ExtendedBundle {
    private static final Logger logger = LoggerFactory.getLogger(ExtendedBundle.class);
-   private final AnnotationConfigApplicationContext applicationContext;
    private final BundleContext extenderContext;
    private final Bundle bundle;
 
@@ -26,41 +25,13 @@ public class ExtendedBundle {
       super();
       this.extenderContext = extenderContext;
       this.bundle = bundle;
-      applicationContext = new AnnotationConfigApplicationContext();
-      applicationContext.setClassLoader(BundleDelegatingClassLoader.createBundleClassLoaderFor(extenderContext.getBundle()));
-      applicationContext.register(BundleConfig.class);
-      applicationContext.register(CoreConfig.class);
    }
 
    public void open() {
       logger.info("Opening");
-      applicationContext.refresh();
    }
 
    public void close() {
       logger.info("Closing");
-      applicationContext.destroy();
-   }
-
-   @Configuration
-   public static class SpringConfig {
-      @Bean
-      public PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
-         PropertyPlaceholderConfigurer configurer = new PropertyPlaceholderConfigurer();
-         configurer.setIgnoreUnresolvablePlaceholders(false);
-         return configurer;
-      }
-   }
-
-   @Configuration
-   @Import(value = { SpringConfig.class })
-   public static class BundleConfig {
-      @Value("${application.name:application}")
-      private String applicationName;
-
-      @Bean
-      public BusConfiguration busConfiguration() {
-         return new PropertiesConfiguration(applicationName, "local-server");
-      }
    }
 }

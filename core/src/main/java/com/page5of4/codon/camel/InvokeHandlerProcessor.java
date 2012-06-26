@@ -9,9 +9,9 @@ import org.apache.camel.Processor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.page5of4.codon.HandlerRegistry;
 import com.page5of4.codon.impl.HandlerBinding;
 import com.page5of4.codon.impl.HandlerDispatcher;
-import com.page5of4.codon.impl.HandlerRegistry;
 import com.page5of4.codon.impl.InstanceResolver;
 import com.page5of4.codon.impl.MessageUtils;
 

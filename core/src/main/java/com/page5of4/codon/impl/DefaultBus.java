@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.page5of4.codon.Bus;
 import com.page5of4.codon.EndpointAddress;
+import com.page5of4.codon.Transport;
 import com.page5of4.codon.subscriptions.SubscriptionStorage;
 import com.page5of4.codon.subscriptions.messages.SubscribeMessage;
 import com.page5of4.codon.subscriptions.messages.UnsubscribeMessage;

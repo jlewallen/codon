@@ -1,8 +1,6 @@
 package com.page5of4.codon.extender;
 
 import java.util.Dictionary;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.Callable;
 
 import org.osgi.framework.Bundle;
@@ -16,18 +14,18 @@ import org.osgi.util.tracker.ServiceTracker;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
 
 import com.page5of4.codon.Bus;
+import com.page5of4.codon.BusBundle;
 
-public class Activator implements BundleTrackerCustomizer, BundleActivator, ServiceTrackerCustomizer {
-   private static final String CODON_BUS = "Codon-Bus";
+public class Activator implements BundleTrackerCustomizer, BundleActivator {
    private static final Logger logger = LoggerFactory.getLogger(Activator.class);
-   private final Map<String, ExtendedBundle> map = new HashMap<String, ExtendedBundle>();
+   private static final String CODON_BUS = "Codon-Bus";
    private BundleTracker tracker;
    private ServiceTracker busServiceTracker;
-   private ServiceTracker applicationContextTracker;
+   private ServiceTracker bundleTracker;
    private BundleContext bundleContext;
+   private OsgiBus osgi;
 
    @Override
    public void start(BundleContext context) throws Exception {
@@ -35,13 +33,17 @@ public class Activator implements BundleTrackerCustomizer, BundleActivator, Serv
 
       bundleContext = context;
 
-      busServiceTracker = new ServiceTracker(context, Bus.class.getName(), this);
-      applicationContextTracker = new ServiceTracker(context, ApplicationContext.class.getName(), this);
-      tracker = new BundleTracker(context, Bundle.INSTALLED | Bundle.RESOLVED | Bundle.STARTING | Bundle.ACTIVE | Bundle.STOPPING, this);
+      osgi = new OsgiBus(bundleContext);
+      osgi.open();
+
+      busServiceTracker = new ServiceTracker(context, Bus.class.getName(), new BusServiceTracker());
+      bundleTracker = new ServiceTracker(context, BusBundle.class.getName(), new ClientBundleTracker());
+      // tracker = new BundleTracker(context, Bundle.INSTALLED | Bundle.RESOLVED | Bundle.STARTING | Bundle.ACTIVE |
+      // Bundle.STOPPING, this);
 
       busServiceTracker.open();
-      applicationContextTracker.open();
-      tracker.open();
+      bundleTracker.open();
+      // tracker.open();
 
       logger.info("Started");
    }
@@ -51,8 +53,9 @@ public class Activator implements BundleTrackerCustomizer, BundleActivator, Serv
       logger.info("Stopping...");
 
       if(busServiceTracker != null) busServiceTracker.close();
-      if(applicationContextTracker != null) applicationContextTracker.close();
-      if(tracker != null) tracker.close();
+      if(bundleTracker != null) bundleTracker.close();
+      // if(tracker != null) tracker.close();
+      osgi.close();
       bundleContext = null;
 
       logger.info("Stopped");
@@ -64,18 +67,16 @@ public class Activator implements BundleTrackerCustomizer, BundleActivator, Serv
       Dictionary<String, String> headers = bundle.getHeaders();
       if(headers.get(CODON_BUS) != null) {
          logger.info(String.format("Adding %s %s (CCL: %s)", bundle, event != null ? OsgiStringUtils.nullSafeBundleEventToString(event.getType()) : "", Thread.currentThread().getContextClassLoader()));
-         synchronized(map) {
-            if(!map.containsKey(bundle.getSymbolicName())) {
-               ContextClassLoaderUtils.doWithClassLoader(null, new Callable<Object>() {
-                  @Override
-                  public Object call() throws Exception {
-                     ExtendedBundle extended = new ExtendedBundle(bundleContext, bundle);
-                     map.put(bundle.getSymbolicName(), extended);
-                     map.get(bundle.getSymbolicName()).open();
-                     return extended;
-                  }
-               });
-            }
+         synchronized(this) {
+            return ContextClassLoaderUtils.doWithClassLoader(null,
+                  new Callable<ExtendedBundle>() {
+                     @Override
+                     public ExtendedBundle call() throws Exception {
+                        ExtendedBundle extended = new ExtendedBundle(bundleContext, bundle);
+                        extended.open();
+                        return extended;
+                     }
+                  });
          }
       }
       return null;
@@ -89,31 +90,50 @@ public class Activator implements BundleTrackerCustomizer, BundleActivator, Serv
    @Override
    @SuppressWarnings("unchecked")
    public void removedBundle(Bundle bundle, BundleEvent event, Object object) {
-      Dictionary<String, String> headers = bundle.getHeaders();
-      if(headers.get(CODON_BUS) != null) {
+      ExtendedBundle extended = (ExtendedBundle)object;
+      if(extended != null) {
          logger.info("Removed {} {}", bundle, OsgiStringUtils.nullSafeBundleEventToString(event.getType()));
-         synchronized(map) {
-            if(map.containsKey(bundle.getSymbolicName())) {
-               map.get(bundle.getSymbolicName()).close();
-               map.remove(bundle.getSymbolicName());
-            }
-         }
+         extended.close();
       }
    }
 
-   @Override
-   public Object addingService(ServiceReference reference) {
-      logger.info("Added {}", reference);
-      return null;
+   public static class ClientBundleTracker implements ServiceTrackerCustomizer {
+      private static final Logger logger = LoggerFactory.getLogger(ClientBundleTracker.class);
+
+      @Override
+      public Object addingService(ServiceReference reference) {
+         logger.info("Added {}", reference);
+         return new Object();
+      }
+
+      @Override
+      public void modifiedService(ServiceReference reference, Object service) {
+         logger.info("Modified {}", reference);
+      }
+
+      @Override
+      public void removedService(ServiceReference reference, Object service) {
+         logger.info("Removed {}", reference);
+      }
    }
 
-   @Override
-   public void modifiedService(ServiceReference reference, Object service) {
-      logger.info("Modified {}", reference);
-   }
+   public static class BusServiceTracker implements ServiceTrackerCustomizer {
+      private static final Logger logger = LoggerFactory.getLogger(BusServiceTracker.class);
 
-   @Override
-   public void removedService(ServiceReference reference, Object service) {
-      logger.info("Removed {}", reference);
+      @Override
+      public Object addingService(ServiceReference reference) {
+         logger.info("Added {}", reference);
+         return new Object();
+      }
+
+      @Override
+      public void modifiedService(ServiceReference reference, Object service) {
+         logger.info("Modified {}", reference);
+      }
+
+      @Override
+      public void removedService(ServiceReference reference, Object service) {
+         logger.info("Removed {}", reference);
+      }
    }
 }

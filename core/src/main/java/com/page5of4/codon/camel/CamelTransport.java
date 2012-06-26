@@ -3,20 +3,20 @@ package com.page5of4.codon.camel;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
+import org.apache.camel.model.ModelCamelContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.page5of4.codon.BusException;
 import com.page5of4.codon.EndpointAddress;
-import com.page5of4.codon.impl.Transport;
+import com.page5of4.codon.Transport;
 
 public class CamelTransport implements Transport {
    private static final Logger logger = LoggerFactory.getLogger(CamelTransport.class);
    private final ComponentResolver componentTemplate;
-   private final CamelContext camelContext;
+   private final ModelCamelContext camelContext;
    private final ProducerTemplate producer;
    private final InvokeHandlerProcessor invokeHandlerProcessor;
 
@@ -24,7 +24,7 @@ public class CamelTransport implements Transport {
    public static final String REPLY_TO_ADDRESS_KEY = "replyTo";
 
    @Autowired
-   public CamelTransport(CamelContext camelContext, ComponentResolver componentTemplate, InvokeHandlerProcessor invokeHandlerProcessor) {
+   public CamelTransport(ModelCamelContext camelContext, ComponentResolver componentTemplate, InvokeHandlerProcessor invokeHandlerProcessor) {
       this.camelContext = camelContext;
       this.componentTemplate = componentTemplate;
       this.invokeHandlerProcessor = invokeHandlerProcessor;
@@ -51,6 +51,7 @@ public class CamelTransport implements Transport {
       }
    }
 
+   @Override
    public void send(EndpointAddress address, Object message) {
       try {
          logger.debug("Sending {} -> {}", message, address);
@@ -62,6 +63,7 @@ public class CamelTransport implements Transport {
       }
    }
 
+   @Override
    public void listen(EndpointAddress address) {
       try {
          autoCreateDestination(address);
@@ -71,6 +73,8 @@ public class CamelTransport implements Transport {
          throw new BusException(String.format("Unable to listen on '%s'", address), e);
       }
    }
+
+   public void stop(EndpointAddress address) {}
 
    private String toEndpointUri(EndpointAddress address) {
       return String.format("%s:%s", address.getHost(), address.getPath());

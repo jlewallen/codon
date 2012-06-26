@@ -11,12 +11,12 @@ import org.springframework.context.annotation.Import;
 import com.page5of4.codon.Bus;
 import com.page5of4.codon.camel.OutgoingProcessor;
 import com.page5of4.codon.camel.SendLocalProcessor;
-import com.page5of4.codon.config.CoreConfig;
 import com.page5of4.codon.examples.application.impl.Publisher;
 import com.page5of4.codon.examples.messages.LaunchWorkMessage;
+import com.page5of4.codon.extender.config.ExtenderConfig;
 
 @Configuration
-@Import(value = { EnvironmentConfig.class, CoreConfig.class, ApplicationConfig.class })
+@Import(value = { EnvironmentConfig.class, ExtenderConfig.class, ApplicationConfig.class })
 public class ExampleConfig {
    @Autowired
    private Bus bus;

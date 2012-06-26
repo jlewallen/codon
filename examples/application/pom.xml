@@ -93,6 +93,11 @@
 			<artifactId>codon-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.page5of4.codon</groupId>
+			<artifactId>codon-extender</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>

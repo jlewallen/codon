@@ -13,6 +13,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.page5of4.codon.BusConfiguration;
@@ -21,8 +23,9 @@ import com.page5of4.codon.subscriptions.Subscription;
 import com.page5of4.codon.subscriptions.SubscriptionStorage;
 
 public class XmlSubscriptionStorage implements SubscriptionStorage {
+   private static final Logger logger = LoggerFactory.getLogger(XmlSubscriptionStorage.class);
    private static final String FILENAME = "com.page5of4.codon.subscriptions.xml";
-   private BusConfiguration configuration;
+   private final BusConfiguration configuration;
 
    @Autowired
    public XmlSubscriptionStorage(BusConfiguration configuration) {
@@ -57,7 +60,10 @@ public class XmlSubscriptionStorage implements SubscriptionStorage {
    private Collection<Subscription> read() {
       try {
          File file = new File(getPath());
-         if(!file.exists()) return new ArrayList<Subscription>();
+         if(!file.exists()) {
+            return new ArrayList<Subscription>();
+         }
+         logger.trace("Reading {}", file);
          FileInputStream fileStream = new FileInputStream(getPath());
          XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(fileStream));
          @SuppressWarnings("unchecked")
@@ -73,6 +79,7 @@ public class XmlSubscriptionStorage implements SubscriptionStorage {
    private void write(Collection<Subscription> subscriptions) {
       try {
          File file = new File(getPath());
+         logger.trace("Writing {}", file);
          XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(file)));
          encoder.writeObject(subscriptions);
          encoder.close();

@@ -4,6 +4,7 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockComponent;
 import org.apache.camel.component.mock.MockEndpoint;
+import org.apache.camel.model.ModelCamelContext;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
@@ -25,7 +26,7 @@ public class PublishProcessorSpecs extends CamelTestSupport {
 
    @Override
    protected CamelContext createCamelContext() throws Exception {
-      CamelContext context = super.createCamelContext();
+      ModelCamelContext context = (ModelCamelContext)super.createCamelContext();
       context.addComponent("testing-server", new MockComponent());
       bus = BusBuilder.make(context).
             subscribed("mock:app1.java.lang.String", String.class).

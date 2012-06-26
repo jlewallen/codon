@@ -7,27 +7,24 @@ import org.springframework.stereotype.Service;
 import com.page5of4.codon.Bus;
 import com.page5of4.codon.EndpointAddress;
 import com.page5of4.codon.Transport;
-import com.page5of4.codon.subscriptions.SubscriptionStorage;
 import com.page5of4.codon.subscriptions.messages.SubscribeMessage;
 import com.page5of4.codon.subscriptions.messages.UnsubscribeMessage;
 
 @Service
 public class DefaultBus implements Bus {
    private static final Logger logger = LoggerFactory.getLogger(DefaultBus.class);
-   private final SubscriptionStorage subscriptionStorage;
    private final BusContextProvider contextProvider;
    private final Transport transport;
 
-   public DefaultBus(BusContextProvider contextProvider, Transport transport, SubscriptionStorage subscriptionStorage) {
+   public DefaultBus(BusContextProvider contextProvider, Transport transport) {
       this.contextProvider = contextProvider;
       this.transport = transport;
-      this.subscriptionStorage = subscriptionStorage;
    }
 
    @Override
    public <T> void publish(T message) {
       logger.info("Publish {}", message);
-      for(EndpointAddress subscriber : subscriptionStorage.findAllSubscribers(MessageUtils.getMessageType(message))) {
+      for(EndpointAddress subscriber : contextProvider.currentContext().getSubscriptionStorage().findAllSubscribers(MessageUtils.getMessageType(message))) {
          transport.send(subscriber, message);
       }
    }

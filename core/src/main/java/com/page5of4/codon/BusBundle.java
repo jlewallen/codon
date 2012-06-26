@@ -27,9 +27,9 @@ public class BusBundle {
 
    public void open() {
       for(HandlerBinding binding : handlerRegistry.getBindings()) {
+         logger.info("Preparing '{}'", binding.getMethod());
          Class<?> messageType = binding.getMessageType();
          if(binding.shouldSubscribe()) {
-            logger.info("Subscribing and listening for {}", messageType);
             bus.subscribe(binding.getMessageType());
          }
          bus.listen(messageType);
@@ -37,6 +37,9 @@ public class BusBundle {
    }
 
    public void close() {
-
+      for(HandlerBinding binding : handlerRegistry.getBindings()) {
+         Class<?> messageType = binding.getMessageType();
+         bus.unlisten(messageType);
+      }
    }
 }

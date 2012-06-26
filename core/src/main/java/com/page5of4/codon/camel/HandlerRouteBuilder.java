@@ -3,7 +3,7 @@ package com.page5of4.codon.camel;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Service;
 
-import com.page5of4.codon.config.BusConfig.TransactionConfig;
+import com.page5of4.codon.config.TransactionConfig;
 
 @Service
 public class HandlerRouteBuilder extends RouteBuilder {

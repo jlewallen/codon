@@ -17,6 +17,8 @@ import com.page5of4.codon.camel.InvokeHandlerProcessor;
 import com.page5of4.codon.impl.ApplicationContextResolver;
 import com.page5of4.codon.impl.BusContextProvider;
 import com.page5of4.codon.impl.DefaultBus;
+import com.page5of4.codon.subscriptions.impl.SubscribeHandler;
+import com.page5of4.codon.subscriptions.impl.UnsubscribeHandler;
 
 @Configuration
 @Import(value = { CoreConfig.class, TransactionConfig.class })
@@ -44,6 +46,16 @@ public class BusConfig {
       catch(Exception e) {
          throw new BusException(e);
       }
+   }
+
+   @Bean
+   public SubscribeHandler subscribeMessageHandler() {
+      return new SubscribeHandler(contextProvider);
+   }
+
+   @Bean
+   public UnsubscribeHandler unsubscribeMessageHandler() {
+      return new UnsubscribeHandler(contextProvider);
    }
 
    @Bean

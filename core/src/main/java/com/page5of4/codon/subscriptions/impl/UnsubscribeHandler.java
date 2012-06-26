@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.page5of4.codon.AutomaticallySubscribe;
 import com.page5of4.codon.MessageHandler;
+import com.page5of4.codon.impl.BusContextProvider;
 import com.page5of4.codon.subscriptions.Subscription;
 import com.page5of4.codon.subscriptions.SubscriptionStorage;
 import com.page5of4.codon.subscriptions.messages.UnsubscribeMessage;
@@ -15,16 +16,17 @@ import com.page5of4.codon.subscriptions.messages.UnsubscribeMessage;
 @MessageHandler(autoSubscribe = AutomaticallySubscribe.NEVER)
 public class UnsubscribeHandler {
    private static final Logger logger = LoggerFactory.getLogger(UnsubscribeHandler.class);
-   private final SubscriptionStorage storage;
+   private final BusContextProvider busContextProvider;
 
    @Autowired
-   public UnsubscribeHandler(SubscriptionStorage storage) {
+   public UnsubscribeHandler(BusContextProvider busContextProvider) {
       super();
-      this.storage = storage;
+      this.busContextProvider = busContextProvider;
    }
 
    @MessageHandler
    public void handle(UnsubscribeMessage message) {
+      SubscriptionStorage storage = busContextProvider.currentContext().getSubscriptionStorage();
       logger.info("Passing {} to {}", message, storage);
       storage.removeSubscriptions(Collections.singleton(new Subscription(message.getAddress(), message.getMessageType())));
    }

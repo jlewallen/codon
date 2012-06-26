@@ -18,6 +18,7 @@ public class ActiveMQComponentResolver implements ComponentResolver {
 
    @Override
    public Component createComponent(EndpointAddress address, CamelContext camelContext) {
+      logger.info("Creating for {}", address);
       ActiveMQComponent component = new ActiveMQComponent(camelContext);
       component.setTransactionManager(platformTransactionManager);
       component.setBrokerURL("tcp://127.0.0.1:61616");

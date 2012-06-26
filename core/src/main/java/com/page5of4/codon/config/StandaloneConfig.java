@@ -8,23 +8,17 @@ import org.springframework.context.annotation.Import;
 import com.page5of4.codon.Bus;
 import com.page5of4.codon.BusModule;
 import com.page5of4.codon.HandlerRegistry;
-import com.page5of4.codon.Transport;
-import com.page5of4.codon.impl.TopologyConfiguration;
 
 @Configuration
-@Import(value = { CoreConfig.class, BusConfig.class })
+@Import(value = { CoreConfig.class, BusConfig.class, ConstantBusContextConfig.class })
 public class StandaloneConfig {
    @Autowired
    private HandlerRegistry handlerRegistry;
-   @Autowired
-   private TopologyConfiguration topologyConfiguration;
-   @Autowired
-   private Transport transport;
    @Autowired
    private Bus bus;
 
    @Bean
    public BusModule busModule() {
-      return new BusModule(handlerRegistry, topologyConfiguration, transport, bus);
+      return new BusModule(handlerRegistry, bus);
    }
 }

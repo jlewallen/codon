@@ -1,30 +1,42 @@
 package com.page5of4.codon;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.page5of4.codon.impl.HandlerBinding;
+
 public class BusBundle {
    private static final Logger logger = LoggerFactory.getLogger(BusBundle.class);
    private final HandlerRegistry handlerRegistry;
+   private final Bus bus;
 
    @Autowired
-   public BusBundle(HandlerRegistry handlerRegistry) {
+   public BusBundle(HandlerRegistry handlerRegistry, Bus bus) {
       super();
       this.handlerRegistry = handlerRegistry;
+      this.bus = bus;
    }
 
    @PostConstruct
-   public void open() {
-      logger.info("Opening");
+   public void initialize() {
       handlerRegistry.initialize();
    }
 
-   @PreDestroy
+   public void open() {
+      for(HandlerBinding binding : handlerRegistry.getBindings()) {
+         Class<?> messageType = binding.getMessageType();
+         if(binding.shouldSubscribe()) {
+            logger.info("Subscribing and listening for {}", messageType);
+            bus.subscribe(binding.getMessageType());
+         }
+         bus.listen(messageType);
+      }
+   }
+
    public void close() {
-      logger.info("Closing");
+
    }
 }

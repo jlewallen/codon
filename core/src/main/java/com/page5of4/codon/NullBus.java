@@ -30,4 +30,14 @@ public class NullBus implements Bus {
    public void unsubscribe(Class<?> messageType) {
 
    }
+
+   @Override
+   public void listen(Class<?> messageType) {
+
+   }
+
+   @Override
+   public void unlisten(Class<?> messageType) {
+
+   }
 }

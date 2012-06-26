@@ -12,4 +12,8 @@ public interface Bus {
    void subscribe(Class<?> messageType);
 
    void unsubscribe(Class<?> messageType);
+
+   void listen(Class<?> messageType);
+
+   void unlisten(Class<?> messageType);
 }

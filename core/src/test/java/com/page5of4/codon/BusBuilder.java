@@ -10,6 +10,9 @@ import com.page5of4.codon.camel.CamelTransport;
 import com.page5of4.codon.camel.ComponentResolver;
 import com.page5of4.codon.camel.InvokeHandlerProcessor;
 import com.page5of4.codon.impl.ApplicationContextResolver;
+import com.page5of4.codon.impl.BusContext;
+import com.page5of4.codon.impl.BusContextProvider;
+import com.page5of4.codon.impl.ConstantBusContextProvider;
 import com.page5of4.codon.impl.DefaultBus;
 import com.page5of4.codon.impl.InstanceResolver;
 import com.page5of4.codon.impl.MessageUtils;
@@ -39,6 +42,8 @@ public class BusBuilder {
    }
 
    public Bus build() {
-      return new DefaultBus(new TopologyConfiguration(new PropertiesConfiguration("test", "testing-server")), new CamelTransport(camelContext, template, new InvokeHandlerProcessor(handlerRegistry, resolver)), subscriptionStorage);
+      TopologyConfiguration topologyConfiguration = new TopologyConfiguration(new PropertiesConfiguration("test", "testing-server"));
+      BusContextProvider contextProvider = new ConstantBusContextProvider(new BusContext(topologyConfiguration));
+      return new DefaultBus(contextProvider, new CamelTransport(camelContext, template, new InvokeHandlerProcessor(handlerRegistry, resolver)), subscriptionStorage);
    }
 }

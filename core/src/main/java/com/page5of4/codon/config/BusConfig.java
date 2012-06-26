@@ -20,32 +20,31 @@ import com.page5of4.codon.camel.CamelTransport;
 import com.page5of4.codon.camel.ComponentResolver;
 import com.page5of4.codon.camel.EmptyTransactionPolicy;
 import com.page5of4.codon.camel.InvokeHandlerProcessor;
+import com.page5of4.codon.config.BusConfig.PublisherConfig;
+import com.page5of4.codon.config.BusConfig.TransactionConfig;
 import com.page5of4.codon.impl.ApplicationContextResolver;
+import com.page5of4.codon.impl.BusContextProvider;
 import com.page5of4.codon.impl.DefaultBus;
-import com.page5of4.codon.impl.TopologyConfiguration;
 import com.page5of4.codon.subscriptions.SubscriptionStorage;
 import com.page5of4.codon.subscriptions.impl.SubscribeHandler;
 import com.page5of4.codon.subscriptions.impl.UnsubscribeHandler;
 import com.page5of4.codon.subscriptions.impl.XmlSubscriptionStorage;
 
 @Configuration
-@Import(value = { CoreConfig.class })
+@Import(value = { CoreConfig.class, PublisherConfig.class, TransactionConfig.class })
 public class BusConfig {
    @Autowired
    private ApplicationContext applicationContext;
    @Autowired
-   private BusConfiguration busConfiguration;
-   @Autowired
    private HandlerRegistry handlerRegistry;
+   @Autowired
+   private BusContextProvider contextProvider;
+   @Autowired
+   private SubscriptionStorage subscriptionStorage;
 
    @Bean
    public Bus bus() {
-      return new DefaultBus(topologyConfiguration(), transport(), subscriptionStorage());
-   }
-
-   @Bean
-   public SubscriptionStorage subscriptionStorage() {
-      return new XmlSubscriptionStorage(busConfiguration);
+      return new DefaultBus(contextProvider, transport(), subscriptionStorage);
    }
 
    @Bean
@@ -70,32 +69,41 @@ public class BusConfig {
       return new InvokeHandlerProcessor(handlerRegistry, new ApplicationContextResolver(applicationContext));
    }
 
-   @Bean
-   public TopologyConfiguration topologyConfiguration() {
-      return new TopologyConfiguration(busConfiguration);
+   @Configuration
+   public static class TransactionConfig {
+      public static final String TRANSACTION_POLICY_NAME = "PROPAGATION_REQUIRED";
+
+      @Autowired(required = false)
+      private PlatformTransactionManager platformTransactionManager;
+
+      @Bean(name = TRANSACTION_POLICY_NAME)
+      public TransactedPolicy propagationRequired() {
+         if(platformTransactionManager == null) return new EmptyTransactionPolicy();
+         SpringTransactionPolicy policy = new SpringTransactionPolicy();
+         policy.setTransactionManager(platformTransactionManager);
+         policy.setPropagationBehaviorName(TRANSACTION_POLICY_NAME);
+         return policy;
+      }
    }
 
-   @Bean
-   public SubscribeHandler subscribeHandler() {
-      return new SubscribeHandler(subscriptionStorage());
-   }
+   @Configuration
+   public static class PublisherConfig {
+      @Bean
+      public SubscribeHandler subscribeHandler() {
+         return new SubscribeHandler(subscriptionStorage());
+      }
 
-   @Bean
-   public UnsubscribeHandler unsubscribeHandler() {
-      return new UnsubscribeHandler(subscriptionStorage());
-   }
+      @Bean
+      public UnsubscribeHandler unsubscribeHandler() {
+         return new UnsubscribeHandler(subscriptionStorage());
+      }
 
-   public static final String TRANSACTION_POLICY_NAME = "PROPAGATION_REQUIRED";
+      @Autowired
+      private BusConfiguration busConfiguration;
 
-   @Autowired(required = false)
-   private PlatformTransactionManager platformTransactionManager;
-
-   @Bean(name = TRANSACTION_POLICY_NAME)
-   public TransactedPolicy propagationRequired() {
-      if(platformTransactionManager == null) return new EmptyTransactionPolicy();
-      SpringTransactionPolicy policy = new SpringTransactionPolicy();
-      policy.setTransactionManager(platformTransactionManager);
-      policy.setPropagationBehaviorName(TRANSACTION_POLICY_NAME);
-      return policy;
+      @Bean
+      public SubscriptionStorage subscriptionStorage() {
+         return new XmlSubscriptionStorage(busConfiguration);
+      }
    }
 }

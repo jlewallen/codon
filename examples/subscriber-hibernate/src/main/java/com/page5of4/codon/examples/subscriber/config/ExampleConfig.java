@@ -5,10 +5,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import com.page5of4.codon.Bus;
-import com.page5of4.codon.config.CoreConfig;
+import com.page5of4.codon.extender.config.ExtenderConfig;
 
 @Configuration
-@Import(value = { EnvironmentConfig.class, CoreConfig.class })
+@Import(value = { EnvironmentConfig.class, ExtenderConfig.class })
 public class ExampleConfig {
    @Autowired
    private Bus bus;

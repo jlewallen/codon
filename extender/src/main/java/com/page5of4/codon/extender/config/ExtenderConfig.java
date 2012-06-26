@@ -42,7 +42,7 @@ public class ExtenderConfig implements BeanClassLoaderAware {
 
    @Bean
    public BusBundle busBundle() {
-      return new BusBundle(handlerRegistry);
+      return new BusBundle(handlerRegistry, bus());
    }
 
    @Bean

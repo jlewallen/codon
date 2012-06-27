@@ -1,7 +1,6 @@
 package com.page5of4.codon.tests;
 
 import static com.page5of4.codon.support.BundleAssert.assertThat;
-import static org.fest.assertions.Assertions.assertThat;
 
 import org.junit.After;
 import org.junit.Before;
@@ -13,13 +12,13 @@ import org.ops4j.pax.exam.junit.ExamReactorStrategy;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 import org.ops4j.pax.exam.spi.reactors.AllConfinedStagedReactorFactory;
 
-import com.page5of4.codon.Bus;
 import com.page5of4.codon.support.Provision;
+import com.page5of4.codon.support.TestsConfiguration;
 import com.page5of4.codon.support.WithContainer;
 
 @RunWith(JUnit4TestRunner.class)
 @ExamReactorStrategy(AllConfinedStagedReactorFactory.class)
-public class WhenRunningExampleApplicationSpecs extends WithContainer {
+public class WhenRunningExampleApplicationEnvSpecs extends WithContainer {
    @Configuration
    public Option[] config() {
       return new Option[] { commonConfiguration() };
@@ -27,32 +26,23 @@ public class WhenRunningExampleApplicationSpecs extends WithContainer {
 
    @Before
    public void before() {
-      Provision.with(executor()).base().hibernate().core();
-      executor().executeCommands("features:install codon-example");
+      Provision.with(executor()).base().hibernate().atomikos().h2();
+      executor().executeCommands("osgi:install -s mvn:com.page5of4.codon.examples/codon-examples-env/" + TestsConfiguration.getProjectVersion());
       pause();
    }
 
    @Test
    public void bundles_are_installed_and_active() {
       String[] expected = new String[] {
-            "com.page5of4.codon.examples.messages",
-            "com.page5of4.codon.examples.application",
-            "com.page5of4.codon.examples.subscriber"
+            "com.page5of4.codon.examples.env"
       };
       for(String name : expected) {
          assertThat(executor().getInstalledBundle(name)).isActive();
       }
    }
 
-   @Test
-   public void can_get_bus() {
-      Bus bus = helper().getBus();
-      assertThat(bus).isNotNull();
-   }
-
    @After
    public void after() {
-      executor().executeCommands("features:uninstall codon-example");
-      executor().executeCommands("features:uninstall codon-core");
+
    }
 }

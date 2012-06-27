@@ -28,5 +28,6 @@
 		<module>subscriber-hibernate</module>
 		<module>subscriber-riak</module>
 		<module>webapp</module>
+		<module>env</module>
 	</modules>
 </project>

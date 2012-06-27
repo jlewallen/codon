@@ -80,4 +80,14 @@ public class Provision {
       executor.executeCommand("features:install codon-core");
       return this;
    }
+
+   public Provision atomikos() {
+      executor.executeCommands("osgi:install -s mvn:com.atomikos/transactions-osgi/3.8.0");
+      return this;
+   }
+
+   public Provision h2() {
+      executor.executeCommands("osgi:install -s mvn:com.h2database/h2/1.3.167");
+      return this;
+   }
 }

@@ -27,6 +27,7 @@
 		<feature>codon-core</feature>
 
 		<bundle start-level='90'>mvn:${examples.project.groupId}/codon-examples-messages/${project.version}</bundle>
+		<bundle start-level='91'>mvn:${examples.project.groupId}/codon-examples-env/${project.version}</bundle>
 		<bundle start-level='92'>mvn:${examples.project.groupId}/codon-examples-subscriber/${project.version}</bundle>
 		<bundle start-level='91'>mvn:${examples.project.groupId}/codon-examples-application/${project.version}</bundle>
 	</feature>

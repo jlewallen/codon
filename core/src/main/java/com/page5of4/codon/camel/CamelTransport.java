@@ -95,6 +95,7 @@ public class CamelTransport implements Transport {
                return;
             }
             camelContext.removeRouteDefinitions(listenerMap.get(address).getRouteCollection().getRoutes());
+            listenerMap.remove(address);
          }
       }
       catch(Exception e) {

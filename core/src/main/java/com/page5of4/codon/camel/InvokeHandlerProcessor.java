@@ -9,6 +9,7 @@ import org.apache.camel.Processor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.page5of4.codon.BusException;
 import com.page5of4.codon.HandlerBinding;
 import com.page5of4.codon.HandlerRegistry;
 import com.page5of4.codon.impl.BusContextProvider;
@@ -18,14 +19,14 @@ import com.page5of4.codon.impl.MessageUtils;
 public class InvokeHandlerProcessor implements Processor {
    private static final Logger logger = LoggerFactory.getLogger(InvokeHandlerProcessor.class);
    private final HandlerRegistry handlerRegistry;
-   private final InstanceResolver resolver;
    private final BusContextProvider contextProvider;
+   private final NoHandlersBehavior noHandlersBehavior;
 
    public InvokeHandlerProcessor(HandlerRegistry handlerRegistry, BusContextProvider contextProvider, InstanceResolver resolver) {
       super();
       this.handlerRegistry = handlerRegistry;
       this.contextProvider = contextProvider;
-      this.resolver = resolver;
+      this.noHandlersBehavior = NoHandlersBehavior.THROW;
    }
 
    @Override
@@ -49,7 +50,19 @@ public class InvokeHandlerProcessor implements Processor {
          binding.dispatch(body, contextProvider);
       }
       if(bindings.isEmpty()) {
-         logger.warn("No handlers registered for {}/{}", messageType, bodyClass.getName());
+         String noHandlersMessage = String.format("No handlers registered for %s/%s", messageType, bodyClass.getName());
+         switch(noHandlersBehavior){
+         case THROW:
+            throw new BusException(noHandlersMessage);
+         case WARN:
+            logger.warn(noHandlersMessage);
+            break;
+         }
       }
+   }
+
+   public enum NoHandlersBehavior {
+      THROW,
+      WARN
    }
 }

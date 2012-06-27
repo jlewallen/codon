@@ -27,7 +27,7 @@ public class WhenRunningExampleApplicationSpecs extends WithContainer {
 
    @Before
    public void before() {
-      Provision.with(executor()).base().hibernate().core();
+      Provision.with(executor()).base().hibernate().atomikos().h2();
       executor().executeCommands("features:install codon-example");
       pause();
    }

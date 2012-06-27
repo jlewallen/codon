@@ -25,7 +25,7 @@ public class WhenRunningHibernateExample extends WithContainer {
 
    @Before
    public void before() {
-      Provision.with(executor()).base().hibernate().core();
+      Provision.with(executor()).base().hibernate().atomikos().h2().core();
       executor().executeCommand("osgi:install -s mvn:com.page5of4.codon.examples/codon-examples-messages/" + TestsConfiguration.getProjectVersion());
       executor().executeCommand("osgi:install -s mvn:com.page5of4.codon.examples/codon-examples-subscriber-hibernate/" + TestsConfiguration.getProjectVersion());
       pause();

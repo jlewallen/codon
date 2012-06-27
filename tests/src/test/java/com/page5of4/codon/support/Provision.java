@@ -19,26 +19,31 @@ public class Provision {
             "features:addurl mvn:com.page5of4.codon/codon-core/" + TestsConfiguration.getProjectVersion() + "/xml/features"
             );
       executor.executeCommands(
-            "features:install camel-jms",
+            "osgi:install -s mvn:org.codehaus.jackson/jackson-core-asl/1.7.5",
+            "osgi:install -s mvn:org.codehaus.jackson/jackson-mapper-asl/1.7.5",
+            "osgi:install -s mvn:com.google.guava/guava/12.0"
+            );
+      executor.executeCommands(
             "features:install spring-dm",
+            "features:install spring-dm-web"
+            );
+      executor.executeCommands(
+            "features:install camel-jms",
             "features:install camel-jms",
             "features:install camel-jaxb",
             "features:install camel-spring",
             "features:install activemq",
-            "osgi:install -s mvn:org.apache.activemq/activemq-camel/5.5.0",
-            "osgi:install -s mvn:com.google.guava/guava/12.0"
+            "osgi:install -s mvn:org.apache.activemq/activemq-camel/5.5.0"
             );
       return this;
    }
 
    public Provision web() {
-      executor.executeCommands(
+      System.out.println(executor.executeCommands(
+            "osgi:install -s mvn:com.page5of4.codon.bundles/com.page5of4.codon.bundles.mustache-mvc/1.2.3-SNAPSHOT",
             "features:install spring-web",
-            "features:install spring-dm-web",
-            "osgi:install -s mvn:org.codehaus.jackson/jackson-core-asl/1.7.5",
-            "osgi:install -s mvn:org.codehaus.jackson/jackson-mapper-asl/1.7.5",
-            "osgi:install -s mvn:com.page5of4.codon.bundles/com.page5of4.codon.bundles.mustache-mvc/1.2.3-SNAPSHOT"
-            );
+            "features:install war"
+            ));
       return this;
    }
 

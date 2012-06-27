@@ -31,7 +31,7 @@ public class WhenRunningExampleApplicationSpecs extends WithContainer {
    }
 
    @Test
-   public void bundles_are_installed_and_active() throws InterruptedException {
+   public void bundles_are_installed_and_active() {
       String[] expected = new String[] {
             "com.page5of4.codon.examples.messages",
             "com.page5of4.codon.examples.application",

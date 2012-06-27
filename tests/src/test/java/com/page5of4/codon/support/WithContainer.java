@@ -63,9 +63,16 @@ public class WithContainer {
             runtimeFolderOption(),
             systemProperties(),
             logLevel(LogLevelOption.LogLevel.INFO),
+            commonBundles(),
             festAssert(),
             junitBundles());
 
+   }
+
+   private Option commonBundles() {
+      return new DefaultCompositeOption(
+            mavenBundle().groupId("commons-io").artifactId("commons-io").versionAsInProject(),
+            mavenBundle().groupId("commons-lang").artifactId("commons-lang").versionAsInProject());
    }
 
    private Option loggingOptions() {

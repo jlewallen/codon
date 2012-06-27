@@ -121,6 +121,7 @@
 					</instructions>
 				</configuration>
 			</plugin>
+			<!--
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -165,17 +166,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			-->
 		</plugins>
 	</build>
-
-	<repositories>
-		<repository>
-			<id>com.springsource.repository.bundles.release</id>
-			<url>http://repository.springsource.com/maven/bundles/release </url>
-		</repository>
-		<repository>
-			<id>com.springsource.repository.bundles.external</id>
-			<url>http://repository.springsource.com/maven/bundles/external </url>
-		</repository>
-	</repositories>
 </project>

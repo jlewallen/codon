@@ -2,6 +2,10 @@ package com.page5of4.codon.tests;
 
 import static com.page5of4.codon.support.BundleAssert.assertThat;
 
+import java.io.InputStream;
+import java.net.URL;
+
+import org.apache.commons.io.IOUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +35,7 @@ public class WhenRunningExampleApplicationWithWebSpecs extends WithContainer {
    }
 
    @Test
-   public void bundles_are_installed_and_active() throws InterruptedException {
+   public void bundles_are_installed_and_active() {
       String[] expected = new String[] {
             "com.page5of4.codon.examples.messages",
             "com.page5of4.codon.examples.application",
@@ -39,6 +43,15 @@ public class WhenRunningExampleApplicationWithWebSpecs extends WithContainer {
       };
       for(String name : expected) {
          assertThat(executor().getInstalledBundle(name)).isActive();
+      }
+
+      try {
+         URL url = new URL("http://127.0.0.1:8181/webapp/resources/templates.js");
+         InputStream stream = url.openStream();
+         System.out.println(IOUtils.toString(stream));
+      }
+      catch(Exception e) {
+         throw new RuntimeException(e);
       }
    }
 

@@ -39,7 +39,7 @@ public class HandlerDispatcher {
             }
             // Can probably provide a collection of ArgumentMatcher's that can do this, that way this class doesn't need
             // to depend on Camel in any way.
-            if(parameterType.equals(Exchange.class)) {
+            else if(parameterType.equals(Exchange.class)) {
                parameters.add(exchange);
             }
             else {

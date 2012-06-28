@@ -10,7 +10,6 @@ import org.apache.camel.Predicate;
 import org.apache.camel.builder.AdviceWithRouteBuilder;
 import org.apache.camel.builder.NotifyBuilder;
 import org.apache.camel.model.ModelCamelContext;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.page5of4.codon.Bus;
-import com.page5of4.codon.camel.CamelTransport;
 import com.page5of4.codon.tests.support.RouteUtils;
 import com.page5of4.codon.tests.support.TestLoader;
 
@@ -29,13 +27,7 @@ public class RedeliverySpecs {
    @Autowired
    Bus bus;
    @Autowired
-   CamelTransport transport;
    ModelCamelContext camelContext;
-
-   @Before
-   public void before() {
-      camelContext = transport.getCamelContext();
-   }
 
    @Test
    @DirtiesContext

@@ -6,7 +6,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.camel.builder.NotifyBuilder;
 import org.apache.camel.model.ModelCamelContext;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.page5of4.codon.Bus;
-import com.page5of4.codon.camel.CamelTransport;
 import com.page5of4.codon.tests.support.TestLoader;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,13 +22,7 @@ public class BasicStandaloneSpecs {
    @Autowired
    Bus bus;
    @Autowired
-   CamelTransport transport;
    ModelCamelContext camelContext;
-
-   @Before
-   public void before() {
-      camelContext = transport.getCamelContext();
-   }
 
    @Test
    @DirtiesContext

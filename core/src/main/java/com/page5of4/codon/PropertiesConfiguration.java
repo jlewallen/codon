@@ -26,6 +26,10 @@ public class PropertiesConfiguration implements BusConfiguration {
       this.properties.put(key, value);
    }
 
+   public void clear() {
+      this.properties.clear();
+   }
+
    public PropertiesConfiguration(String applicationName, String localComponentName) {
       super();
       this.applicationName = applicationName;

@@ -11,26 +11,13 @@
 	<logger name="com.page5of4">
 		<level value="debug" />
 	</logger>
-
-	<logger name="org.springframework.core">
-		<level value="info" />
-	</logger>
-
-	<logger name="org.springframework.beans">
-		<level value="info" />
-	</logger>
-
-	<logger name="org.springframework.context">
-		<level value="info" />
-	</logger>
-
-	<logger name="org.springframework.web">
-		<level value="info" />
-	</logger>
-
-	<logger name="org.hibernate.engine.jdbc.spi.SqlStatementLogger">
-		<level value="trace" />
-	</logger>
+	
+	<logger name="org.apache.camel.processor"><level value="info" /></logger>
+	<logger name="org.springframework.core"><level value="info" /></logger>
+	<logger name="org.springframework.beans"><level value="info" /></logger>
+	<logger name="org.springframework.context"><level value="info" /></logger>
+	<logger name="org.springframework.web"><level value="info" /></logger>
+	<logger name="org.hibernate.engine.jdbc.spi.SqlStatementLogger"><level value="trace" /></logger>
 
 	<root>
 		<priority value="warn" />

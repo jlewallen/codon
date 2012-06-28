@@ -1,0 +1,31 @@
+package com.page5of4.codon;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.ContextLoader;
+
+import com.page5of4.codon.config.PublisherConfig;
+import com.page5of4.codon.config.StandaloneConfig;
+
+/**
+ * When we can use Spring 3.1.0, we should get rid of this.
+ * 
+ * @author jlewallen
+ */
+public class TestLoader implements ContextLoader {
+   @Override
+   public String[] processLocations(Class<?> clazz, String... locations) {
+      return locations;
+   }
+
+   @Override
+   public ApplicationContext loadContext(String... locations) throws Exception {
+      AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
+      applicationContext.register(SimpleBusConfigurationConfig.class);
+      applicationContext.register(StandaloneConfig.class);
+      applicationContext.register(PublisherConfig.class);
+      applicationContext.refresh();
+      applicationContext.registerShutdownHook();
+      return applicationContext;
+   }
+}

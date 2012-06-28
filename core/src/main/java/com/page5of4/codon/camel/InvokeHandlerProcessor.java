@@ -47,7 +47,7 @@ public class InvokeHandlerProcessor implements Processor {
       List<HandlerBinding> bindings = handlerRegistry.getBindingsFor(bodyClass);
       for(HandlerBinding binding : bindings) {
          logger.debug("Invoking {}", binding.getMethod());
-         binding.dispatch(body, contextProvider);
+         binding.dispatch(body, exchange, contextProvider);
       }
       if(bindings.isEmpty()) {
          String noHandlersMessage = String.format("No handlers registered for %s/%s", messageType, bodyClass.getName());

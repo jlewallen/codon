@@ -17,6 +17,6 @@ public class HandlerRouteBuilder extends RouteBuilder {
 
    @Override
    public void configure() throws Exception {
-      from(fromAddress).transacted(TransactionConfig.TRANSACTION_POLICY_NAME).process(invokeHandlerProcessor);
+      from(fromAddress).id("listen:" + fromAddress).transacted(TransactionConfig.TRANSACTION_POLICY_NAME).process(invokeHandlerProcessor);
    }
 }

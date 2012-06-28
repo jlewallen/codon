@@ -2,6 +2,8 @@ package com.page5of4.codon;
 
 import java.lang.reflect.Method;
 
+import org.apache.camel.Exchange;
+
 import com.page5of4.codon.impl.BusContextProvider;
 import com.page5of4.codon.impl.HandlerDispatcher;
 import com.page5of4.codon.impl.InstanceResolver;
@@ -38,7 +40,7 @@ public class HandlerBinding {
       this.resolver = resolver;
    }
 
-   public void dispatch(Object body, BusContextProvider contextProvider) {
-      new HandlerDispatcher(resolver, contextProvider, this).dispatch(body);
+   public void dispatch(Object body, Exchange exchange, BusContextProvider contextProvider) {
+      new HandlerDispatcher(resolver, contextProvider, this).dispatch(body, exchange);
    }
 }

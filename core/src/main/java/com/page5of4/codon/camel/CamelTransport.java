@@ -29,6 +29,10 @@ public class CamelTransport implements Transport {
    public static final String MESSAGE_TYPE_KEY = "messageType";
    public static final String REPLY_TO_ADDRESS_KEY = "replyTo";
 
+   public ModelCamelContext getCamelContext() {
+      return camelContext;
+   }
+
    public static class ListeningOn {
       private final RoutesDefinition routes;
       private final AtomicInteger numberOfListeners = new AtomicInteger();
@@ -107,7 +111,7 @@ public class CamelTransport implements Transport {
                camelContext.addRoutes(builder);
             }
             ListeningOn listening = listenerMap.get(address);
-            logger.warn("{} listeners on {}", listening.increase(), address);
+            logger.info("{} listeners on {}", listening.increase(), address);
          }
       }
       catch(Exception e) {
@@ -125,7 +129,7 @@ public class CamelTransport implements Transport {
             }
             ListeningOn listening = listenerMap.get(address);
             int remaining = listening.decrease();
-            logger.warn("{} listeners on {}", remaining, address);
+            logger.info("{} listeners on {}", remaining, address);
             if(remaining == 0) {
                camelContext.removeRouteDefinitions(listening.getRoutes().getRoutes());
                listenerMap.remove(address);

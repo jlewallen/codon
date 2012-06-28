@@ -81,13 +81,6 @@
 	</build>
 
 	<dependencies>
-		<!--
-		<dependency>
-			<groupId>org.ops4j.pax.logging</groupId>
-			<artifactId>pax-logging-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		-->
 		<dependency>
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-spring</artifactId>
@@ -126,6 +119,11 @@
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib-nodep</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

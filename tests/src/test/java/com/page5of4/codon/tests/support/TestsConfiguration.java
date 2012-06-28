@@ -1,4 +1,4 @@
-package com.page5of4.codon.support;
+package com.page5of4.codon.tests.support;
 
 public class TestsConfiguration {
    public static String getProjectVersion() {

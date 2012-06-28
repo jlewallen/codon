@@ -1,9 +1,11 @@
-package com.page5of4.codon;
+package com.page5of4.codon.tests.support;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.page5of4.codon.BasicStandaloneSpecs.MessageAHandler;
+import com.page5of4.codon.BusConfiguration;
+import com.page5of4.codon.PropertiesConfiguration;
+import com.page5of4.codon.tests.integration.MessageAHandler;
 
 @Configuration
 public class SimpleBusConfigurationConfig {

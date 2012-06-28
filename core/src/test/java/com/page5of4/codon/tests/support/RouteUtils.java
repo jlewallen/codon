@@ -1,4 +1,4 @@
-package com.page5of4.codon;
+package com.page5of4.codon.tests.support;
 
 import org.apache.camel.model.ModelCamelContext;
 import org.apache.camel.model.RouteDefinition;

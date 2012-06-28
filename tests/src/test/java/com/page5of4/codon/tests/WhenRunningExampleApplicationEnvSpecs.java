@@ -1,6 +1,6 @@
 package com.page5of4.codon.tests;
 
-import static com.page5of4.codon.support.BundleAssert.assertThat;
+import static com.page5of4.codon.tests.support.BundleAssert.assertThat;
 
 import org.junit.After;
 import org.junit.Before;
@@ -12,9 +12,9 @@ import org.ops4j.pax.exam.junit.ExamReactorStrategy;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 import org.ops4j.pax.exam.spi.reactors.AllConfinedStagedReactorFactory;
 
-import com.page5of4.codon.support.Provision;
-import com.page5of4.codon.support.TestsConfiguration;
-import com.page5of4.codon.support.WithContainer;
+import com.page5of4.codon.tests.support.Provision;
+import com.page5of4.codon.tests.support.TestsConfiguration;
+import com.page5of4.codon.tests.support.WithContainer;
 
 @RunWith(JUnit4TestRunner.class)
 @ExamReactorStrategy(AllConfinedStagedReactorFactory.class)

@@ -1,8 +1,7 @@
-package com.page5of4.codon;
+package com.page5of4.codon.tests.integration;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -14,18 +13,19 @@ import org.apache.camel.model.ModelCamelContext;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.page5of4.codon.Bus;
 import com.page5of4.codon.camel.CamelTransport;
+import com.page5of4.codon.tests.support.RouteUtils;
+import com.page5of4.codon.tests.support.TestLoader;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = TestLoader.class)
-public class BasicStandaloneSpecs {
+public class RedeliverySpecs {
    @Autowired
    Bus bus;
    @Autowired
@@ -35,16 +35,6 @@ public class BasicStandaloneSpecs {
    @Before
    public void before() {
       camelContext = transport.getCamelContext();
-   }
-
-   @Test
-   @DirtiesContext
-   public void when_sending_message_locally() throws Exception {
-      NotifyBuilder after = new NotifyBuilder(camelContext).whenExactlyCompleted(1).create();
-
-      bus.sendLocal(new MessageAMessage("Jacob"));
-
-      assertThat(after.matches(5L, TimeUnit.SECONDS)).isTrue();
    }
 
    @Test
@@ -111,33 +101,5 @@ public class BasicStandaloneSpecs {
       bus.sendLocal(new MessageAMessage("Jacob"));
 
       assertThat(after.matches(5L, TimeUnit.SECONDS)).isTrue();
-   }
-
-   public static class MessageAMessage implements Serializable {
-      private static final long serialVersionUID = 1L;
-      private String name;
-
-      public MessageAMessage(String name) {
-         super();
-         this.name = name;
-      }
-
-      public String getName() {
-         return name;
-      }
-
-      public void setName(String name) {
-         this.name = name;
-      }
-   }
-
-   @MessageHandler
-   public static class MessageAHandler {
-      private static final Logger logger = LoggerFactory.getLogger(MessageHandler.class);
-
-      @MessageHandler
-      public void handle(MessageAMessage message, Exchange exchange) {
-         logger.info("Entering");
-      }
    }
 }

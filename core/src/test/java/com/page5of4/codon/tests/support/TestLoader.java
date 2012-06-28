@@ -1,4 +1,4 @@
-package com.page5of4.codon;
+package com.page5of4.codon.tests.support;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

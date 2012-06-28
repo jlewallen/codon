@@ -1,4 +1,4 @@
-package com.page5of4.codon.support;
+package com.page5of4.codon.tests.support;
 
 import static org.openengsb.labs.paxexam.karaf.options.KarafDistributionOption.doNotModifyLogConfiguration;
 import static org.openengsb.labs.paxexam.karaf.options.KarafDistributionOption.editConfigurationFilePut;

@@ -1,10 +1,12 @@
-package com.page5of4.codon;
+package com.page5of4.codon.tests.integration;
 
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.page5of4.codon.BusConfiguration;
+import com.page5of4.codon.PropertiesConfiguration;
 import com.page5of4.codon.config.StandaloneConfig;
 
 public class ContextFactorySpecs {

@@ -32,19 +32,19 @@ public class WhenRunningJpaExample extends WithContainer {
    public void using_hibernate() {
       Provision.with(executor()).base().hibernate().atomikos().h2().core();
       executor().executeCommand("osgi:install -s mvn:com.page5of4.codon.examples/codon-examples-messages/" + TestsConfiguration.getProjectVersion());
-      executor().executeCommand("osgi:install -s mvn:com.page5of4.codon.examples/codon-examples-subscriber-hibernate/" + TestsConfiguration.getProjectVersion());
+      executor().executeCommand("osgi:install -s mvn:com.page5of4.codon.examples/codon-examples-subscriber-jpa/" + TestsConfiguration.getProjectVersion());
       pause();
 
-      assertThat(executor().getInstalledBundle("com.page5of4.codon.examples.subscriber.hibernate")).isActive();
+      assertThat(executor().getInstalledBundle("com.page5of4.codon.examples.subscriber.jpa")).isActive();
    }
 
    @Test
    public void using_eclipselink() {
       Provision.with(executor()).base().eclipseLink().atomikos().h2().core();
       executor().executeCommand("osgi:install -s mvn:com.page5of4.codon.examples/codon-examples-messages/" + TestsConfiguration.getProjectVersion());
-      executor().executeCommand("osgi:install -s mvn:com.page5of4.codon.examples/codon-examples-subscriber-hibernate/" + TestsConfiguration.getProjectVersion());
+      executor().executeCommand("osgi:install -s mvn:com.page5of4.codon.examples/codon-examples-subscriber-jpa/" + TestsConfiguration.getProjectVersion());
       pause();
 
-      assertThat(executor().getInstalledBundle("com.page5of4.codon.examples.subscriber.hibernate")).isActive();
+      assertThat(executor().getInstalledBundle("com.page5of4.codon.examples.subscriber.jpa")).isActive();
    }
 }

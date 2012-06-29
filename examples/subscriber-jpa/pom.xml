@@ -8,10 +8,10 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>codon-examples-subscriber-hibernate</artifactId>
+	<artifactId>codon-examples-subscriber-jpa</artifactId>
 	<packaging>bundle</packaging>
 
-	<name>Codon - Examples - Subscriber (Hibernate)</name>
+	<name>Codon - Examples - Subscriber (JPA)</name>
 
 	<properties>
 	</properties>
@@ -57,7 +57,7 @@
 						<Bundle-Activator>com.page5of4.codon.examples.subscriber.impl.Activator</Bundle-Activator>
 						<JPA-PersistenceUnits>jpa.example</JPA-PersistenceUnits>
 						<Meta-Persistence>META-INF/persistence.xml</Meta-Persistence>
-						<Bundle-SymbolicName>com.page5of4.codon.examples.subscriber.hibernate</Bundle-SymbolicName>
+						<Bundle-SymbolicName>com.page5of4.codon.examples.subscriber.jpa</Bundle-SymbolicName>
 					</instructions>
 				</configuration>
 			</plugin>

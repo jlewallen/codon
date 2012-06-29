@@ -44,8 +44,14 @@
 							net.sf.cglib.proxy,
 							net.sf.cglib.core,
 							net.sf.cglib.reflect,
-							org.hibernate.proxy,
-							javassist.util.proxy,
+							<!-- always needed -->
+							javax.persistence;version="1.1.0";jpa="2.0",
+							<!-- needed by eclipselink -->
+							org.apache.derby.jdbc; resolution:=optional,
+							org.eclipse.persistence.indirection; resolution:=optional,
+							<!-- needed by hibernate -->
+							org.hibernate.proxy; resolution:=optional,
+							javassist.util.proxy; resolution:=optional,
 							*
 						</Import-Package>
 						<Bundle-Activator>com.page5of4.codon.examples.subscriber.impl.Activator</Bundle-Activator>

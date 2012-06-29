@@ -55,10 +55,6 @@
 		<module>riak-client</module>
 		<module>jacc</module>
 		<module>hibernate</module>
-    	<!--
-		<module>hibernate-core</module>
-		<module>hibernate-validator</module>
-    	<module>spring-orm-persistence</module>
-    	-->
+		<module>eclipselink</module>
 	</modules>
 </project>

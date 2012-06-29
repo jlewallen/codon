@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.page5of4.codon.bundles</groupId>
+		<artifactId>codon-bundles</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>com.page5of4.codon.bundles.eclipselink</artifactId>
+	<version>2.2.0</version>
+	<packaging>bundle</packaging>
+
+	<name>Codon - Bundles - EclipseLink</name>
+
+	<properties>
+		<packages.imported.dynamic>*</packages.imported.dynamic>
+		<exported.packages.contents />
+		<imported.packages>
+			org.osgi.*,
+			javax.persistence.*;version="1.1.0",
+			org.eclipse.persistence.jpa
+		</imported.packages>
+		<embedded.dependencies></embedded.dependencies>
+		<bundle.activator>com.page5of4.codon.bundles.eclipselink.Activator</bundle.activator>
+		<private.packages>com.page5of4.codon.bundles.eclipselink.*</private.packages>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-jpa_2.0_spec</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>org.eclipse.persistence.jpa</artifactId>
+		</dependency>
+	</dependencies>
+</project>

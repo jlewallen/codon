@@ -17,7 +17,7 @@ import com.page5of4.codon.tests.support.WithContainer;
 
 @RunWith(JUnit4TestRunner.class)
 @ExamReactorStrategy(AllConfinedStagedReactorFactory.class)
-public class WhenRunningHibernateExample extends WithContainer {
+public class WhenRunningJpaExample extends WithContainer {
    @Configuration
    public Option[] config() {
       return new Option[] { commonConfiguration() };
@@ -25,14 +25,26 @@ public class WhenRunningHibernateExample extends WithContainer {
 
    @Before
    public void before() {
+
+   }
+
+   @Test
+   public void using_hibernate() {
       Provision.with(executor()).base().hibernate().atomikos().h2().core();
       executor().executeCommand("osgi:install -s mvn:com.page5of4.codon.examples/codon-examples-messages/" + TestsConfiguration.getProjectVersion());
       executor().executeCommand("osgi:install -s mvn:com.page5of4.codon.examples/codon-examples-subscriber-hibernate/" + TestsConfiguration.getProjectVersion());
       pause();
+
+      assertThat(executor().getInstalledBundle("com.page5of4.codon.examples.subscriber.hibernate")).isActive();
    }
 
    @Test
-   public void bundle_is_installed() {
-      assertThat(executor().getInstalledBundle("com.page5of4.codon.bundles.hibernate")).isActive();
+   public void using_eclipselink() {
+      Provision.with(executor()).base().eclipseLink().atomikos().h2().core();
+      executor().executeCommand("osgi:install -s mvn:com.page5of4.codon.examples/codon-examples-messages/" + TestsConfiguration.getProjectVersion());
+      executor().executeCommand("osgi:install -s mvn:com.page5of4.codon.examples/codon-examples-subscriber-hibernate/" + TestsConfiguration.getProjectVersion());
+      pause();
+
+      assertThat(executor().getInstalledBundle("com.page5of4.codon.examples.subscriber.hibernate")).isActive();
    }
 }

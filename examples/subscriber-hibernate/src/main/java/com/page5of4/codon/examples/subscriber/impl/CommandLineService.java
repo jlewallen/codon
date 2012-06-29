@@ -7,7 +7,6 @@ import java.util.UUID;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.osgi.framework.BundleContext;
@@ -42,15 +41,7 @@ public class CommandLineService {
                transaction.commit();
             }
             {
-               Query query = em.createQuery("FROM Person");
-               List<?> list = query.getResultList();
-               logger.info("{} {}", list, list.getClass());
-               for(Object r : list) {
-                  logger.info("{}", r);
-               }
-            }
-            {
-               TypedQuery<Person> query = em.createQuery("FROM Person", Person.class);
+               TypedQuery<Person> query = em.createQuery("SELECT OBJECT(p) FROM Person p", Person.class);
                List<Person> found = query.getResultList();
                logger.info(String.format("People: %d", found.size()));
                for(Object dude : found) {

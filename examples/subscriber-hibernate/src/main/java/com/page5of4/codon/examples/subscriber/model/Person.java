@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.sun.istack.NotNull;
 
@@ -20,6 +22,7 @@ public class Person {
    @NotNull
    private String lastName;
    @NotNull
+   @Temporal(value = TemporalType.TIMESTAMP)
    private Date registeredAt;
 
    public Long getId() {

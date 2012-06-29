@@ -16,7 +16,7 @@ import com.page5of4.codon.tests.support.WithContainer;
 
 @RunWith(JUnit4TestRunner.class)
 @ExamReactorStrategy(AllConfinedStagedReactorFactory.class)
-public class WhenUsingHibernate extends WithContainer {
+public class WhenUsingEclipseLink extends WithContainer {
    @Configuration
    public Option[] config() {
       return new Option[] { commonConfiguration() };
@@ -24,11 +24,11 @@ public class WhenUsingHibernate extends WithContainer {
 
    @Before
    public void before() {
-      Provision.with(executor()).hibernate();
+      Provision.with(executor()).eclipseLink();
    }
 
    @Test
    public void bundle_is_installed() {
-      assertThat(executor().getInstalledBundle("com.page5of4.codon.bundles.hibernate")).isActive();
+      assertThat(executor().getInstalledBundle("com.page5of4.codon.bundles.eclipselink")).isActive();
    }
 }

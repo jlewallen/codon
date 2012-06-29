@@ -11,7 +11,7 @@ import com.page5of4.codon.BusModule.ModuleMode;
 import com.page5of4.codon.HandlerRegistry;
 
 @Configuration
-@Import(value = { CoreConfig.class, ClientConfig.class, BusConfig.class, ConstantBusContextConfig.class, PublisherConfig.class, SubscriptionStorageConfig.class })
+@Import(value = { CoreConfig.class, ClientConfig.class, BusConfig.class, ConstantBusContextConfig.class, PublisherConfig.class })
 public class StandaloneConfig {
    @Autowired
    private Bus bus;

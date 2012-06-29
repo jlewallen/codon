@@ -9,7 +9,7 @@ import com.page5of4.codon.subscriptions.SubscriptionStorage;
 import com.page5of4.codon.subscriptions.impl.XmlSubscriptionStorage;
 
 @Configuration
-public class SubscriptionStorageConfig {
+public class XmlSubscriptionStorageConfig {
    @Autowired
    private BusConfiguration busConfiguration;
 

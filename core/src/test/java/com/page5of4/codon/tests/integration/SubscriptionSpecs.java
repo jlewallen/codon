@@ -6,7 +6,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.camel.builder.NotifyBuilder;
 import org.apache.camel.model.ModelCamelContext;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +16,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.page5of4.codon.Bus;
 import com.page5of4.codon.PropertiesConfiguration;
 import com.page5of4.codon.subscriptions.SubscriptionStorage;
+import com.page5of4.codon.subscriptions.messages.SubscribeMessage;
+import com.page5of4.codon.subscriptions.messages.UnsubscribeMessage;
 import com.page5of4.codon.tests.support.TestLoader;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -31,18 +32,12 @@ public class SubscriptionSpecs {
    @Autowired
    ModelCamelContext camelContext;
 
-   @Before
-   public void before() {
-      configuration.clear();
-      configuration.put("bus.owner." + MessageAMessage.class.getName(), configuration.getLocalComponentName() + ":" + configuration.getApplicationName() + ".{messageType}");
-   }
-
    @Test
    @DirtiesContext
    public void when_receiving_subscription_its_stored() {
       NotifyBuilder notify = new NotifyBuilder(camelContext).whenCompleted(1).create();
 
-      bus.subscribe(MessageAMessage.class);
+      bus.sendLocal(new SubscribeMessage("activemq:com.page5of4.test", MessageAMessage.class.getName()));
 
       assertThat(notify.matches(5L, TimeUnit.SECONDS)).isTrue();
 
@@ -55,8 +50,8 @@ public class SubscriptionSpecs {
    public void when_receiving_unsubscribe_its_stored() {
       NotifyBuilder notify = new NotifyBuilder(camelContext).whenCompleted(2).create();
 
-      bus.subscribe(MessageAMessage.class);
-      bus.unsubscribe(MessageAMessage.class);
+      bus.sendLocal(new SubscribeMessage("activemq:com.page5of4.test", MessageAMessage.class.getName()));
+      bus.sendLocal(new UnsubscribeMessage("activemq:com.page5of4.test", MessageAMessage.class.getName()));
 
       assertThat(notify.matches(5L, TimeUnit.SECONDS)).isTrue();
 

@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.page5of4.codon.BusConfiguration;
 import com.page5of4.codon.PropertiesConfiguration;
+import com.page5of4.codon.config.InMemorySubscriptionStorageConfig;
 import com.page5of4.codon.config.StandaloneConfig;
 
 public class ContextFactorySpecs {
@@ -15,7 +16,9 @@ public class ContextFactorySpecs {
       AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
       applicationContext.register(SimpleBusConfigurationConfig.class);
       applicationContext.register(StandaloneConfig.class);
+      applicationContext.register(InMemorySubscriptionStorageConfig.class);
       applicationContext.refresh();
+      applicationContext.destroy();
    }
 
    @Configuration

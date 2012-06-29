@@ -4,6 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.test.context.ContextLoader;
 
+import com.page5of4.codon.config.InMemorySubscriptionStorageConfig;
 import com.page5of4.codon.config.PublisherConfig;
 import com.page5of4.codon.config.StandaloneConfig;
 
@@ -25,6 +26,7 @@ public class TestLoader implements ContextLoader {
       applicationContext.register(StandaloneConfig.class);
       applicationContext.register(PublisherConfig.class);
       applicationContext.register(ExposeCamelContextConfig.class);
+      applicationContext.register(InMemorySubscriptionStorageConfig.class);
       applicationContext.refresh();
       applicationContext.registerShutdownHook();
       return applicationContext;

@@ -12,11 +12,11 @@ import com.page5of4.codon.HandlerRegistry;
 import com.page5of4.codon.PropertiesConfiguration;
 import com.page5of4.codon.config.BusConfig;
 import com.page5of4.codon.config.ConstantBusContextConfig;
-import com.page5of4.codon.config.SubscriptionStorageConfig;
+import com.page5of4.codon.config.XmlSubscriptionStorageConfig;
 import com.page5of4.codon.extender.impl.OsgiHandlerRegistry;
 
 @Configuration
-@Import(value = { SpringConfig.class, BusConfig.class, SubscriptionStorageConfig.class, ConstantBusContextConfig.class })
+@Import(value = { SpringConfig.class, BusConfig.class, XmlSubscriptionStorageConfig.class, ConstantBusContextConfig.class })
 public class BundleConfig {
    @Value("${application.name:application}")
    private String applicationName;

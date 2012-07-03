@@ -18,10 +18,9 @@ import com.page5of4.codon.BusException;
 import com.page5of4.codon.EndpointAddress;
 import com.page5of4.codon.Transport;
 
-public class CamelTransport implements Transport {
-   private static final Logger logger = LoggerFactory.getLogger(CamelTransport.class);
+public class DefaultCamelTransport implements Transport {
+   private static final Logger logger = LoggerFactory.getLogger(DefaultCamelTransport.class);
    private final Map<EndpointAddress, ListeningOn> listenerMap = new ConcurrentHashMap<EndpointAddress, ListeningOn>();
-   private final ComponentResolver componentTemplate;
    private final ModelCamelContext camelContext;
    private final ProducerTemplate producer;
    private final InvokeHandlerProcessor invokeHandlerProcessor;
@@ -33,36 +32,9 @@ public class CamelTransport implements Transport {
       return camelContext;
    }
 
-   public static class ListeningOn {
-      private final RoutesDefinition routes;
-      private final AtomicInteger numberOfListeners = new AtomicInteger();
-
-      public ListeningOn(RoutesDefinition routes) {
-         super();
-         this.routes = routes;
-      }
-
-      public RoutesDefinition getRoutes() {
-         return routes;
-      }
-
-      public int increase() {
-         return numberOfListeners.incrementAndGet();
-      }
-
-      public int getNumberOfListeners() {
-         return numberOfListeners.get();
-      }
-
-      public int decrease() {
-         return numberOfListeners.decrementAndGet();
-      }
-   }
-
    @Autowired
-   public CamelTransport(ModelCamelContext camelContext, ComponentResolver componentTemplate, InvokeHandlerProcessor invokeHandlerProcessor) {
+   public DefaultCamelTransport(ModelCamelContext camelContext, InvokeHandlerProcessor invokeHandlerProcessor) {
       this.camelContext = camelContext;
-      this.componentTemplate = componentTemplate;
       this.invokeHandlerProcessor = invokeHandlerProcessor;
       this.producer = camelContext.createProducerTemplate();
    }
@@ -91,7 +63,6 @@ public class CamelTransport implements Transport {
    public void send(EndpointAddress address, Object message) {
       try {
          logger.debug("Sending {} -> {}", message, address);
-         autoCreateDestination(address);
          producer.send(EndpointUri.fromEndpointAddress(address), new OutgoingProcessor(message));
       }
       catch(Exception e) {
@@ -104,7 +75,6 @@ public class CamelTransport implements Transport {
       try {
          synchronized(listenerMap) {
             if(!listenerMap.containsKey(address)) {
-               autoCreateDestination(address);
                HandlerRouteBuilder builder = new HandlerRouteBuilder(invokeHandlerProcessor, EndpointUri.fromEndpointAddress(address));
                ListeningOn listening = new ListeningOn(builder.getRouteCollection());
                listenerMap.put(address, listening);
@@ -141,16 +111,29 @@ public class CamelTransport implements Transport {
       }
    }
 
-   private void autoCreateDestination(EndpointAddress address) {
-      try {
-         String name = address.getHost();
-         if(camelContext.hasComponent(name) != null) {
-            return;
-         }
-         camelContext.addComponent(name, componentTemplate.createComponent(address, camelContext));
+   public static class ListeningOn {
+      private final RoutesDefinition routes;
+      private final AtomicInteger numberOfListeners = new AtomicInteger();
+
+      public ListeningOn(RoutesDefinition routes) {
+         super();
+         this.routes = routes;
       }
-      catch(Exception e) {
-         throw new BusException(String.format("Unable to create Camel component for destination '%s'", address), e);
+
+      public RoutesDefinition getRoutes() {
+         return routes;
+      }
+
+      public int increase() {
+         return numberOfListeners.incrementAndGet();
+      }
+
+      public int getNumberOfListeners() {
+         return numberOfListeners.get();
+      }
+
+      public int decrease() {
+         return numberOfListeners.decrementAndGet();
       }
    }
 }

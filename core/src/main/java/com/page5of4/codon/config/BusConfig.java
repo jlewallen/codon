@@ -11,8 +11,8 @@ import com.page5of4.codon.Bus;
 import com.page5of4.codon.BusException;
 import com.page5of4.codon.HandlerRegistry;
 import com.page5of4.codon.Transport;
-import com.page5of4.codon.camel.ActiveMQComponentResolver;
-import com.page5of4.codon.camel.CamelTransport;
+import com.page5of4.codon.camel.CodonComponentResolver;
+import com.page5of4.codon.camel.DefaultCamelTransport;
 import com.page5of4.codon.camel.InvokeHandlerProcessor;
 import com.page5of4.codon.impl.BusContextProvider;
 import com.page5of4.codon.impl.DefaultBus;
@@ -38,10 +38,10 @@ public class BusConfig {
    @Bean
    public Transport transport() {
       try {
-         ActiveMQComponentResolver resolver = new ActiveMQComponentResolver(transactionConvention);
          SpringCamelContext camelContext = new SpringCamelContext(applicationContext);
+         camelContext.setComponentResolver(new CodonComponentResolver(transactionConvention));
          camelContext.afterPropertiesSet();
-         return new CamelTransport(camelContext, resolver, invokeHandlerProcessor());
+         return new DefaultCamelTransport(camelContext, invokeHandlerProcessor());
       }
       catch(Exception e) {
          throw new BusException(e);

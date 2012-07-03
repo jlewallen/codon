@@ -5,9 +5,7 @@ import java.util.Arrays;
 import org.apache.camel.CamelContext;
 import org.apache.camel.model.ModelCamelContext;
 
-import com.page5of4.codon.camel.AlwaysFailComponentResolver;
-import com.page5of4.codon.camel.CamelTransport;
-import com.page5of4.codon.camel.ComponentResolver;
+import com.page5of4.codon.camel.DefaultCamelTransport;
 import com.page5of4.codon.camel.InvokeHandlerProcessor;
 import com.page5of4.codon.impl.ApplicationContextResolver;
 import com.page5of4.codon.impl.BusContext;
@@ -25,7 +23,6 @@ public class BusBuilder {
    private final ModelCamelContext camelContext;
    private final InstanceResolver resolver = new ApplicationContextResolver(null);
    private final HandlerRegistry handlerRegistry = new SpringHandlerRegistry(null, resolver);
-   private final ComponentResolver template = new AlwaysFailComponentResolver();
    private final InMemorySubscriptionStorage subscriptionStorage = new InMemorySubscriptionStorage();
 
    public BusBuilder(ModelCamelContext camelContext) {
@@ -44,6 +41,6 @@ public class BusBuilder {
    public Bus build() {
       TopologyConfiguration topologyConfiguration = new TopologyConfiguration(new PropertiesConfiguration("test", "testing-server"));
       BusContextProvider contextProvider = new ConstantBusContextProvider(new BusContext(topologyConfiguration, subscriptionStorage));
-      return new DefaultBus(contextProvider, new CamelTransport(camelContext, template, new InvokeHandlerProcessor(handlerRegistry, contextProvider, null)));
+      return new DefaultBus(contextProvider, new DefaultCamelTransport(camelContext, new InvokeHandlerProcessor(handlerRegistry, contextProvider, null)));
    }
 }

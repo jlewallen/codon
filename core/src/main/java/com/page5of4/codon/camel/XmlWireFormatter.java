@@ -25,7 +25,7 @@ public class XmlWireFormatter implements DataFormat {
    @Override
    public Object unmarshal(Exchange exchange, InputStream stream) throws Exception {
       Message in = exchange.getIn();
-      String messageType = in.getHeader(CamelTransport.MESSAGE_TYPE_KEY).toString();
+      String messageType = in.getHeader(DefaultCamelTransport.MESSAGE_TYPE_KEY).toString();
       Class<?> klass = Thread.currentThread().getContextClassLoader().loadClass(messageType);
       return getFormatter(klass).unmarshal(exchange, stream);
    }

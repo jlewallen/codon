@@ -40,11 +40,11 @@ public class PublishProcessorSpecs extends CamelTestSupport {
       MockEndpoint mock2 = getMockEndpoint("mock:app2.java.lang.String");
       mock1.expectedMessageCount(1);
       mock1.allMessages().body().isEqualTo("Message body");
-      mock1.allMessages().header(CamelTransport.MESSAGE_TYPE_KEY).isEqualTo("java.lang.String");
+      mock1.allMessages().header(DefaultCamelTransport.MESSAGE_TYPE_KEY).isEqualTo("java.lang.String");
 
       mock2.expectedMessageCount(1);
       mock2.allMessages().body().isEqualTo("Message body");
-      mock2.allMessages().header(CamelTransport.MESSAGE_TYPE_KEY).isEqualTo("java.lang.String");
+      mock2.allMessages().header(DefaultCamelTransport.MESSAGE_TYPE_KEY).isEqualTo("java.lang.String");
 
       template.sendBody("direct:incoming", "Message body");
 

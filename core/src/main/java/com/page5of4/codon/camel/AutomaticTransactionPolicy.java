@@ -32,7 +32,7 @@ public class AutomaticTransactionPolicy implements TransactedPolicy {
       String key = routeContext.getEndpoint().getEndpointKey();
       String uri = routeContext.getEndpoint().getEndpointUri();
       logger.info("Attempting to wrap route '{}' '{}'", uri, key);
-      PlatformTransactionManager manager = transactionConvention.locate(EndpointUri.toEndpointAddress(uri));
+      PlatformTransactionManager manager = transactionConvention.locate(EndpointUri.toEndpointAddress(uri).getHost());
       SpringTransactionPolicy springPolicy = new SpringTransactionPolicy(manager);
       return springPolicy.wrap(routeContext, processor);
    }

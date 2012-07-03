@@ -5,12 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.page5of4.codon.camel.CamelTransport;
+import com.page5of4.codon.camel.DefaultCamelTransport;
 
 @Configuration
 public class ExposeCamelContextConfig {
    @Autowired
-   CamelTransport transport;
+   DefaultCamelTransport transport;
 
    @Bean
    public ModelCamelContext camelContext() {

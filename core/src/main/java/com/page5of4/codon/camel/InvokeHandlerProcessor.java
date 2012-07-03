@@ -36,8 +36,8 @@ public class InvokeHandlerProcessor implements Processor {
       Class<?> bodyClass = body.getClass();
       String messageType = MessageUtils.getMessageType(body);
       Map<String, Object> headers = message.getHeaders();
-      if(headers.containsKey(CamelTransport.MESSAGE_TYPE_KEY)) {
-         messageType = headers.get(CamelTransport.MESSAGE_TYPE_KEY).toString();
+      if(headers.containsKey(DefaultCamelTransport.MESSAGE_TYPE_KEY)) {
+         messageType = headers.get(DefaultCamelTransport.MESSAGE_TYPE_KEY).toString();
       }
       else {
          logger.warn("No message type on message, assuming no conversion necessary: '{}'", messageType);

@@ -36,7 +36,7 @@ public class SendLocalProcessorSpecs extends CamelTestSupport {
       MockEndpoint mock = getMockEndpoint("testing-server:test.java.lang.String");
       mock.expectedMessageCount(1);
       mock.allMessages().body().isEqualTo("Message body");
-      mock.allMessages().header(CamelTransport.MESSAGE_TYPE_KEY).isEqualTo("java.lang.String");
+      mock.allMessages().header(DefaultCamelTransport.MESSAGE_TYPE_KEY).isEqualTo("java.lang.String");
 
       template.sendBody("direct:incoming", "Message body");
 

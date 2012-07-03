@@ -4,12 +4,10 @@ import javax.jms.ConnectionFactory;
 
 import org.springframework.transaction.PlatformTransactionManager;
 
-import com.page5of4.codon.EndpointAddress;
-
 public interface TransactionConvention {
 
-   PlatformTransactionManager locate(EndpointAddress address, ConnectionFactory connectionFactory);
+   PlatformTransactionManager locate(String name, ConnectionFactory connectionFactory);
 
-   PlatformTransactionManager locate(EndpointAddress endpointAddress);
+   PlatformTransactionManager locate(String name);
 
 }

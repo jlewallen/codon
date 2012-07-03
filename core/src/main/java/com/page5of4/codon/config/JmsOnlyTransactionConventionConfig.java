@@ -9,7 +9,7 @@ import com.page5of4.codon.impl.JmsTransactionManagerConvention;
 import com.page5of4.codon.impl.TransactionConvention;
 
 @Configuration
-public class TransactionPolicyConfig {
+public class JmsOnlyTransactionConventionConfig {
    @Bean
    public TransactionConvention transactionConvention() {
       return new JmsTransactionManagerConvention();

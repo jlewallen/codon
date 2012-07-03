@@ -1,11 +1,6 @@
 package com.page5of4.codon.camel;
 
-import javax.jms.ConnectionFactory;
-
-import org.apache.activemq.ActiveMQConnectionFactory;
-import org.apache.activemq.RedeliveryPolicy;
 import org.apache.activemq.camel.component.ActiveMQComponent;
-import org.apache.activemq.pool.PooledConnectionFactory;
 import org.apache.camel.CamelContext;
 import org.apache.camel.Component;
 import org.slf4j.Logger;
@@ -33,22 +28,8 @@ public class ActiveMQComponentResolver implements ComponentResolver {
       ActiveMQComponent component = new ActiveMQComponent();
       component.setCamelContext(camelContext);
       component.setBrokerURL("tcp://127.0.0.1:61616");
-      component.setTransacted(true);
       component.setTransactionManager(transactionConvention.locate(address, component.getConfiguration().getConnectionFactory()));
-
-      {
-         ActiveMQConnectionFactory connectionFactory = getConnectionFactory(component.getConfiguration().getConnectionFactory());
-         RedeliveryPolicy redeliveryPolicy = connectionFactory.getRedeliveryPolicy();
-         redeliveryPolicy.setMaximumRedeliveries(4);
-      }
-
+      component.setTransacted(true);
       return component;
-   }
-
-   private ActiveMQConnectionFactory getConnectionFactory(ConnectionFactory factory) {
-      if(factory instanceof PooledConnectionFactory) {
-         return getConnectionFactory(((PooledConnectionFactory)factory).getConnectionFactory());
-      }
-      return (ActiveMQConnectionFactory)factory;
    }
 }

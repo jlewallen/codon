@@ -16,6 +16,7 @@ import com.page5of4.codon.camel.CamelTransport;
 import com.page5of4.codon.camel.InvokeHandlerProcessor;
 import com.page5of4.codon.impl.BusContextProvider;
 import com.page5of4.codon.impl.DefaultBus;
+import com.page5of4.codon.impl.TransactionConvention;
 
 @Configuration
 @Import(value = { CoreConfig.class })
@@ -26,6 +27,8 @@ public class BusConfig {
    private HandlerRegistry handlerRegistry;
    @Autowired
    private BusContextProvider contextProvider;
+   @Autowired
+   private TransactionConvention transactionConvention;
 
    @Bean
    public Bus bus() {
@@ -35,7 +38,7 @@ public class BusConfig {
    @Bean
    public Transport transport() {
       try {
-         ActiveMQComponentResolver resolver = new ActiveMQComponentResolver();
+         ActiveMQComponentResolver resolver = new ActiveMQComponentResolver(transactionConvention);
          SpringCamelContext camelContext = new SpringCamelContext(applicationContext);
          camelContext.afterPropertiesSet();
          return new CamelTransport(camelContext, resolver, invokeHandlerProcessor());

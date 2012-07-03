@@ -1,24 +1,22 @@
 package com.page5of4.codon.config;
 
 import org.apache.camel.spi.TransactedPolicy;
-import org.apache.camel.spring.spi.SpringTransactionPolicy;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.transaction.PlatformTransactionManager;
+
+import com.page5of4.codon.camel.AutomaticTransactionPolicy;
+import com.page5of4.codon.impl.JmsTransactionManagerConvention;
+import com.page5of4.codon.impl.TransactionConvention;
 
 @Configuration
 public class TransactionPolicyConfig {
-   public static final String TRANSACTION_POLICY_NAME = "PROPAGATION_REQUIRED";
+   @Bean
+   public TransactionConvention transactionConvention() {
+      return new JmsTransactionManagerConvention();
+   }
 
-   @Autowired
-   private PlatformTransactionManager platformTransactionManager;
-
-   @Bean(name = TRANSACTION_POLICY_NAME)
-   public TransactedPolicy propagationRequired() {
-      SpringTransactionPolicy policy = new SpringTransactionPolicy();
-      policy.setTransactionManager(platformTransactionManager);
-      policy.setPropagationBehaviorName(TRANSACTION_POLICY_NAME);
-      return policy;
+   @Bean
+   public TransactedPolicy transactedPolicy() {
+      return new AutomaticTransactionPolicy(transactionConvention());
    }
 }

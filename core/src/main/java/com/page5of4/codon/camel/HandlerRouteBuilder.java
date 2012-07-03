@@ -8,10 +8,16 @@ public class HandlerRouteBuilder extends RouteBuilder {
    private static final String ROUTE_ID_PREFIX = "listen:";
    private final InvokeHandlerProcessor handlerProcessor;
    private final String fromAddress;
+   private final String poisonAddress;
 
    public HandlerRouteBuilder(InvokeHandlerProcessor handlerProcessor, String fromAddress) {
+      this(handlerProcessor, fromAddress, fromAddress + ".poison");
+   }
+
+   public HandlerRouteBuilder(InvokeHandlerProcessor handlerProcessor, String fromAddress, String poisonAddress) {
       this.handlerProcessor = handlerProcessor;
       this.fromAddress = fromAddress;
+      this.poisonAddress = poisonAddress;
    }
 
    @Override
@@ -19,10 +25,10 @@ public class HandlerRouteBuilder extends RouteBuilder {
       PoisonProcessor poison = new PoisonProcessor();
       from(fromAddress).
             id(ROUTE_ID_PREFIX + fromAddress).
-            // transacted().
+            transacted().
             choice().
             when(poison).
-            to(fromAddress + ".poison").
+            to(poisonAddress).
             stop().
             end().
             doTry().

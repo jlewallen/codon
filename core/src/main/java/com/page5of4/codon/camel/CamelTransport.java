@@ -92,7 +92,7 @@ public class CamelTransport implements Transport {
       try {
          logger.debug("Sending {} -> {}", message, address);
          autoCreateDestination(address);
-         producer.send(toEndpointUri(address), new OutgoingProcessor(message));
+         producer.send(EndpointUri.fromEndpointAddress(address), new OutgoingProcessor(message));
       }
       catch(Exception e) {
          throw new BusException(String.format("Unable to send '%s' to '%s'", message, address), e);
@@ -105,7 +105,7 @@ public class CamelTransport implements Transport {
          synchronized(listenerMap) {
             if(!listenerMap.containsKey(address)) {
                autoCreateDestination(address);
-               HandlerRouteBuilder builder = new HandlerRouteBuilder(invokeHandlerProcessor, toEndpointUri(address));
+               HandlerRouteBuilder builder = new HandlerRouteBuilder(invokeHandlerProcessor, EndpointUri.fromEndpointAddress(address));
                ListeningOn listening = new ListeningOn(builder.getRouteCollection());
                listenerMap.put(address, listening);
                camelContext.addRoutes(builder);
@@ -139,10 +139,6 @@ public class CamelTransport implements Transport {
       catch(Exception e) {
          throw new BusException(String.format("Unable to listen on '%s'", address), e);
       }
-   }
-
-   private String toEndpointUri(EndpointAddress address) {
-      return String.format("%s:%s", address.getHost(), address.getPath());
    }
 
    private void autoCreateDestination(EndpointAddress address) {

@@ -12,16 +12,20 @@ import org.apache.camel.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jms.connection.JmsTransactionManager;
-import org.springframework.transaction.PlatformTransactionManager;
 
 import com.page5of4.codon.EndpointAddress;
+import com.page5of4.codon.impl.TransactionConvention;
 
 public class ActiveMQComponentResolver implements ComponentResolver {
    private static final Logger logger = LoggerFactory.getLogger(ActiveMQComponentResolver.class);
 
-   @Autowired(required = false)
-   private PlatformTransactionManager platformTransactionManager;
+   private final TransactionConvention transactionConvention;
+
+   @Autowired
+   public ActiveMQComponentResolver(TransactionConvention transactionConvention) {
+      super();
+      this.transactionConvention = transactionConvention;
+   }
 
    @Override
    public Component createComponent(EndpointAddress address, CamelContext camelContext) {
@@ -29,17 +33,11 @@ public class ActiveMQComponentResolver implements ComponentResolver {
       ActiveMQConfiguration configuration = new ActiveMQConfiguration();
       ActiveMQComponent component = new ActiveMQComponent(configuration);
       component.setCamelContext(camelContext);
-      component.setTransactionManager(platformTransactionManager);
       component.setBrokerURL("tcp://127.0.0.1:61616");
-
       component.setTransacted(true);
 
       ActiveMQConnectionFactory connectionFactory = getConnectionFactory(component.getConfiguration().getConnectionFactory());
-
-      if(platformTransactionManager == null) {
-         JmsTransactionManager manager = new JmsTransactionManager(connectionFactory);
-         component.setTransactionManager(manager);
-      }
+      component.setTransactionManager(transactionConvention.locate(address, connectionFactory));
 
       RedeliveryPolicy redeliveryPolicy = connectionFactory.getRedeliveryPolicy();
       redeliveryPolicy.setMaximumRedeliveries(4);

@@ -18,7 +18,7 @@ import com.page5of4.codon.impl.BusContextProvider;
 import com.page5of4.codon.impl.DefaultBus;
 
 @Configuration
-@Import(value = { CoreConfig.class, TransactionConfig.class })
+@Import(value = { CoreConfig.class })
 public class BusConfig {
    @Autowired
    private ApplicationContext applicationContext;

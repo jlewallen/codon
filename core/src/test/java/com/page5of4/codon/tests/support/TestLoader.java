@@ -27,6 +27,7 @@ public class TestLoader implements ContextLoader {
       applicationContext.register(PublisherConfig.class);
       applicationContext.register(ExposeCamelContextConfig.class);
       applicationContext.register(InMemorySubscriptionStorageConfig.class);
+      applicationContext.register(TestHandlersConfig.class);
       applicationContext.refresh();
       applicationContext.registerShutdownHook();
       return applicationContext;

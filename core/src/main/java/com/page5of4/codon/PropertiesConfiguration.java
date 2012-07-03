@@ -58,4 +58,24 @@ public class PropertiesConfiguration implements BusConfiguration {
    public String getLocalAddress(String messageType) {
       return String.format("%s:%s.{messageType}", localComponentName, applicationName);
    }
+
+   @Override
+   public CommunicationConfiguration findCommunicationConfiguration(String name) {
+      return new CommunicationConfiguration() {
+         {
+            setComponentName("activemq");
+         }
+      };
+   }
+
+   @Override
+   public ListenerConfiguration findListenerConfiguration(String name) {
+      ListenerConfiguration cfg = new ListenerConfiguration();
+      cfg.setId("listen:" + name);
+      cfg.setConcurrency(2);
+      cfg.setTransacted(true);
+      cfg.setListenAddress(name + "?concurrentConsumers=" + 2);
+      cfg.setPoisonAddress(name + ".posion");
+      return cfg;
+   }
 }

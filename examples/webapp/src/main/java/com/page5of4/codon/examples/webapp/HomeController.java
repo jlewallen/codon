@@ -49,7 +49,7 @@ public class HomeController {
       return new ModelAndView("home", "model", vm);
    }
 
-   @RequestMapping(value = "/begin", method = RequestMethod.GET)
+   @RequestMapping(value = "begin", method = RequestMethod.GET)
    public ModelAndView begin() {
       UUID id = UUID.randomUUID();
       StuffParameters parameters = new StuffParameters(id, "Jacob", 10L);

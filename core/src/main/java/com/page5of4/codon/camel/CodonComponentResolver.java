@@ -8,22 +8,31 @@ import org.apache.camel.spi.ComponentResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.page5of4.codon.BusConfiguration;
+import com.page5of4.codon.BusConfiguration.CommunicationConfiguration;
+import com.page5of4.codon.BusException;
 import com.page5of4.codon.impl.TransactionConvention;
 
 public class CodonComponentResolver implements ComponentResolver {
    private static final Logger logger = LoggerFactory.getLogger(CodonComponentResolver.class);
-   private static String TEMPLATE_COMPONENT_NAME = "activemq";
    private final DefaultComponentResolver resolver = new DefaultComponentResolver();
    private final TransactionConvention transactionConvention;
+   private final BusConfiguration configuration;
 
-   public CodonComponentResolver(TransactionConvention transactionConvention) {
+   public CodonComponentResolver(TransactionConvention transactionConvention, BusConfiguration configuration) {
       this.transactionConvention = transactionConvention;
+      this.configuration = configuration;
    }
 
    @Override
    public Component resolveComponent(String name, CamelContext camelContext) throws Exception {
       logger.info("Resolving '{}'", name);
-      Component resolved = resolver.resolveComponent(TEMPLATE_COMPONENT_NAME, camelContext);
+      CommunicationConfiguration cc = configuration.findCommunicationConfiguration(name);
+      if(cc == null) {
+         throw new BusException(String.format("No CommunicationConfiguration available for '%s'", name));
+      }
+      logger.info("Configuration {}", cc);
+      Component resolved = resolver.resolveComponent(cc.getComponentName(), camelContext);
       if(resolved instanceof JmsComponent) {
          JmsComponent jmsComponent = (JmsComponent)resolved;
          jmsComponent.setTransactionManager(transactionConvention.locate(name, jmsComponent.getConfiguration().getConnectionFactory()));

@@ -1,34 +1,32 @@
 package com.page5of4.codon.camel;
 
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.model.ProcessorDefinition;
 import org.springframework.stereotype.Service;
+
+import com.page5of4.codon.BusConfiguration.ListenerConfiguration;
 
 @Service
 public class HandlerRouteBuilder extends RouteBuilder {
-   private static final String ROUTE_ID_PREFIX = "listen:";
+   private final ListenerConfiguration listenerConfiguration;
    private final InvokeHandlerProcessor handlerProcessor;
-   private final String fromAddress;
-   private final String poisonAddress;
 
-   public HandlerRouteBuilder(InvokeHandlerProcessor handlerProcessor, String fromAddress) {
-      this(handlerProcessor, fromAddress, fromAddress + ".poison");
-   }
-
-   public HandlerRouteBuilder(InvokeHandlerProcessor handlerProcessor, String fromAddress, String poisonAddress) {
+   public HandlerRouteBuilder(ListenerConfiguration listenerConfiguration, InvokeHandlerProcessor handlerProcessor) {
+      this.listenerConfiguration = listenerConfiguration;
       this.handlerProcessor = handlerProcessor;
-      this.fromAddress = fromAddress;
-      this.poisonAddress = poisonAddress;
    }
 
    @Override
    public void configure() throws Exception {
       PoisonProcessor poison = new PoisonProcessor();
-      from(fromAddress).
-            id(ROUTE_ID_PREFIX + fromAddress).
-            transacted().
-            choice().
+      ProcessorDefinition<?> def = from(listenerConfiguration.getListenAddress()).
+            id(listenerConfiguration.getId());
+      if(listenerConfiguration.getTransacted()) {
+         def = def.transacted();
+      }
+      def.choice().
             when(poison).
-            to(poisonAddress).
+            to(listenerConfiguration.getPoisonAddress()).
             stop().
             end().
             doTry().

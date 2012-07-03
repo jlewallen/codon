@@ -39,8 +39,9 @@ public class BusBuilder {
    }
 
    public Bus build() {
-      TopologyConfiguration topologyConfiguration = new TopologyConfiguration(new PropertiesConfiguration("test", "testing-server"));
+      PropertiesConfiguration configuration = new PropertiesConfiguration("test", "testing-server");
+      TopologyConfiguration topologyConfiguration = new TopologyConfiguration(configuration);
       BusContextProvider contextProvider = new ConstantBusContextProvider(new BusContext(topologyConfiguration, subscriptionStorage));
-      return new DefaultBus(contextProvider, new DefaultCamelTransport(camelContext, new InvokeHandlerProcessor(handlerRegistry, contextProvider, null)));
+      return new DefaultBus(contextProvider, new DefaultCamelTransport(configuration, camelContext, new InvokeHandlerProcessor(handlerRegistry, contextProvider, null)));
    }
 }

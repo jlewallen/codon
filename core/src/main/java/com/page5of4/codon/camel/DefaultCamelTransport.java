@@ -14,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.page5of4.codon.BusConfiguration;
+import com.page5of4.codon.BusConfiguration.ListenerConfiguration;
 import com.page5of4.codon.BusException;
 import com.page5of4.codon.EndpointAddress;
 import com.page5of4.codon.Transport;
@@ -24,6 +26,7 @@ public class DefaultCamelTransport implements Transport {
    private final ModelCamelContext camelContext;
    private final ProducerTemplate producer;
    private final InvokeHandlerProcessor invokeHandlerProcessor;
+   private final BusConfiguration configuration;
 
    public static final String MESSAGE_TYPE_KEY = "messageType";
    public static final String REPLY_TO_ADDRESS_KEY = "replyTo";
@@ -33,7 +36,8 @@ public class DefaultCamelTransport implements Transport {
    }
 
    @Autowired
-   public DefaultCamelTransport(ModelCamelContext camelContext, InvokeHandlerProcessor invokeHandlerProcessor) {
+   public DefaultCamelTransport(BusConfiguration configuration, ModelCamelContext camelContext, InvokeHandlerProcessor invokeHandlerProcessor) {
+      this.configuration = configuration;
       this.camelContext = camelContext;
       this.invokeHandlerProcessor = invokeHandlerProcessor;
       this.producer = camelContext.createProducerTemplate();
@@ -75,7 +79,11 @@ public class DefaultCamelTransport implements Transport {
       try {
          synchronized(listenerMap) {
             if(!listenerMap.containsKey(address)) {
-               HandlerRouteBuilder builder = new HandlerRouteBuilder(invokeHandlerProcessor, EndpointUri.fromEndpointAddress(address));
+               ListenerConfiguration listenerConfiguration = configuration.findListenerConfiguration(address.toString());
+               if(listenerConfiguration == null) {
+                  throw new BusException(String.format("No ListenerConfiguration available for '%s'", address));
+               }
+               HandlerRouteBuilder builder = new HandlerRouteBuilder(listenerConfiguration, invokeHandlerProcessor);
                ListeningOn listening = new ListeningOn(builder.getRouteCollection());
                listenerMap.put(address, listening);
                camelContext.addRoutes(builder);

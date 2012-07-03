@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import com.page5of4.codon.Bus;
+import com.page5of4.codon.BusConfiguration;
 import com.page5of4.codon.BusException;
 import com.page5of4.codon.HandlerRegistry;
 import com.page5of4.codon.Transport;
@@ -29,6 +30,8 @@ public class BusConfig {
    private BusContextProvider contextProvider;
    @Autowired
    private TransactionConvention transactionConvention;
+   @Autowired
+   private BusConfiguration configuration;
 
    @Bean
    public Bus bus() {
@@ -39,9 +42,9 @@ public class BusConfig {
    public Transport transport() {
       try {
          SpringCamelContext camelContext = new SpringCamelContext(applicationContext);
-         camelContext.setComponentResolver(new CodonComponentResolver(transactionConvention));
+         camelContext.setComponentResolver(new CodonComponentResolver(transactionConvention, configuration));
          camelContext.afterPropertiesSet();
-         return new DefaultCamelTransport(camelContext, invokeHandlerProcessor());
+         return new DefaultCamelTransport(configuration, camelContext, invokeHandlerProcessor());
       }
       catch(Exception e) {
          throw new BusException(e);

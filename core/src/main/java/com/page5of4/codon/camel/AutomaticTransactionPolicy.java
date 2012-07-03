@@ -10,15 +10,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import com.page5of4.codon.BusConfiguration;
 import com.page5of4.codon.impl.TransactionConvention;
 
 public class AutomaticTransactionPolicy implements TransactedPolicy {
    private static final Logger logger = LoggerFactory.getLogger(AutomaticTransactionPolicy.class);
    private final TransactionConvention transactionConvention;
+   private final BusConfiguration configuration;
 
    @Autowired
-   public AutomaticTransactionPolicy(TransactionConvention transactionConvention) {
+   public AutomaticTransactionPolicy(BusConfiguration configuration, TransactionConvention transactionConvention) {
       super();
+      this.configuration = configuration;
       this.transactionConvention = transactionConvention;
    }
 

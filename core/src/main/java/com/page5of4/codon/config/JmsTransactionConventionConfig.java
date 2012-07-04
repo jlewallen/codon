@@ -11,7 +11,7 @@ import com.page5of4.codon.impl.JmsTransactionManagerConvention;
 import com.page5of4.codon.impl.TransactionConvention;
 
 @Configuration
-public class JmsOnlyTransactionConventionConfig {
+public class JmsTransactionConventionConfig {
    @Autowired
    private BusConfiguration configuration;
 

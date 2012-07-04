@@ -7,7 +7,7 @@ import org.springframework.test.context.ContextLoader;
 import com.page5of4.codon.config.InMemorySubscriptionStorageConfig;
 import com.page5of4.codon.config.PublisherConfig;
 import com.page5of4.codon.config.StandaloneConfig;
-import com.page5of4.codon.config.JmsOnlyTransactionConventionConfig;
+import com.page5of4.codon.config.JmsTransactionConventionConfig;
 
 /**
  * When we can use Spring 3.1.0, we should get rid of this.
@@ -28,7 +28,7 @@ public class TestLoader implements ContextLoader {
       applicationContext.register(PublisherConfig.class);
       applicationContext.register(ExposeCamelContextConfig.class);
       applicationContext.register(InMemorySubscriptionStorageConfig.class);
-      applicationContext.register(JmsOnlyTransactionConventionConfig.class);
+      applicationContext.register(JmsTransactionConventionConfig.class);
       applicationContext.register(TestHandlersConfig.class);
       applicationContext.refresh();
       applicationContext.registerShutdownHook();

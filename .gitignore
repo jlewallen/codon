@@ -3,3 +3,6 @@ target
 .classpath
 .settings
 derby.log
+*.swp
+tm*.log
+*.epoch

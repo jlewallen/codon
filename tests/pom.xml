@@ -201,5 +201,9 @@
 			<artifactId>org.eclipse.persistence.jpa</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf.dosgi</groupId>
+			<artifactId>cxf-dosgi-ri-discovery-distributed</artifactId>
+		</dependency>
 	</dependencies>
 </project>

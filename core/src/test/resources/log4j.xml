@@ -12,12 +12,15 @@
 		<level value="debug" />
 	</logger>
 	
+	<logger name="org.apache.activemq"><level value="warn" /></logger>
 	<logger name="org.apache.camel"><level value="info" /></logger>
 	<logger name="org.springframework.core"><level value="info" /></logger>
 	<logger name="org.springframework.beans"><level value="info" /></logger>
 	<logger name="org.springframework.context"><level value="info" /></logger>
 	<logger name="org.springframework.web"><level value="info" /></logger>
 	<logger name="org.hibernate.engine.jdbc.spi.SqlStatementLogger"><level value="trace" /></logger>
+
+	<logger name="com.atomikos"><level value="debug" /></logger>
 	
 	<!--
 	<logger name="org.apache.camel"><level value="trace" /></logger>

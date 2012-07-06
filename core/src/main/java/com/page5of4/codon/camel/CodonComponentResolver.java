@@ -37,6 +37,7 @@ public class CodonComponentResolver implements ComponentResolver {
          JmsComponent jmsComponent = (JmsComponent)resolved;
          jmsComponent.setTransactionManager(transactionConvention.locate(name, jmsComponent.getConfiguration().getConnectionFactory()));
          jmsComponent.setTransacted(true);
+         logger.info("Have {} {}", jmsComponent, jmsComponent.getConfiguration().getConnectionFactory());
       }
       return resolved;
    }

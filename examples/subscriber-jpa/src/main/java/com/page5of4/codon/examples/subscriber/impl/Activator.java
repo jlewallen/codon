@@ -11,11 +11,13 @@ public class Activator implements BundleActivator {
    @Override
    public void start(BundleContext bundleContext) throws Exception {
       logger.info("Registered...");
-      CommandLineService service = new CommandLineService(bundleContext);
-      service.listDudes();
+      ApplicationServiceImpl service = new ApplicationServiceImpl(bundleContext);
+      service.started();
       logger.info("Ready...");
    }
 
    @Override
-   public void stop(BundleContext bundleContext) throws Exception {}
+   public void stop(BundleContext bundleContext) throws Exception {
+
+   }
 }

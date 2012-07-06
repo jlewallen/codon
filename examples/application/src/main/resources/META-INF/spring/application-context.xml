@@ -21,6 +21,5 @@
   <context:component-scan base-package="com.page5of4.codon.examples.application"/>
   <camel:camelContext><camel:contextScan/></camel:camelContext>
 
-  <osgi:service ref="ourApplicationService" interface="com.page5of4.codon.examples.application.OurApplicationService" />
   <osgi:service ref="projectManagementService" interface="com.page5of4.codon.examples.application.ProjectManagementService" />
 </beans>

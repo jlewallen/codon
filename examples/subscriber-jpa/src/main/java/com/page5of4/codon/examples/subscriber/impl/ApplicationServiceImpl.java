@@ -17,17 +17,17 @@ import org.slf4j.LoggerFactory;
 
 import com.page5of4.codon.examples.subscriber.model.Person;
 
-public class CommandLineService {
-   private static final Logger logger = LoggerFactory.getLogger(CommandLineService.class);
-   private static final Object PERSISTENCE_UNIT = "jpa.example";
+public class ApplicationServiceImpl {
+   private static final Logger logger = LoggerFactory.getLogger(ApplicationServiceImpl.class);
+   private static final Object PERSISTENCE_UNIT = "codon.example.subscriber.jpa";
    private final BundleContext bundleContext;
 
-   public CommandLineService(BundleContext bundleContext) {
+   public ApplicationServiceImpl(BundleContext bundleContext) {
       super();
       this.bundleContext = bundleContext;
    }
 
-   public void listDudes() {
+   public void started() {
       try {
          ServiceReference reference = getEntityManagerFactoryServiceReference();
          try {
@@ -65,7 +65,7 @@ public class CommandLineService {
          return serviceReferences[0];
       }
       else {
-         throw new Exception("EntityManagerFactory is not available");
+         throw new Exception("EntityManagerFactory is unavailable");
       }
    }
 }

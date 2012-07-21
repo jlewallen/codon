@@ -41,6 +41,7 @@ public class CodonComponentResolver implements ComponentResolver {
       }
       else if(resolved == null) {
          logger.info("No component for '{}'", cc.getComponentName());
+         logger.info("Used {} / {}", camelContext, camelContext.getFactoryFinder(DefaultComponentResolver.RESOURCE_PATH));
       }
       return resolved;
    }

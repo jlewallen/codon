@@ -1,6 +1,8 @@
 package com.page5of4.codon.config;
 
+import org.apache.camel.osgi.OsgiSpringCamelContext;
 import org.apache.camel.spring.SpringCamelContext;
+import org.osgi.framework.Bundle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -41,7 +43,14 @@ public class BusConfig {
    @Bean
    public Transport transport() {
       try {
-         SpringCamelContext camelContext = new SpringCamelContext(applicationContext);
+         Bundle bundle = org.osgi.framework.FrameworkUtil.getBundle(CodonComponentResolver.class);
+         SpringCamelContext camelContext;
+         if(bundle == null) {
+            camelContext = new SpringCamelContext(applicationContext);
+         }
+         else {
+            camelContext = new OsgiSpringCamelContext(applicationContext, bundle.getBundleContext());
+         }
          camelContext.setComponentResolver(new CodonComponentResolver(transactionConvention, configuration));
          camelContext.afterPropertiesSet();
          return new DefaultCamelTransport(configuration, camelContext, invokeHandlerProcessor());

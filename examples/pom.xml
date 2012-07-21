@@ -27,6 +27,7 @@
 		<module>subscriber</module>
 		<module>subscriber-jpa</module>
 		<module>subscriber-riak</module>
+		<module>voldemort</module>
 		<module>webapp</module>
 		<module>env</module>
 	</modules>

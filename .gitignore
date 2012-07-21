@@ -6,3 +6,4 @@ derby.log
 *.swp
 tm*.log
 *.epoch
+voldemort-clusters

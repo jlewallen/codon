@@ -85,6 +85,10 @@
 			<id>eclipselink</id>
 			<url>http://download.eclipse.org/rt/eclipselink/maven.repo</url>
 		</repository>
+		<repository>
+			<id>page5of4</id>
+			<url>http://dev.page5of4.com/nexus/content/groups/public/</url>
+		</repository>
 	</repositories>
 
 	<pluginRepositories>
@@ -379,6 +383,11 @@
 				<artifactId>slf4j-log4j12</artifactId>
 				<version>${org.slf4j.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>1.2.16</version>
+			</dependency>
 
 			<dependency>
 				<groupId>org.hibernate</groupId>
@@ -596,6 +605,11 @@
 				<groupId>commons-lang</groupId>
 				<artifactId>commons-lang</artifactId>
 				<version>2.5</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>1.6</version>
 			</dependency>
 			<dependency>
 				<groupId>com.google.guava</groupId>

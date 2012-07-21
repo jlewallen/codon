@@ -39,6 +39,9 @@ public class CodonComponentResolver implements ComponentResolver {
          jmsComponent.setTransacted(true);
          logger.info("Have {} {}", jmsComponent, jmsComponent.getConfiguration().getConnectionFactory());
       }
+      else if(resolved == null) {
+         logger.info("No component for '{}'", cc.getComponentName());
+      }
       return resolved;
    }
 }

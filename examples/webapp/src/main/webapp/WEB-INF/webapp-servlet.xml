@@ -16,7 +16,6 @@
 	<context:component-scan base-package="com.page5of4.codon.examples.webapp" />
 
 	<osgi:reference id="configurationAdmin" interface="org.osgi.service.cm.ConfigurationAdmin" />
-	<osgi:reference id="ourApplicationService" interface="com.page5of4.codon.examples.application.OurApplicationService" />
 	<osgi:reference id="projectManagementService" interface="com.page5of4.codon.examples.application.ProjectManagementService" />
 
 	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">

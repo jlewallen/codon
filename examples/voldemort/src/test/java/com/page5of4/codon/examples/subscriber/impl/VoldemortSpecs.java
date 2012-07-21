@@ -1,6 +1,8 @@
 package com.page5of4.codon.examples.subscriber.impl;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.UUID;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -10,8 +12,10 @@ import voldemort.client.ClientConfig;
 import voldemort.client.SocketStoreClientFactory;
 import voldemort.client.StoreClient;
 import voldemort.client.StoreClientFactory;
+import voldemort.serialization.SerializerDefinition;
 import voldemort.versioning.Versioned;
 
+import com.page5of4.codon.examples.subscriber.impl.UserRegisteredHandler.User;
 import com.page5of4.codon.examples.subscriber.impl.VoldemortClusterBuilder.VoldemortCluster;
 
 public class VoldemortSpecs {
@@ -19,15 +23,26 @@ public class VoldemortSpecs {
 
    @Test
    public void test() throws IOException {
-      VoldemortCluster cluster = VoldemortClusterBuilder.make().numberOfNodes(2).withStringBackedStore("junk").start();
+      VoldemortCluster cluster = VoldemortClusterBuilder.make().
+            numberOfNodes(2).
+            withStore("junk", new SerializerDefinition("uuid"), new SerializerDefinition("gson", User.class.getName())).
+            start();
+
+      User user = new User(UUID.randomUUID(), "Jacob", "Lewallen", new Date());
 
       String bootstrapUrl = cluster.getBootstrapUrl();
-      StoreClientFactory factory = new SocketStoreClientFactory(new ClientConfig().setBootstrapUrls(bootstrapUrl));
-      StoreClient<String, String> client = factory.getStoreClient("junk");
-      Versioned<String> version = client.get("some_key", new Versioned<String>(""));
-      version.setObject("new_value");
-      client.put("some_key", version);
+      StoreClientFactory factory = new SocketStoreClientFactory(new ClientConfig().setSerializerFactory(new CustomSerializerFactory()).setBootstrapUrls(bootstrapUrl));
+      StoreClient<UUID, User> client = factory.getStoreClient("junk");
+
+      for(short i = 0; i < 10; ++i) {
+         Versioned<User> version = client.get(user.getId(), new Versioned<User>(null));
+         logger.info("Got: " + version.getValue());
+         version.setObject(user);
+         client.put(user.getId(), version);
+      }
 
       cluster.stop();
+
+      logger.info("Done");
    }
 }

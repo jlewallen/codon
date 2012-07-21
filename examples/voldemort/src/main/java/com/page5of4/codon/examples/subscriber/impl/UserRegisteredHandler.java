@@ -3,6 +3,7 @@ package com.page5of4.codon.examples.subscriber.impl;
 import java.util.Date;
 import java.util.UUID;
 
+import org.codehaus.jackson.annotate.JsonCreator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,7 @@ public class UserRegisteredHandler {
          return registeredAt;
       }
 
+      @JsonCreator
       public User(UUID id, String firstName, String lastName, Date registeredAt) {
          super();
          this.id = id;

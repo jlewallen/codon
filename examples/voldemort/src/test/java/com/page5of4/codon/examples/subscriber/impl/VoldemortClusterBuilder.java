@@ -76,6 +76,26 @@ public class VoldemortClusterBuilder {
       return with(createStoreDefinition("string", name, 2, 1, 1, 2, 2, RoutingStrategyType.CONSISTENT_STRATEGY));
    }
 
+   public VoldemortClusterBuilder withStore(String name, String keySerializer, String valueSerializer) {
+      return withStore(name, new SerializerDefinition(keySerializer), new SerializerDefinition(valueSerializer));
+   }
+
+   public VoldemortClusterBuilder withStore(String name, SerializerDefinition keySerializer, SerializerDefinition valueSerializer) {
+      return with(new StoreDefinitionBuilder().setName(name)
+            .setType(InMemoryStorageConfiguration.TYPE_NAME)
+            .setKeySerializer(keySerializer)
+            .setValueSerializer(valueSerializer)
+            .setRoutingPolicy(RoutingTier.SERVER)
+            .setRoutingStrategyType(RoutingStrategyType.CONSISTENT_STRATEGY)
+            .setReplicationFactor(2)
+            .setPreferredReads(1)
+            .setRequiredReads(1)
+            .setPreferredWrites(2)
+            .setRequiredWrites(2)
+            .setHintedHandoffStrategy(HintedHandoffStrategyType.ANY_STRATEGY)
+            .build());
+   }
+
    private StoreDefinition createStoreDefinition(String serializer, String storeName, int replicationFactor, int preads, int rreads, int pwrites, int rwrites, String strategyType) {
       SerializerDefinition serDef = new SerializerDefinition(serializer);
       return new StoreDefinitionBuilder().setName(storeName)

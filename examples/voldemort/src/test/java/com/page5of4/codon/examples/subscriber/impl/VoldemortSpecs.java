@@ -16,7 +16,9 @@ import voldemort.serialization.SerializerDefinition;
 import voldemort.versioning.Versioned;
 
 import com.page5of4.codon.examples.subscriber.impl.UserRegisteredHandler.User;
-import com.page5of4.codon.examples.subscriber.impl.VoldemortClusterBuilder.VoldemortCluster;
+import com.page5of4.nagini.CustomizableSerializerFactory;
+import com.page5of4.nagini.VoldemortClusterBuilder;
+import com.page5of4.nagini.VoldemortClusterBuilder.VoldemortCluster;
 
 public class VoldemortSpecs {
    private static final Logger logger = LoggerFactory.getLogger(VoldemortSpecs.class);
@@ -31,7 +33,7 @@ public class VoldemortSpecs {
       User user = new User(UUID.randomUUID(), "Jacob", "Lewallen", new Date());
 
       String bootstrapUrl = cluster.getBootstrapUrl();
-      StoreClientFactory factory = new SocketStoreClientFactory(new ClientConfig().setSerializerFactory(new CustomSerializerFactory()).setBootstrapUrls(bootstrapUrl));
+      StoreClientFactory factory = new SocketStoreClientFactory(new ClientConfig().setSerializerFactory(new CustomizableSerializerFactory()).setBootstrapUrls(bootstrapUrl));
       StoreClient<UUID, User> client = factory.getStoreClient("junk");
 
       for(short i = 0; i < 10; ++i) {

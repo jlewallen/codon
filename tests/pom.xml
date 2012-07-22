@@ -205,5 +205,10 @@
 			<groupId>org.apache.cxf.dosgi</groupId>
 			<artifactId>cxf-dosgi-ri-discovery-distributed</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>com.page5of4.commons</groupId>
+			<artifactId>mustache-mvc</artifactId>
+		</dependency>
 	</dependencies>
 </project>

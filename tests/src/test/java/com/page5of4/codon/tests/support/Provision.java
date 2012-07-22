@@ -39,11 +39,11 @@ public class Provision {
    }
 
    public Provision web() {
-      System.out.println(executor.executeCommands(
-            "osgi:install -s mvn:com.page5of4.codon.bundles/com.page5of4.codon.bundles.mustache-mvc/1.2.3-SNAPSHOT",
+      executor.executeCommands(
+            "osgi:install -s mvn:com.page5of4.commons/mustache-mvc/1.2.3-SNAPSHOT",
             "features:install spring-web",
             "features:install war"
-            ));
+            );
       return this;
    }
 

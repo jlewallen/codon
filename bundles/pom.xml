@@ -50,7 +50,6 @@
 	</build>
 
 	<modules>
-		<module>mustache-mvc</module>
 		<module>kryo</module>
 		<module>riak-client</module>
 		<module>jacc</module>

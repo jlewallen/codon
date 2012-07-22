@@ -22,8 +22,8 @@ import voldemort.versioning.Versioned;
 
 import com.page5of4.codon.tests.support.WithContainer;
 import com.page5of4.nagini.CustomizableSerializerFactory;
+import com.page5of4.nagini.VoldemortCluster;
 import com.page5of4.nagini.VoldemortClusterBuilder;
-import com.page5of4.nagini.VoldemortClusterBuilder.VoldemortCluster;
 
 @RunWith(JUnit4TestRunner.class)
 @ExamReactorStrategy(AllConfinedStagedReactorFactory.class)

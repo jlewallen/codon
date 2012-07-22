@@ -665,4 +665,16 @@
 			</modules>
 		</profile>
 	</profiles>
+
+	<distributionManagement>
+		<repository>
+			<id>page5of4-releases</id>
+			<url>http://dev.page5of4.com/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>page5of4-snapshots</id>
+			<url>http://dev.page5of4.com/nexus/content/repositories/snapshots</url>
+			<uniqueVersion>false</uniqueVersion>
+		</snapshotRepository>
+	</distributionManagement>
 </project>

@@ -483,6 +483,11 @@
 				<artifactId>mustache-mvc</artifactId>
 				<version>${com.page5of4.mustache-mvc.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.page5of4.nagini</groupId>
+				<artifactId>nagini</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
 
 			<dependency>
 				<groupId>javax.servlet</groupId>

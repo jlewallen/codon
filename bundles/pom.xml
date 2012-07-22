@@ -55,5 +55,6 @@
 		<module>jacc</module>
 		<module>hibernate</module>
 		<module>eclipselink</module>
+		<module>voldemort</module>
 	</modules>
 </project>

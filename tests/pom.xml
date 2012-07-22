@@ -210,5 +210,9 @@
 			<groupId>com.page5of4.commons</groupId>
 			<artifactId>mustache-mvc</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.page5of4.nagini</groupId>
+			<artifactId>nagini</artifactId>
+		</dependency>
 	</dependencies>
 </project>

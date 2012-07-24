@@ -645,6 +645,7 @@
 				<module>bundles</module>
 				<module>useful</module>
 				<module>core</module>
+				<module>persistence</module>
 				<module>extender</module>
 				<module>examples</module>
 				<module>tests</module>
@@ -655,6 +656,7 @@
 			<modules>
 				<module>useful</module>
 				<module>core</module>
+				<module>persistence</module>
 				<module>extender</module>
 				<module>examples</module>
 			</modules>
@@ -665,6 +667,7 @@
 				<module>bundles</module>
 				<module>useful</module>
 				<module>core</module>
+				<module>persistence</module>
 				<module>extender</module>
 				<module>examples</module>
 			</modules>

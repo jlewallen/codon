@@ -34,7 +34,9 @@
 				<configuration>
 					<instructions>
 						<Export-Package>
-							com.page5of4.codon.useful
+							com.page5of4.codon.useful,
+							com.page5of4.codon.useful.spring,
+							com.page5of4.codon.useful.repositories
 						</Export-Package>
 						<Import-Package>
 							net.sf.cglib.proxy,

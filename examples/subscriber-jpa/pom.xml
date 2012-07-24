@@ -37,8 +37,8 @@
 							com.page5of4.codon.examples.messages,
 							<!-- common -->
 							org.springframework.beans.factory.config,
-							org.springframework.stereotype; version=${spring.version},
-							org.springframework.context.annotation; version=${spring.version},
+							org.springframework.stereotype,
+							org.springframework.context.annotation,
 							org.apache.activemq.camel.component,
 							org.apache.camel,
 							net.sf.cglib.proxy,

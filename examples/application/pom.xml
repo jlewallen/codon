@@ -38,9 +38,8 @@
 							com.page5of4.codon.examples.messages,
 							<!-- common -->
 							org.springframework.beans.factory.config,
-							org.springframework.stereotype; version=${spring.version},
-							org.springframework.context.annotation;
-							version=${spring.version},
+							org.springframework.stereotype,
+							org.springframework.context.annotation,
 							org.apache.activemq.camel.component,
 							org.apache.camel,
 							net.sf.cglib.proxy,
@@ -58,6 +57,22 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>codon-examples-messages</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.page5of4.codon</groupId>
+			<artifactId>codon-useful</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.page5of4.codon</groupId>
+			<artifactId>codon-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 		</dependency>
@@ -73,24 +88,6 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>codon-examples-messages</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.page5of4.codon</groupId>
-			<artifactId>codon-useful</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.page5of4.codon</groupId>
-			<artifactId>codon-core</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
 		</dependency>
 
 		<dependency>

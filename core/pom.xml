@@ -42,8 +42,8 @@
 						</Export-Package>
 						<Import-Package>
 							org.springframework.beans.factory.config,
-							org.springframework.stereotype; version=${spring.version},
-							org.springframework.context.annotation; version=${spring.version},
+							org.springframework.stereotype,
+							org.springframework.context.annotation,
 							org.apache.activemq.camel.component,
 							org.apache.camel,
 							net.sf.cglib.proxy,
@@ -97,9 +97,32 @@
 			<groupId>org.apache.activemq</groupId>
 			<artifactId>activemq-camel</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.osgi</groupId>
+			<artifactId>spring-osgi-core</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>org.springframework.core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>org.springframework.beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>org.springframework.aop</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>org.springframework.context</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -133,14 +156,15 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>

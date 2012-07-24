@@ -1,4 +1,4 @@
-package com.page5of4.codon.examples.application.model;
+package com.page5of4.codon.examples.application.domain;
 
 import java.util.Date;
 import java.util.UUID;

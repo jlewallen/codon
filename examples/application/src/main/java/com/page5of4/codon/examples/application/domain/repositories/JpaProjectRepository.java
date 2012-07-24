@@ -1,11 +1,11 @@
-package com.page5of4.codon.examples.application.model.repositories;
+package com.page5of4.codon.examples.application.domain.repositories;
 
 import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.page5of4.codon.examples.application.model.Project;
+import com.page5of4.codon.examples.application.domain.Project;
 
 public class JpaProjectRepository implements ProjectRepository {
    @PersistenceContext

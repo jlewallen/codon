@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.page5of4.codon.Bus;
 import com.page5of4.codon.examples.application.ProjectDto;
 import com.page5of4.codon.examples.application.ProjectManagementService;
-import com.page5of4.codon.examples.application.model.Project;
-import com.page5of4.codon.examples.application.model.repositories.ProjectRepository;
+import com.page5of4.codon.examples.application.domain.Project;
+import com.page5of4.codon.examples.application.domain.repositories.ProjectRepository;
 
 @Transactional
 public class ProjectManagementServiceImpl implements ProjectManagementService {

@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Import;
 
 import com.page5of4.codon.Bus;
 import com.page5of4.codon.examples.application.ProjectManagementService;
+import com.page5of4.codon.examples.application.domain.ProjectEvents;
+import com.page5of4.codon.examples.application.domain.repositories.JpaProjectRepository;
+import com.page5of4.codon.examples.application.domain.repositories.ProjectRepository;
 import com.page5of4.codon.examples.application.impl.ProjectManagementServiceImpl;
-import com.page5of4.codon.examples.application.model.ProjectEvents;
-import com.page5of4.codon.examples.application.model.repositories.JpaProjectRepository;
-import com.page5of4.codon.examples.application.model.repositories.ProjectRepository;
 import com.page5of4.codon.useful.DomainEventsConfig;
 
 @Configuration

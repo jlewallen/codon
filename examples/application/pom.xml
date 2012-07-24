@@ -39,7 +39,8 @@
 							<!-- common -->
 							org.springframework.beans.factory.config,
 							org.springframework.stereotype; version=${spring.version},
-							org.springframework.context.annotation; version=${spring.version},
+							org.springframework.context.annotation;
+							version=${spring.version},
 							org.apache.activemq.camel.component,
 							org.apache.camel,
 							net.sf.cglib.proxy,
@@ -113,6 +114,11 @@
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib-nodep</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

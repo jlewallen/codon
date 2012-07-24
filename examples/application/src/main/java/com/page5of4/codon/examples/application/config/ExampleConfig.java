@@ -11,9 +11,9 @@ import org.springframework.context.annotation.Import;
 import com.page5of4.codon.Bus;
 import com.page5of4.codon.camel.OutgoingProcessor;
 import com.page5of4.codon.camel.SendLocalProcessor;
+import com.page5of4.codon.config.OsgiBusConfig;
 import com.page5of4.codon.examples.application.impl.Publisher;
 import com.page5of4.codon.examples.messages.LaunchWorkMessage;
-import com.page5of4.codon.extender.config.OsgiBusConfig;
 
 @Configuration
 @Import(value = { EnvironmentConfig.class, OsgiBusConfig.class, ApplicationConfig.class })

@@ -1,4 +1,4 @@
-package com.page5of4.codon.extender.config;
+package com.page5of4.codon.config;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,9 +19,6 @@ import com.page5of4.codon.Bus;
 import com.page5of4.codon.BusModule;
 import com.page5of4.codon.BusModule.ModuleMode;
 import com.page5of4.codon.HandlerRegistry;
-import com.page5of4.codon.config.ClientConfig;
-import com.page5of4.codon.config.CoreConfig;
-import com.page5of4.codon.config.PublisherConfig;
 
 @Configuration
 @Import(value = { CoreConfig.class, PublisherConfig.class, ClientConfig.class })

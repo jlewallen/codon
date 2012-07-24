@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import com.page5of4.codon.Bus;
-import com.page5of4.codon.extender.config.OsgiBusConfig;
+import com.page5of4.codon.config.OsgiBusConfig;
 
 @Configuration
 @Import(value = { EnvironmentConfig.class, OsgiBusConfig.class })

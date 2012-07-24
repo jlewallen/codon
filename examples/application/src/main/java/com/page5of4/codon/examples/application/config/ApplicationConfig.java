@@ -1,7 +1,6 @@
 package com.page5of4.codon.examples.application.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -10,6 +9,7 @@ import com.page5of4.codon.Bus;
 import com.page5of4.codon.examples.application.ProjectManagementService;
 import com.page5of4.codon.examples.application.impl.ProjectManagementServiceImpl;
 import com.page5of4.codon.examples.application.model.ProjectEvents;
+import com.page5of4.codon.examples.application.model.repositories.JpaProjectRepository;
 import com.page5of4.codon.examples.application.model.repositories.ProjectRepository;
 import com.page5of4.codon.useful.DomainEventsConfig;
 
@@ -26,7 +26,7 @@ public class ApplicationConfig {
 
    @Bean
    public ProjectRepository projectRepository() {
-      return new ProjectRepository();
+      return new JpaProjectRepository();
    }
 
    @Bean

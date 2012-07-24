@@ -27,25 +27,25 @@ public class ProjectManagementServiceImpl implements ProjectManagementService {
    @Override
    public void defineProject(ProjectDto projectDto) {
       Project project = new Project(projectDto.getId(), projectDto.getTitle(), projectDto.getOwner(), projectDto.getHoursRequired(), projectDto.getDefinedAt());
-      projectRepository.add(project);
+      projectRepository.add(projectDto.getId(), project);
       project.defined();
    }
 
    @Override
    public void startProject(UUID id, Date date) {
-      Project project = projectRepository.findById(id);
+      Project project = projectRepository.get(id);
       project.start();
    }
 
    @Override
    public void abandonProject(UUID id, Date date, String reason) {
-      Project project = projectRepository.findById(id);
+      Project project = projectRepository.get(id);
       project.abandon(reason);
    }
 
    @Override
    public void completeProject(UUID id, Date date) {
-      Project project = projectRepository.findById(id);
+      Project project = projectRepository.get(id);
       project.complete();
    }
 }

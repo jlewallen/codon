@@ -52,7 +52,7 @@ public class ProjectManagementServiceSpecs {
    public void when_starting_a_new_project_should_publish_project_started_message() {
       UUID id = UUID.randomUUID();
       Project project = new Project(id, "Codon", "Jacob Lewallen", 1000L, new Date());
-      when(projectRepository.findById(id)).thenReturn(project);
+      when(projectRepository.get(id)).thenReturn(project);
 
       service.startProject(id, new Date());
 
@@ -63,7 +63,7 @@ public class ProjectManagementServiceSpecs {
    public void when_abandoning_a_new_project_should_publish_project_abandoned_message() {
       UUID id = UUID.randomUUID();
       Project project = new Project(id, "Codon", "Jacob Lewallen", 1000L, new Date());
-      when(projectRepository.findById(id)).thenReturn(project);
+      when(projectRepository.get(id)).thenReturn(project);
 
       service.abandonProject(id, new Date(), "Tired");
 
@@ -75,7 +75,7 @@ public class ProjectManagementServiceSpecs {
       UUID id = UUID.randomUUID();
       Project project = new Project(id, "Codon", "Jacob Lewallen", 1000L, new Date());
       project.start();
-      when(projectRepository.findById(id)).thenReturn(project);
+      when(projectRepository.get(id)).thenReturn(project);
 
       service.completeProject(id, new Date());
 
@@ -86,7 +86,7 @@ public class ProjectManagementServiceSpecs {
    public void when_completing_a_new_project_should_publish_project_completed() {
       UUID id = UUID.randomUUID();
       Project project = new Project(id, "Codon", "Jacob Lewallen", 1000L, new Date());
-      when(projectRepository.findById(id)).thenReturn(project);
+      when(projectRepository.get(id)).thenReturn(project);
 
       service.completeProject(id, new Date());
    }

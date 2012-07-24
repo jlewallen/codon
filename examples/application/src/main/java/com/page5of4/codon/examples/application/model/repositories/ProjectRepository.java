@@ -2,23 +2,9 @@ package com.page5of4.codon.examples.application.model.repositories;
 
 import java.util.UUID;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
-import org.springframework.stereotype.Service;
-
 import com.page5of4.codon.examples.application.model.Project;
+import com.page5of4.codon.useful.repositories.Repository;
 
-@Service
-public class ProjectRepository {
-   @PersistenceContext
-   private EntityManager entityManager;
+public interface ProjectRepository extends Repository<UUID, Project> {
 
-   public Project findById(UUID id) {
-      return null;
-   }
-
-   public void add(Project project) {
-
-   }
 }

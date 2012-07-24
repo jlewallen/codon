@@ -25,7 +25,7 @@ import com.page5of4.codon.config.PublisherConfig;
 
 @Configuration
 @Import(value = { CoreConfig.class, PublisherConfig.class, ClientConfig.class })
-public class ExtenderConfig implements BeanClassLoaderAware {
+public class OsgiBusConfig implements BeanClassLoaderAware {
    @Autowired
    private BundleContext bundleContext;
    @Autowired

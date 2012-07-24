@@ -35,7 +35,8 @@
 					<instructions>
 						<Export-Package>
 							com.page5of4.codon.extender,
-							com.page5of4.codon.extender.config
+							com.page5of4.codon.extender.config,
+							com.page5of4.codon.extender.spring
 						</Export-Package>
 						<Import-Package>
 							com.page5of4.codon,
@@ -51,7 +52,7 @@
 							net.sf.cglib.reflect,
 							*
 						</Import-Package>
-						<Bundle-Activator>com.page5of4.codon.extender.Activator</Bundle-Activator>
+						<Bundle-Activator>com.page5of4.codon.extender.internal.Activator</Bundle-Activator>
 						<Bundle-SymbolicName>com.page5of4.codon.extender</Bundle-SymbolicName>
 					</instructions>
 				</configuration>

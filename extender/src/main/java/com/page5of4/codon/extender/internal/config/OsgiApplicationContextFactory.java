@@ -1,4 +1,4 @@
-package com.page5of4.codon.extender;
+package com.page5of4.codon.extender.internal.config;
 
 import java.util.concurrent.Callable;
 
@@ -7,8 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.osgi.context.support.OsgiBundleXmlApplicationContext;
 
-import com.page5of4.codon.extender.config.BundleConfig;
-import com.page5of4.codon.extender.config.OsgiConfig;
+import com.page5of4.codon.extender.internal.ContextClassLoaderUtils;
 
 public class OsgiApplicationContextFactory {
    private final BundleContext extenderContext;
@@ -27,8 +26,8 @@ public class OsgiApplicationContextFactory {
       AnnotationConfigApplicationContext childContext = new AnnotationConfigApplicationContext();
       childContext.setClassLoader(applicationContext.getClassLoader());
       childContext.setParent(applicationContext);
-      childContext.register(BundleConfig.class);
-      childContext.register(OsgiConfig.class);
+      childContext.register(DefaultBusConfigurationConfig.class);
+      childContext.register(BusRegistrationConfig.class);
       childContext.refresh();
 
       return applicationContext;

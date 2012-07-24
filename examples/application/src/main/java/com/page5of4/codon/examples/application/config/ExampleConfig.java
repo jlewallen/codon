@@ -13,10 +13,10 @@ import com.page5of4.codon.camel.OutgoingProcessor;
 import com.page5of4.codon.camel.SendLocalProcessor;
 import com.page5of4.codon.examples.application.impl.Publisher;
 import com.page5of4.codon.examples.messages.LaunchWorkMessage;
-import com.page5of4.codon.extender.config.ExtenderConfig;
+import com.page5of4.codon.extender.config.OsgiBusConfig;
 
 @Configuration
-@Import(value = { EnvironmentConfig.class, ExtenderConfig.class, ApplicationConfig.class })
+@Import(value = { EnvironmentConfig.class, OsgiBusConfig.class, ApplicationConfig.class })
 public class ExampleConfig {
    @Autowired
    private Bus bus;

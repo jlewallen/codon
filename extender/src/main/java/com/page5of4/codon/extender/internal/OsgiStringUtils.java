@@ -1,4 +1,4 @@
-package com.page5of4.codon.extender;
+package com.page5of4.codon.extender.internal;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleEvent;

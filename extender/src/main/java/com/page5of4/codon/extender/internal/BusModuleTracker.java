@@ -1,4 +1,4 @@
-package com.page5of4.codon.extender;
+package com.page5of4.codon.extender.internal;
 
 import org.osgi.framework.ServiceReference;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;

@@ -1,4 +1,4 @@
-package com.page5of4.codon.extender;
+package com.page5of4.codon.extender.internal;
 
 import java.util.Dictionary;
 import java.util.concurrent.Callable;
@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import com.page5of4.codon.Bus;
 import com.page5of4.codon.BusModule;
+import com.page5of4.codon.extender.internal.config.OsgiApplicationContextFactory;
 
 public class Activator implements BundleTrackerCustomizer, BundleActivator {
    private static final Logger logger = LoggerFactory.getLogger(Activator.class);

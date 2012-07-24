@@ -1,4 +1,4 @@
-package com.page5of4.codon.extender.config;
+package com.page5of4.codon.extender.internal.config;
 
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;

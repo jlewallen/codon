@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Import;
 
 import com.page5of4.codon.Bus;
 import com.page5of4.codon.examples.subscriber.impl.UserRegisteredHandler;
-import com.page5of4.codon.extender.config.ExtenderConfig;
+import com.page5of4.codon.extender.config.OsgiBusConfig;
 
 @Configuration
-@Import(value = { EnvironmentConfig.class, ExtenderConfig.class })
+@Import(value = { EnvironmentConfig.class, OsgiBusConfig.class })
 public class ExampleConfig {
    @Autowired
    private Bus bus;

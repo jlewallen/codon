@@ -3,6 +3,8 @@ package com.page5of4.codon.useful.repositories;
 import org.springframework.aop.framework.ProxyFactory;
 
 public class Repositories {
+   public static final String PERSISTENCE_PROVIDER_PROPERTY = "codon.persistence.provider";
+
    public static <T extends Repository<?, ?>> T create(Class<T> repositoryClass, Class<? extends RepositoryFactory> factoryClass) {
       try {
          return create(repositoryClass, factoryClass.newInstance());

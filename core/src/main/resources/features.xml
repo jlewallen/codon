@@ -21,6 +21,8 @@
 		<bundle start-level='90'>mvn:${main.project.groupId}/codon-useful/${project.version}</bundle>
 		<bundle start-level='90'>mvn:${main.project.groupId}/codon-core/${project.version}</bundle>
 		<bundle start-level='90'>mvn:${main.project.groupId}/codon-extender/${project.version}</bundle>
+		<bundle start-level='90'>mvn:${main.project.groupId}/codon-persistence-memory/${project.version}</bundle>
+		<bundle start-level='90'>mvn:${main.project.groupId}/codon-persistence-jpa/${project.version}</bundle>
 	</feature>
 
 	<feature name="codon-example" version="${project.version}">

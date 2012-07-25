@@ -33,6 +33,7 @@
 							*
 						</Import-Package>
 						<Bundle-SymbolicName>com.page5of4.codon.persistence.memory</Bundle-SymbolicName>
+						<Bundle-Activator>com.page5of4.codon.persistence.memory.extender.Activator</Bundle-Activator>
 					</instructions>
 				</configuration>
 			</plugin>
@@ -53,6 +54,10 @@
 		<dependency>
 			<groupId>org.osgi</groupId>
 			<artifactId>org.osgi.enterprise</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
 		</dependency>
 
 		<dependency>

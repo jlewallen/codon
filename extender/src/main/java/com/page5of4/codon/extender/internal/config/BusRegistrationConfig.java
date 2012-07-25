@@ -16,7 +16,7 @@ import com.page5of4.codon.config.BusConfig;
 import com.page5of4.codon.config.ConstantBusContextConfig;
 import com.page5of4.codon.config.JmsTransactionConventionConfig;
 import com.page5of4.codon.config.XmlSubscriptionStorageConfig;
-import com.page5of4.codon.extender.internal.impl.OsgiHandlerRegistry;
+import com.page5of4.codon.extender.internal.OsgiHandlerRegistry;
 
 @Configuration
 @Import(value = { SpringConfig.class, BusConfig.class, XmlSubscriptionStorageConfig.class, JmsTransactionConventionConfig.class, ConstantBusContextConfig.class })

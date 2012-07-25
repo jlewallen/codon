@@ -1,4 +1,4 @@
-package com.page5of4.codon.extender.internal.impl;
+package com.page5of4.codon.extender.internal;
 
 import java.util.ArrayList;
 import java.util.Arrays;

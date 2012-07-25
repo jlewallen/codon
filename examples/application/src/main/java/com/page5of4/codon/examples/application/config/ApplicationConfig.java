@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Import;
 import com.page5of4.codon.Bus;
 import com.page5of4.codon.examples.application.ProjectManagementService;
 import com.page5of4.codon.examples.application.domain.ProjectEvents;
-import com.page5of4.codon.examples.application.domain.repositories.JpaProjectRepository;
 import com.page5of4.codon.examples.application.domain.repositories.ProjectRepository;
 import com.page5of4.codon.examples.application.impl.ProjectManagementServiceImpl;
 import com.page5of4.codon.useful.DomainEventsConfig;
@@ -18,15 +17,12 @@ import com.page5of4.codon.useful.DomainEventsConfig;
 public class ApplicationConfig {
    @Autowired
    private Bus bus;
+   @Autowired
+   private ProjectRepository projectRepository;
 
    @Bean
    public ProjectManagementService projectManagementService() {
-      return new ProjectManagementServiceImpl(projectRepository(), bus);
-   }
-
-   @Bean
-   public ProjectRepository projectRepository() {
-      return new JpaProjectRepository();
+      return new ProjectManagementServiceImpl(projectRepository, bus);
    }
 
    @Bean

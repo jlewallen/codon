@@ -23,8 +23,7 @@ import com.page5of4.codon.tests.support.WithContainer;
 public class WithCoreInstalledSpecs extends WithContainer {
    @Configuration
    public Option[] config() {
-      return new Option[] { commonConfiguration(),
-      };
+      return new Option[] { commonConfiguration() };
    }
 
    @Before

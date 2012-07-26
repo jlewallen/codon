@@ -59,7 +59,7 @@ public class WithContainer {
 
    public CompositeOption commonConfiguration() {
       return new DefaultCompositeOption(
-            karafDistributionConfiguration().frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").versionAsInProject().type("zip")).karafVersion("2.2.4").name("Apache Karaf"),
+            container(),
             loggingOptions(),
             debuggingOptions(),
             runtimeFolderOption(),
@@ -68,7 +68,10 @@ public class WithContainer {
             commonBundles(),
             festAssert(),
             junitBundles());
+   }
 
+   protected Option container() {
+      return karafDistributionConfiguration().frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").versionAsInProject().type("zip")).karafVersion("2.2.4").name("Apache Karaf");
    }
 
    private Option commonBundles() {

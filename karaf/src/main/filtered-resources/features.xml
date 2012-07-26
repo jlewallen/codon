@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="codon-karaf-${project.version}">
+
+	<feature name="codon-karaf-dependencies" version="${project.version}">
+		<feature>spring</feature>
+		<feature>spring-dm</feature>
+		<feature version="${camel.version}">camel-spring</feature>
+
+		<bundle>mvn:org.springframework/spring-core/${spring.version}</bundle>
+		<bundle>mvn:org.springframework/spring-context/${spring.version}</bundle>
+		<bundle>mvn:org.springframework/spring-web/${spring.version}</bundle>
+		<bundle>mvn:org.springframework/spring-webmvc/${spring.version}</bundle>
+		<bundle>mvn:org.springframework.osgi/spring-osgi-web/${spring.osgi.version}</bundle>
+
+		<bundle>mvn:org.codehaus.jackson/jackson-core-asl/1.7.5</bundle>
+		<bundle>mvn:org.codehaus.jackson/jackson-mapper-asl/1.7.5</bundle>
+		<bundle>mvn:com.google.guava/guava/12.0</bundle>
+
+		<bundle>mvn:org.apache.activemq/activemq-camel/5.5.0</bundle>
+
+		<bundle>mvn:org.apache.geronimo.specs/geronimo-jpa_2.0_spec/1.1</bundle>
+		<bundle>mvn:org.apache.derby/derby/10.8.1.2</bundle>
+
+		<bundle>mvn:commons-collections/commons-collections/3.2.1</bundle>
+		<bundle>mvn:org.apache.geronimo.specs/geronimo-jta_1.1_spec/1.1.1</bundle>
+		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.serp/1.13.1_3</bundle>
+		<bundle>mvn:org.apache.aries/org.apache.aries.util/0.3</bundle>
+		<bundle>mvn:org.apache.aries.jpa/org.apache.aries.jpa.api/0.3</bundle>
+		<bundle>mvn:org.apache.aries.jpa/org.apache.aries.jpa.container/0.3</bundle>
+		<bundle>mvn:org.apache.aries.transaction/org.apache.aries.transaction.manager/0.3</bundle>
+
+		<bundle>mvn:javax.persistence/com.springsource.javax.persistence/2.0.0</bundle>
+		<bundle>mvn:javax.transaction/com.springsource.javax.transaction/1.1.0</bundle>
+		<bundle>mvn:org.apache.commons/com.springsource.org.apache.commons.collections/3.2.1</bundle>
+
+		<bundle>mvn:org.eclipse.persistence/org.eclipse.persistence.antlr/2.2.0</bundle>
+		<bundle>mvn:org.eclipse.persistence/org.eclipse.persistence.core/2.2.0</bundle>
+		<bundle>mvn:org.eclipse.persistence/org.eclipse.persistence.asm/2.2.0</bundle>
+		<bundle>mvn:org.eclipse.persistence/org.eclipse.persistence.jpa/2.2.0</bundle>
+
+		<bundle>mvn:com.atomikos/transactions-osgi/3.8.0</bundle>
+
+		<bundle>mvn:org.apache.derby/derby/10.8.1.2</bundle>
+		<bundle>mvn:com.h2database/h2/1.3.167</bundle>
+
+		<bundle>mvn:com.page5of4.commons/mustache-mvc/1.2.3-SNAPSHOT</bundle>
+	</feature>
+</features>

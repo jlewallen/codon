@@ -15,6 +15,7 @@
 		<main.project.groupId>${project.groupId}</main.project.groupId>
 		<examples.project.groupId>${project.groupId}.examples</examples.project.groupId>
 
+		<karaf.version>2.2.4</karaf.version>
 		<camel.version>2.9.2</camel.version>
 		<activemq.version>5.5.0</activemq.version>
 		<osgi.core.version>4.2.0</osgi.core.version>
@@ -715,6 +716,7 @@
 				<module>persistence</module>
 				<module>extender</module>
 				<module>examples</module>
+				<module>karaf</module>
 				<module>tests</module>
 			</modules>
 		</profile>
@@ -726,6 +728,7 @@
 				<module>persistence</module>
 				<module>extender</module>
 				<module>examples</module>
+				<module>karaf</module>
 			</modules>
 		</profile>
 		<profile>
@@ -737,6 +740,7 @@
 				<module>persistence</module>
 				<module>extender</module>
 				<module>examples</module>
+				<module>karaf</module>
 			</modules>
 		</profile>
 	</profiles>

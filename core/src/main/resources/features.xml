@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<features name="message-stream-${project.version}">
+<features name="codon-${project.version}">
 
 	<feature name="codon-dependencies" version="${project.version}">
 		<feature>spring</feature>
@@ -21,6 +21,9 @@
 		<bundle start-level='90'>mvn:${main.project.groupId}/codon-useful/${project.version}</bundle>
 		<bundle start-level='90'>mvn:${main.project.groupId}/codon-core/${project.version}</bundle>
 		<bundle start-level='90'>mvn:${main.project.groupId}/codon-extender/${project.version}</bundle>
+	</feature>
+
+	<feature name="codon-persistence" version="${project.version}">
 		<bundle start-level='90'>mvn:${main.project.groupId}/codon-persistence-memory/${project.version}</bundle>
 		<bundle start-level='90'>mvn:${main.project.groupId}/codon-persistence-jpa/${project.version}</bundle>
 	</feature>
@@ -36,7 +39,6 @@
 	
 	<feature name="codon-example-subscribers" version="${project.version}">
 		<bundle start-level='90'>mvn:${examples.project.groupId}/codon-examples-subscriber/${project.version}</bundle>
-		<bundle start-level='90'>mvn:${examples.project.groupId}/codon-examples-subscriber-hibernate/${project.version}</bundle>
 	</feature>
 
 	<feature name="codon-example-webapp" version="${project.version}">

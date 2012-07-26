@@ -70,8 +70,8 @@ public class WithContainer {
             junitBundles());
    }
 
-   protected Option container() {
-      return karafDistributionConfiguration().frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").versionAsInProject().type("zip")).karafVersion("2.2.4").name("Apache Karaf");
+   private Option container() {
+      return karafDistributionConfiguration().frameworkUrl(maven().groupId("com.page5of4.codon").artifactId("codon-karaf").version("1.0.0-SNAPSHOT").type("tar.gz")).karafVersion("2.2.8").name("Codon");
    }
 
    private Option commonBundles() {

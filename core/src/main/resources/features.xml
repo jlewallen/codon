@@ -6,6 +6,7 @@
 		<feature>spring</feature>
 		<feature>spring-dm</feature>
 		<feature>activemq</feature>
+		<feature>codon-web</feature>
 
 		<feature version="${camel.version}">camel-spring</feature>
 		<feature version="${camel.version}">camel-jaxb</feature>
@@ -17,12 +18,8 @@
 		<bundle start-level='71'>mvn:org.apache.activemq/activemq-camel/5.5.0</bundle>
 		<bundle start-level='71'>mvn:org.springframework/spring-core/${spring.version}</bundle>
 		<bundle start-level='71'>mvn:org.springframework/spring-context/${spring.version}</bundle>
-		<bundle start-level='71'>mvn:org.springframework/spring-web/${spring.version}</bundle>
-		<bundle start-level='71'>mvn:org.springframework/spring-webmvc/${spring.version}</bundle>
-		<bundle start-level='71'>mvn:org.springframework.osgi/spring-osgi-web/${spring.osgi.version}</bundle>
 
 		<bundle start-level='71'>mvn:org.apache.activemq/activemq-camel/5.5.0</bundle>
-		<bundle start-level='71'>mvn:com.page5of4.commons/mustache-mvc/1.2.3-SNAPSHOT</bundle>
 
 		<bundle start-level='71'>mvn:com.atomikos/transactions-osgi/3.8.0</bundle>
 	</feature>
@@ -33,9 +30,15 @@
 		<bundle>mvn:${main.project.groupId}/codon-extender/${project.version}</bundle>
 	</feature>
 
-	<feature name="codon-persistence" version="${project.version}">
+	<feature name="codon-web" version="${project.version}">
+		<bundle start-level='71'>mvn:org.springframework/spring-web/${spring.version}</bundle>
+		<bundle start-level='71'>mvn:org.springframework/spring-webmvc/${spring.version}</bundle>
+		<bundle start-level='71'>mvn:org.springframework.osgi/spring-osgi-web/${spring.osgi.version}</bundle>
+		<bundle start-level='71'>mvn:com.page5of4.commons/mustache-mvc/1.2.3-SNAPSHOT</bundle>
+	</feature>
+
+	<feature name="codon-persistence-memory" version="${project.version}">
 		<bundle>mvn:${main.project.groupId}/codon-persistence-memory/${project.version}</bundle>
-		<bundle>mvn:${main.project.groupId}/codon-persistence-jpa/${project.version}</bundle>
 	</feature>
 
 	<feature name="codon-persistence-jpa" version="${project.version}">
@@ -55,6 +58,27 @@
 
 		<bundle>mvn:com.h2database/h2/1.3.167</bundle>
 		<bundle>mvn:org.apache.derby/derby/10.8.1.2</bundle>
+
+		<bundle>mvn:${main.project.groupId}/codon-persistence-jpa/${project.version}</bundle>
+	</feature>
+
+	<feature name="codon-persistence-jpa-eclipselink" version="${project.version}">
+		<!-- Order here is key... -->
+		<bundle>mvn:org.eclipse.persistence/org.eclipse.persistence.antlr/2.2.0</bundle>
+		<bundle>mvn:org.eclipse.persistence/org.eclipse.persistence.core/2.2.0</bundle>
+		<bundle>mvn:org.eclipse.persistence/org.eclipse.persistence.asm/2.2.0</bundle>
+		<bundle>mvn:org.eclipse.persistence/org.eclipse.persistence.jpa/2.2.0</bundle>
+
+		<bundle>mvn:com.page5of4.codon.bundles/com.page5of4.codon.bundles.eclipselink/2.2.0</bundle>
+	</feature>
+
+	<feature name="codon-persistence-jpa-hibernate" version="${project.version}">
+		<bundle>mvn:com.page5of4.codon.bundles/com.page5of4.codon.bundles.hibernate/4.0.0</bundle>
+	</feature>
+
+	<feature name="codon-persistence-riak" version="${project.version}">
+		<bundle>mvn:com.page5of4.codon.bundles/com.page5of4.codon.bundles.riak-client/1.0.5</bundle>
+		<bundle>mvn:com.page5of4.codon.bundles/com.page5of4.codon.bundles.kryo/2.14</bundle>
 	</feature>
 
 	<feature name="codon-example" version="${project.version}">

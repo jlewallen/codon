@@ -27,7 +27,7 @@ public class WhenRunningExampleApplicationSpecs extends WithContainer {
 
    @Before
    public void before() {
-      Provision.with(executor()).base().hibernate().atomikos().h2();
+      Provision.with(executor()).base().hibernate();
       executor().executeCommands("features:install codon-example");
       pause();
    }
@@ -53,6 +53,5 @@ public class WhenRunningExampleApplicationSpecs extends WithContainer {
    @After
    public void after() {
       executor().executeCommands("features:uninstall codon-example");
-      executor().executeCommands("features:uninstall codon-core");
    }
 }

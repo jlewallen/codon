@@ -26,7 +26,7 @@ public class WhenRunningExampleApplicationEnvSpecs extends WithContainer {
 
    @Before
    public void before() {
-      Provision.with(executor()).base().hibernate().atomikos().h2();
+      Provision.with(executor()).base().hibernate();
       executor().executeCommands("osgi:install -s mvn:com.page5of4.codon.examples/codon-examples-env/" + TestsConfiguration.getProjectVersion());
       pause();
    }

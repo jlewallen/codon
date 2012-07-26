@@ -29,7 +29,7 @@ public class WhenRunningExampleApplicationWithWebSpecs extends WithContainer {
 
    @Before
    public void before() {
-      Provision.with(executor()).base().hibernate().atomikos().h2().web().core();
+      Provision.with(executor()).base().hibernate().web().core();
       executor().executeCommands("features:install codon-example-webapp");
       pause();
    }

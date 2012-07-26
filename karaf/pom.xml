@@ -93,7 +93,10 @@
 								<feature>war</feature>
 								<feature>codon-dependencies</feature>
 								<feature>codon-core</feature>
-								<feature>codon-persistence</feature>
+								<feature>codon-persistence-memory</feature>
+								<feature>codon-persistence-jpa</feature>
+								<feature>codon-persistence-jpa-eclipselink</feature>
+								<feature>codon-persistence-jpa-hibernate</feature>
 								<feature>codon-karaf-dependencies</feature>
 							</features>
 						</configuration>

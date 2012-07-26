@@ -13,104 +13,40 @@ public class Provision {
    }
 
    public Provision base() {
-      executor.executeCommands(
-            "features:addurl mvn:org.apache.camel.karaf/apache-camel/2.9.2/xml/features",
-            "features:addurl mvn:org.apache.activemq/activemq-karaf/5.5.0/xml/features",
-            "features:addurl mvn:com.page5of4.codon/codon-core/" + TestsConfiguration.getProjectVersion() + "/xml/features"
-            );
-      executor.executeCommands(
-            "osgi:install -s mvn:org.codehaus.jackson/jackson-core-asl/1.7.5",
-            "osgi:install -s mvn:org.codehaus.jackson/jackson-mapper-asl/1.7.5",
-            "osgi:install -s mvn:com.google.guava/guava/12.0"
-            );
-      executor.executeCommands(
-            "features:install spring-dm",
-            "features:install spring-dm-web"
-            );
-      executor.executeCommands(
-            "features:install camel-jms",
-            "features:install camel-jms",
-            "features:install camel-jaxb",
-            "features:install camel-spring",
-            "features:install activemq",
-            "osgi:install -s mvn:org.apache.activemq/activemq-camel/5.5.0"
-            );
+      executor.executeCommand("features:install codon-dependencies");
+      executor.executeCommand("features:install codon-core");
+      executor.executeCommand("features:install codon-persistence-memory");
       return this;
    }
 
    public Provision web() {
-      executor.executeCommands(
-            "osgi:install -s mvn:com.page5of4.commons/mustache-mvc/1.2.3-SNAPSHOT",
-            "features:install spring-web",
-            "features:install war"
-            );
       return this;
    }
 
    public Provision riak() {
-      executor.executeCommands(
-            "osgi:install -s mvn:com.page5of4.codon.bundles/com.page5of4.codon.bundles.riak-client/1.0.5",
-            "osgi:install -s mvn:com.page5of4.codon.bundles/com.page5of4.codon.bundles.kryo/2.14"
-            );
+      executor.executeCommand("features:install codon-persistence-riak");
       return this;
    }
 
    public Provision jpa() {
-      executor.executeCommand("osgi:install -s mvn:org.apache.geronimo.specs/geronimo-jpa_2.0_spec/1.1");
-      executor.executeCommand("osgi:install -s mvn:org.apache.derby/derby/10.8.1.2");
-
-      executor.executeCommand("osgi:install -s mvn:commons-collections/commons-collections/3.2.1");
-      executor.executeCommand("osgi:install -s mvn:org.apache.geronimo.specs/geronimo-jta_1.1_spec/1.1.1");
-      executor.executeCommand("osgi:install -s mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.serp/1.13.1_3");
-      executor.executeCommand("osgi:install -s mvn:org.apache.aries/org.apache.aries.util/0.3");
-      executor.executeCommand("osgi:install -s mvn:org.apache.aries.jpa/org.apache.aries.jpa.api/0.3");
-      executor.executeCommand("osgi:install -s mvn:org.apache.aries.jpa/org.apache.aries.jpa.container/0.3");
-      executor.executeCommand("osgi:install -s mvn:org.apache.aries.transaction/org.apache.aries.transaction.manager/0.3");
-
-      executor.executeCommand("osgi:install -s mvn:javax.persistence/com.springsource.javax.persistence/2.0.0");
-      executor.executeCommand("osgi:install -s mvn:javax.transaction/com.springsource.javax.transaction/1.1.0");
-      executor.executeCommand("osgi:install -s mvn:org.apache.commons/com.springsource.org.apache.commons.collections/3.2.1");
-      return this;
-   }
-
-   public Provision derby() {
-      executor.executeCommand("osgi:install -s mvn:org.apache.derby/derby/10.8.1.2");
-
+      executor.executeCommand("features:install codon-persistence-jpa");
       return this;
    }
 
    public Provision hibernate() {
-      jpa().derby();
-
-      executor.executeCommand("osgi:install -s mvn:com.page5of4.codon.bundles/com.page5of4.codon.bundles.hibernate/4.0.0");
+      jpa();
+      executor.executeCommand("features:install codon-persistence-jpa-hibernate");
       return this;
    }
 
    public Provision eclipseLink() {
-      jpa().derby();
-
-      // Order among these is key... 'Service is already unregistered' is due to antlr before core.
-      executor.executeCommand("osgi:install -s mvn:org.eclipse.persistence/org.eclipse.persistence.antlr/2.2.0");
-      executor.executeCommand("osgi:install -s mvn:org.eclipse.persistence/org.eclipse.persistence.core/2.2.0");
-      executor.executeCommand("osgi:install -s mvn:org.eclipse.persistence/org.eclipse.persistence.asm/2.2.0");
-      executor.executeCommand("osgi:install -s mvn:org.eclipse.persistence/org.eclipse.persistence.jpa/2.2.0");
-
-      executor.executeCommand("osgi:install -s mvn:com.page5of4.codon.bundles/com.page5of4.codon.bundles.eclipselink/2.2.0");
+      jpa();
+      executor.executeCommand("features:install codon-persistence-jpa-eclipselink");
       return this;
    }
 
    public Provision core() {
       executor.executeCommand("features:install codon-core");
-      return this;
-   }
-
-   public Provision atomikos() {
-      executor.executeCommands("osgi:install -s mvn:com.atomikos/transactions-osgi/3.8.0");
-      return this;
-   }
-
-   public Provision h2() {
-      executor.executeCommands("osgi:install -s mvn:com.h2database/h2/1.3.167");
       return this;
    }
 }

@@ -36,6 +36,7 @@
 						<Export-Package>
 							com.page5of4.codon.useful,
 							com.page5of4.codon.useful.spring,
+							com.page5of4.codon.useful.spring.config,
 							com.page5of4.codon.useful.repositories
 						</Export-Package>
 						<Import-Package>
@@ -62,12 +63,16 @@
 			<artifactId>org.osgi.compendium</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
+			<groupId>org.springframework.osgi</groupId>
+			<artifactId>spring-osgi-core</artifactId>
 		</dependency>
 
 		<dependency>

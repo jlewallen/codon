@@ -18,7 +18,7 @@
 		<camel.version>2.9.2</camel.version>
 		<activemq.version>5.5.0</activemq.version>
 		<osgi.core.version>4.2.0</osgi.core.version>
-		<spring.version>3.0.7.RELEASE</spring.version>
+		<spring.version>3.0.6.RELEASE</spring.version>
 		<spring.osgi.version>1.2.1</spring.osgi.version>
 		<pax.logging.version>1.5.3</pax.logging.version>
 		<org.slf4j.version>1.6.1</org.slf4j.version>
@@ -231,6 +231,22 @@
 				<groupId>org.apache.camel</groupId>
 				<artifactId>camel-spring</artifactId>
 				<version>${camel.version}</version>
+				<!--
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-context</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-aop</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-tx</artifactId>
+					</exclusion>
+				</exclusions>
+				-->
 			</dependency>
 			<dependency>
 				<groupId>org.apache.camel</groupId>
@@ -257,6 +273,12 @@
 						<groupId>org.springframework</groupId>
 						<artifactId>spring-tx</artifactId>
 					</exclusion>
+					<!--
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-jms</artifactId>
+					</exclusion>
+					-->
 				</exclusions>
 			</dependency>
 			<dependency>
@@ -360,6 +382,11 @@
 			<dependency>
 				<groupId>org.springframework.osgi</groupId>
 				<artifactId>spring-osgi-mock</artifactId>
+				<version>${spring.osgi.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.osgi</groupId>
+				<artifactId>spring-osgi-test</artifactId>
 				<version>${spring.osgi.version}</version>
 			</dependency>
 			<dependency>

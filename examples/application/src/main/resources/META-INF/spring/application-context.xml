@@ -18,7 +18,9 @@
 
   <context:annotation-config />
   <context:property-placeholder location="classpath:/META-INF/spring/*.properties" />
-  <context:component-scan base-package="com.page5of4.codon.examples.application"/>
+  <context:component-scan base-package="com.page5of4.codon.examples.application">
+  	  <context:exclude-filter type="annotation" expression="com.page5of4.codon.examples.application.config.ExcludeFromScan"/>
+  </context:component-scan>
   <camel:camelContext><camel:contextScan/></camel:camelContext>
 
   <osgi:service ref="projectManagementService" interface="com.page5of4.codon.examples.application.ProjectManagementService" />

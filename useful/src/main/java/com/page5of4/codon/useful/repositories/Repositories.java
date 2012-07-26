@@ -18,7 +18,8 @@ public class Repositories {
       try {
          ProxyFactory proxyFactory = new ProxyFactory(factory.createRepository(repositoryClass));
          proxyFactory.addInterface(repositoryClass);
-         Object proxy = proxyFactory.getProxy();
+         proxyFactory.setProxyTargetClass(true);
+         Object proxy = proxyFactory.getProxy(Thread.currentThread().getContextClassLoader());
          T repository = repositoryClass.cast(proxy);
          return repository;
       }

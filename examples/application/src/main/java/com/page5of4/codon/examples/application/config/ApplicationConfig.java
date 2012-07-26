@@ -8,21 +8,29 @@ import org.springframework.context.annotation.Import;
 import com.page5of4.codon.Bus;
 import com.page5of4.codon.examples.application.ProjectManagementService;
 import com.page5of4.codon.examples.application.domain.ProjectEvents;
+import com.page5of4.codon.examples.application.domain.repositories.DefaultProjectRepository;
 import com.page5of4.codon.examples.application.domain.repositories.ProjectRepository;
 import com.page5of4.codon.examples.application.impl.ProjectManagementServiceImpl;
 import com.page5of4.codon.useful.DomainEventsConfig;
+import com.page5of4.codon.useful.repositories.RepositoryFactory;
 
 @Configuration
+@ExcludeFromScan
 @Import(value = { DomainEventsConfig.class })
 public class ApplicationConfig {
    @Autowired
    private Bus bus;
    @Autowired
-   private ProjectRepository projectRepository;
+   private RepositoryFactory repositoryFactory;
+
+   @Bean
+   public ProjectRepository projectRepository() {
+      return new DefaultProjectRepository(repositoryFactory);
+   }
 
    @Bean
    public ProjectManagementService projectManagementService() {
-      return new ProjectManagementServiceImpl(projectRepository, bus);
+      return new ProjectManagementServiceImpl(projectRepository(), bus);
    }
 
    @Bean

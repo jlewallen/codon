@@ -14,8 +14,6 @@ public class Provision {
 
    public Provision base() {
       executor.executeCommand("features:install codon-dependencies");
-      executor.executeCommand("features:install codon-core");
-      executor.executeCommand("features:install codon-persistence-memory");
       return this;
    }
 
@@ -25,6 +23,11 @@ public class Provision {
 
    public Provision riak() {
       executor.executeCommand("features:install codon-persistence-riak");
+      return this;
+   }
+
+   public Provision voldemort() {
+      executor.executeCommand("features:install codon-persistence-voldemort");
       return this;
    }
 
@@ -47,6 +50,7 @@ public class Provision {
 
    public Provision core() {
       executor.executeCommand("features:install codon-core");
+      executor.executeCommand("features:install codon-persistence-memory");
       return this;
    }
 }

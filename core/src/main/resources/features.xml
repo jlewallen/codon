@@ -6,35 +6,37 @@
 		<feature>spring</feature>
 		<feature>spring-dm</feature>
 		<feature>activemq</feature>
-		<feature>codon-web</feature>
 
 		<feature version="${camel.version}">camel-spring</feature>
+		<feature version="${camel.version}">camel-jms</feature>
 		<feature version="${camel.version}">camel-jaxb</feature>
 
-		<bundle start-level='70'>mvn:com.google.guava/guava/12.0</bundle>
-		<bundle start-level='70'>mvn:org.codehaus.jackson/jackson-core-asl/1.7.5</bundle>
-		<bundle start-level='70'>mvn:org.codehaus.jackson/jackson-mapper-asl/1.7.5</bundle>
+		<bundle start-level='30'>mvn:com.google.guava/guava/12.0</bundle>
+		<bundle start-level='30'>mvn:org.codehaus.jackson/jackson-core-asl/1.7.5</bundle>
+		<bundle start-level='30'>mvn:org.codehaus.jackson/jackson-mapper-asl/1.7.5</bundle>
 
-		<bundle start-level='71'>mvn:org.apache.activemq/activemq-camel/5.5.0</bundle>
-		<bundle start-level='71'>mvn:org.springframework/spring-core/${spring.version}</bundle>
-		<bundle start-level='71'>mvn:org.springframework/spring-context/${spring.version}</bundle>
+		<bundle start-level='30'>mvn:org.apache.activemq/activemq-camel/5.5.0</bundle>
+		<bundle start-level='30'>mvn:org.springframework/spring-core/${spring.version}</bundle>
+		<bundle start-level='30'>mvn:org.springframework/spring-context/${spring.version}</bundle>
 
-		<bundle start-level='71'>mvn:org.apache.activemq/activemq-camel/5.5.0</bundle>
+		<bundle start-level='30'>mvn:org.apache.activemq/activemq-camel/5.5.0</bundle>
 
-		<bundle start-level='71'>mvn:com.atomikos/transactions-osgi/3.8.0</bundle>
+		<bundle start-level='30'>mvn:com.atomikos/transactions-osgi/3.8.0</bundle>
+
+		<feature>codon-dependencies-web</feature>
+	</feature>
+
+	<feature name="codon-dependencies-web" version="${project.version}">
+		<bundle start-level='30'>mvn:org.springframework/spring-web/${spring.version}</bundle>
+		<bundle start-level='30'>mvn:org.springframework/spring-webmvc/${spring.version}</bundle>
+		<bundle start-level='30'>mvn:org.springframework.osgi/spring-osgi-web/${spring.osgi.version}</bundle>
+		<bundle start-level='30'>mvn:com.page5of4.commons/mustache-mvc/1.2.3-SNAPSHOT</bundle>
 	</feature>
 
 	<feature name="codon-core" version="${project.version}">
 		<bundle>mvn:${main.project.groupId}/codon-useful/${project.version}</bundle>
 		<bundle>mvn:${main.project.groupId}/codon-core/${project.version}</bundle>
 		<bundle>mvn:${main.project.groupId}/codon-extender/${project.version}</bundle>
-	</feature>
-
-	<feature name="codon-web" version="${project.version}">
-		<bundle start-level='71'>mvn:org.springframework/spring-web/${spring.version}</bundle>
-		<bundle start-level='71'>mvn:org.springframework/spring-webmvc/${spring.version}</bundle>
-		<bundle start-level='71'>mvn:org.springframework.osgi/spring-osgi-web/${spring.osgi.version}</bundle>
-		<bundle start-level='71'>mvn:com.page5of4.commons/mustache-mvc/1.2.3-SNAPSHOT</bundle>
 	</feature>
 
 	<feature name="codon-persistence-memory" version="${project.version}">
@@ -79,6 +81,17 @@
 	<feature name="codon-persistence-riak" version="${project.version}">
 		<bundle>mvn:com.page5of4.codon.bundles/com.page5of4.codon.bundles.riak-client/1.0.5</bundle>
 		<bundle>mvn:com.page5of4.codon.bundles/com.page5of4.codon.bundles.kryo/2.14</bundle>
+	</feature>
+
+	<feature name="codon-persistence-voldemort" version="${project.version}">
+		<bundle>mvn:com.google.guava/guava/12.0</bundle>
+		<bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jdom/1.1_3</bundle>
+		<bundle>mvn:commons-codec/commons-codec/1.6</bundle>
+		<bundle>mvn:com.page5of4.codon.bundles/com.page5of4.codon.bundles.voldemort/0.90.1</bundle>
+		<bundle>mvn:com.page5of4.nagini/nagini/1.0.0-SNAPSHOT</bundle>
+		<!--
+		<bundle>mvn:${main.project.groupId}/codon-persistence-voldemort/${project.version}</bundle>
+		-->
 	</feature>
 
 	<feature name="codon-example" version="${project.version}">

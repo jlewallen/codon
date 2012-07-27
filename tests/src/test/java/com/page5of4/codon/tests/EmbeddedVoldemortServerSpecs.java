@@ -1,7 +1,7 @@
 package com.page5of4.codon.tests;
 
 import static com.page5of4.codon.tests.support.BundleAssert.assertThat;
-import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
+import static com.page5of4.codon.tests.support.CodonKarafDistributionOption.featuresBoot;
 
 import java.util.UUID;
 
@@ -11,7 +11,7 @@ import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.ExamReactorStrategy;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
-import org.ops4j.pax.exam.spi.reactors.AllConfinedStagedReactorFactory;
+import org.ops4j.pax.exam.spi.reactors.EagerSingleStagedReactorFactory;
 
 import voldemort.client.ClientConfig;
 import voldemort.client.SocketStoreClientFactory;
@@ -26,17 +26,13 @@ import com.page5of4.nagini.VoldemortCluster;
 import com.page5of4.nagini.VoldemortClusterBuilder;
 
 @RunWith(JUnit4TestRunner.class)
-@ExamReactorStrategy(AllConfinedStagedReactorFactory.class)
-public class WhenInstallingVoldemort extends WithContainer {
+@ExamReactorStrategy(EagerSingleStagedReactorFactory.class)
+public class EmbeddedVoldemortServerSpecs extends WithContainer {
    @Configuration
    public Option[] config() {
       return new Option[] {
             commonConfiguration(),
-            mavenBundle().groupId("com.google.guava").artifactId("guava").version("12.0"),
-            mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.jdom").version("1.1_3"),
-            mavenBundle().groupId("commons-codec").artifactId("commons-codec").version("1.6"),
-            mavenBundle().groupId("com.page5of4.codon.bundles").artifactId("com.page5of4.codon.bundles.voldemort").version("0.90.1"),
-            mavenBundle().groupId("com.page5of4.nagini").artifactId("nagini").version("1.0.0-SNAPSHOT")
+            featuresBoot("config", "codon-dependencies", "codon-core", "codon-persistence-voldemort")
       };
    }
 

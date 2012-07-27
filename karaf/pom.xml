@@ -36,6 +36,13 @@
 			<type>xml</type>
 			<classifier>features</classifier>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.karaf.assemblies.features</groupId>
+			<artifactId>enterprise</artifactId>
+			<version>${karaf.version}</version>
+			<type>xml</type>
+			<classifier>features</classifier>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -77,6 +84,7 @@
 							<repository>target/features-repo</repository>
 							<descriptors>
 								<descriptor>mvn:org.apache.karaf.assemblies.features/standard/${karaf.version}/xml/features</descriptor>
+								<descriptor>mvn:org.apache.karaf.assemblies.features/enterprise/${karaf.version}/xml/features</descriptor>
 								<descriptor>mvn:org.apache.camel.karaf/apache-camel/2.9.2/xml/features</descriptor>
 								<descriptor>mvn:org.apache.activemq/activemq-karaf/5.5.0/xml/features</descriptor>
 								<descriptor>mvn:com.page5of4.codon/codon-core/${project.version}/xml/features</descriptor>

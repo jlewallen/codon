@@ -92,9 +92,8 @@
 		<bundle>mvn:commons-codec/commons-codec/1.6</bundle>
 		<bundle>mvn:com.page5of4.codon.bundles/com.page5of4.codon.bundles.voldemort/0.90.1</bundle>
 		<bundle>mvn:com.page5of4.nagini/nagini/1.0.0-SNAPSHOT</bundle>
-		<!--
+
 		<bundle>mvn:${main.project.groupId}/codon-persistence-voldemort/${project.version}</bundle>
-		-->
 	</feature>
 
 	<feature name="codon-example" version="${project.version}">

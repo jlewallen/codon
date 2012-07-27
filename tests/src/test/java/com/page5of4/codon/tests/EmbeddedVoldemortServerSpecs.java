@@ -3,7 +3,12 @@ package com.page5of4.codon.tests;
 import static com.page5of4.codon.tests.support.BundleAssert.assertThat;
 import static com.page5of4.codon.tests.support.CodonKarafDistributionOption.featuresBoot;
 
+import java.io.IOException;
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.UUID;
+
+import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +17,9 @@ import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.ExamReactorStrategy;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 import org.ops4j.pax.exam.spi.reactors.EagerSingleStagedReactorFactory;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
+import org.osgi.service.cm.ConfigurationAdmin;
 
 import voldemort.client.ClientConfig;
 import voldemort.client.SocketStoreClientFactory;
@@ -24,10 +32,14 @@ import com.page5of4.codon.tests.support.WithContainer;
 import com.page5of4.nagini.CustomizableSerializerFactory;
 import com.page5of4.nagini.VoldemortCluster;
 import com.page5of4.nagini.VoldemortClusterBuilder;
+import com.page5of4.nagini.VoldemortSpecs.User;
 
 @RunWith(JUnit4TestRunner.class)
 @ExamReactorStrategy(EagerSingleStagedReactorFactory.class)
 public class EmbeddedVoldemortServerSpecs extends WithContainer {
+   @Inject
+   private BundleContext bundleContext;
+
    @Configuration
    public Option[] config() {
       return new Option[] {
@@ -62,5 +74,24 @@ public class EmbeddedVoldemortServerSpecs extends WithContainer {
       }
 
       cluster.stop();
+   }
+
+   @Test
+   public void when_setting_configuration() throws IOException {
+      ServiceReference configurationAdminReference = bundleContext.getServiceReference(ConfigurationAdmin.class.getName());
+      if(configurationAdminReference != null) {
+         ConfigurationAdmin confAdmin = (ConfigurationAdmin)bundleContext.getService(configurationAdminReference);
+
+         String name = "com.page5of4.codon.persistence.voldemort.extender.StoreClientFactory";
+         org.osgi.service.cm.Configuration configuration = confAdmin.createFactoryConfiguration(name);
+         Dictionary<String, Object> properties = new Hashtable<String, Object>();
+         properties.put("bootstrap.url", "true");
+         properties.put("cluster.embedded", "true");
+         properties.put("cluster.nodes.number", "2");
+         properties.put("store.user.serializer.keys", "uuid");
+         properties.put("store.user.serializer.values", "gson");
+         properties.put("store.user.schema", User.class.getName());
+         configuration.update(properties);
+      }
    }
 }

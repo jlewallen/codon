@@ -75,9 +75,7 @@ public class WithContainer {
    }
 
    private Option commonBundles() {
-      return new DefaultCompositeOption(
-            mavenBundle().groupId("commons-io").artifactId("commons-io").versionAsInProject(),
-            mavenBundle().groupId("commons-lang").artifactId("commons-lang").versionAsInProject());
+      return new Option() {};
    }
 
    private Option loggingOptions() {

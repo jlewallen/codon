@@ -10,11 +10,13 @@ import com.page5of4.codon.PropertiesConfiguration;
 import com.page5of4.codon.config.InMemorySubscriptionStorageConfig;
 import com.page5of4.codon.config.JmsTransactionConventionConfig;
 import com.page5of4.codon.config.StandaloneConfig;
+import com.page5of4.codon.tests.support.EmbeddedActiveMqBrokerConfig;
 
 public class ContextFactorySpecs {
    @Test
    public void when_creating_context() {
       AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
+      applicationContext.register(EmbeddedActiveMqBrokerConfig.class);
       applicationContext.register(SimpleBusConfigurationConfig.class);
       applicationContext.register(StandaloneConfig.class);
       applicationContext.register(InMemorySubscriptionStorageConfig.class);

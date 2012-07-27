@@ -22,6 +22,7 @@ import com.page5of4.codon.config.PublisherConfig;
 import com.page5of4.codon.config.StandaloneConfig;
 import com.page5of4.codon.tests.integration.AtomikosTransactionManagerSpecs.AtomikosTestLoader;
 import com.page5of4.codon.tests.support.AtomikosTransactionManagerConfig;
+import com.page5of4.codon.tests.support.EmbeddedActiveMqBrokerConfig;
 import com.page5of4.codon.tests.support.ExposeCamelContextConfig;
 import com.page5of4.codon.tests.support.SimpleBusConfigurationConfig;
 import com.page5of4.codon.tests.support.TestHandlersConfig;
@@ -47,6 +48,7 @@ public class AtomikosTransactionManagerSpecs {
       @Override
       public ApplicationContext loadContext(String... locations) throws Exception {
          AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
+         applicationContext.register(EmbeddedActiveMqBrokerConfig.class);
          applicationContext.register(SimpleBusConfigurationConfig.class);
          applicationContext.register(StandaloneConfig.class);
          applicationContext.register(PublisherConfig.class);

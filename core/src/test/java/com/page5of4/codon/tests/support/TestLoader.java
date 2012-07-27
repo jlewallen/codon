@@ -5,9 +5,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.test.context.ContextLoader;
 
 import com.page5of4.codon.config.InMemorySubscriptionStorageConfig;
+import com.page5of4.codon.config.JmsTransactionConventionConfig;
 import com.page5of4.codon.config.PublisherConfig;
 import com.page5of4.codon.config.StandaloneConfig;
-import com.page5of4.codon.config.JmsTransactionConventionConfig;
 
 /**
  * When we can use Spring 3.1.0, we should get rid of this.
@@ -23,6 +23,7 @@ public class TestLoader implements ContextLoader {
    @Override
    public ApplicationContext loadContext(String... locations) throws Exception {
       AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
+      applicationContext.register(EmbeddedActiveMqBrokerConfig.class);
       applicationContext.register(SimpleBusConfigurationConfig.class);
       applicationContext.register(StandaloneConfig.class);
       applicationContext.register(PublisherConfig.class);

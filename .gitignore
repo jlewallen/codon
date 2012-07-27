@@ -7,3 +7,4 @@ derby.log
 tm*.log
 *.epoch
 voldemort-clusters
+activemq-data

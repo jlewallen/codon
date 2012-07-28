@@ -4,6 +4,7 @@ import static com.page5of4.codon.tests.support.BundleAssert.assertThat;
 import static com.page5of4.codon.tests.support.CodonKarafDistributionOption.featuresBoot;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.UUID;
@@ -32,7 +33,6 @@ import com.page5of4.codon.tests.support.WithContainer;
 import com.page5of4.nagini.CustomizableSerializerFactory;
 import com.page5of4.nagini.VoldemortCluster;
 import com.page5of4.nagini.VoldemortClusterBuilder;
-import com.page5of4.nagini.VoldemortSpecs.User;
 
 @RunWith(JUnit4TestRunner.class)
 @ExamReactorStrategy(EagerSingleStagedReactorFactory.class)
@@ -92,6 +92,37 @@ public class EmbeddedVoldemortServerSpecs extends WithContainer {
          properties.put("store.user.serializer.values", "gson");
          properties.put("store.user.schema", User.class.getName());
          configuration.update(properties);
+      }
+   }
+
+   public static class User {
+      private final UUID id;
+      private final String firstName;
+      private final String lastName;
+      private final Date registeredAt;
+
+      public UUID getId() {
+         return id;
+      }
+
+      public String getFirstName() {
+         return firstName;
+      }
+
+      public String getLastName() {
+         return lastName;
+      }
+
+      public Date getRegisteredAt() {
+         return registeredAt;
+      }
+
+      public User(UUID id, String firstName, String lastName, Date registeredAt) {
+         super();
+         this.id = id;
+         this.firstName = firstName;
+         this.lastName = lastName;
+         this.registeredAt = registeredAt;
       }
    }
 }

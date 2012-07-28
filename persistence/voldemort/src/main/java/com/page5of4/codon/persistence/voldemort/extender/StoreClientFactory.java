@@ -36,7 +36,7 @@ public class StoreClientFactory implements ManagedServiceFactory {
    }
 
    @Override
-   public void updated(String pid, Dictionary p) throws ConfigurationException {
+   public void updated(String pid, @SuppressWarnings("rawtypes") Dictionary p) throws ConfigurationException {
       String bootstrapUrl = (String)p.get("bootstrap.url");
       logger.info("Creating VoldemortRepositoryFactory {} with {}", pid, bootstrapUrl);
 
@@ -49,9 +49,9 @@ public class StoreClientFactory implements ManagedServiceFactory {
 
    @Override
    public void deleted(String pid) {
-      logger.info("Deleted {}", pid);
       ServiceRegistration registration = registrations.remove(pid);
       if(registration != null) {
+         logger.info("Unregistering {}", pid);
          registration.unregister();
       }
    }

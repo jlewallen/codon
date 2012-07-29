@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ManagedServiceFactory;
 import org.slf4j.Logger;
@@ -23,13 +24,13 @@ public class Activator implements BundleActivator {
       VoldemortServerFactory serverFactory = new VoldemortServerFactory(storeClientFactory);
       {
          Dictionary<String, String> properties = new Hashtable<String, String>();
-         properties.put("service.pid", storeClientFactory.getName());
+         properties.put(Constants.SERVICE_PID, storeClientFactory.getName());
          registrations.add(bundleContext.registerService(ManagedServiceFactory.class.getName(), storeClientFactory, properties));
       }
 
       {
          Dictionary<String, String> properties = new Hashtable<String, String>();
-         properties.put("service.pid", serverFactory.getName());
+         properties.put(Constants.SERVICE_PID, serverFactory.getName());
          registrations.add(bundleContext.registerService(ManagedServiceFactory.class.getName(), serverFactory, properties));
       }
 

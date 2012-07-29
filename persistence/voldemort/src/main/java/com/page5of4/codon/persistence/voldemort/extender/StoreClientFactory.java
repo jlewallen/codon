@@ -22,6 +22,8 @@ import com.page5of4.codon.useful.repositories.RepositoryFactory;
 import com.page5of4.nagini.SerializerFactories;
 
 public class StoreClientFactory implements ManagedServiceFactory {
+   public static final String NAME = "com.page5of4.codon.persistence.voldemort.Config";
+
    private static final Logger logger = LoggerFactory.getLogger(StoreClientFactory.class);
    private final Map<String, ServiceRegistration> registrations = new ConcurrentHashMap<String, ServiceRegistration>();
    private final BundleContext bundleContext;
@@ -37,7 +39,7 @@ public class StoreClientFactory implements ManagedServiceFactory {
 
    @Override
    public String getName() {
-      return "com.page5of4.codon.persistence.voldemort.Config";
+      return NAME;
    }
 
    @Override

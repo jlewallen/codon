@@ -30,6 +30,7 @@
 						<Export-Package>
 						</Export-Package>
 						<Import-Package>
+							com.google.gson.*;resolution=optional,
 							com.page5of4.codon.useful.repositories,
 							*
 						</Import-Package>

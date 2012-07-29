@@ -24,11 +24,8 @@ import org.ops4j.pax.exam.options.CompositeOption;
 import org.ops4j.pax.exam.options.DefaultCompositeOption;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
-import org.osgi.util.tracker.ServiceTracker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.page5of4.codon.Bus;
 
 public class WithContainer {
    protected final Logger logger;
@@ -39,16 +36,20 @@ public class WithContainer {
    private BundleContext bundleContext;
    private CommandExecutor executor;
 
-   public WithContainer() {
-      super();
-      logger = LoggerFactory.getLogger(getClass());
-   }
-
    public CommandExecutor executor() {
       if(executor == null) {
          executor = new CommandExecutor(bundleContext);
       }
       return executor;
+   }
+
+   public OsgiHelper helper() {
+      return new OsgiHelper(bundleContext);
+   }
+
+   public WithContainer() {
+      super();
+      logger = LoggerFactory.getLogger(getClass());
    }
 
    @ProbeBuilder
@@ -117,32 +118,6 @@ public class WithContainer {
          Thread.sleep(2000);
       }
       catch(InterruptedException e) {
-      }
-   }
-
-   public OsgiHelper helper() {
-      return new OsgiHelper(bundleContext);
-   }
-
-   public static class OsgiHelper {
-      private final BundleContext bundleContext;
-
-      public OsgiHelper(BundleContext bundleContext) {
-         super();
-         this.bundleContext = bundleContext;
-      }
-
-      public Bus getBus() {
-         try {
-            ServiceTracker tracker = new ServiceTracker(bundleContext, Bus.class.getName(), null);
-            tracker.open();
-            Bus bus = (Bus)tracker.waitForService(5000);
-            tracker.close();
-            return bus;
-         }
-         catch(Exception e) {
-            throw new RuntimeException(e);
-         }
       }
    }
 }

@@ -19,6 +19,8 @@ import com.page5of4.nagini.VoldemortCluster;
 import com.page5of4.nagini.VoldemortClusterBuilder;
 
 public class VoldemortServerFactory implements ManagedServiceFactory {
+   public static final String NAME = "com.page5of4.codon.persistence.voldemort.server.Config";
+
    private static final Logger logger = LoggerFactory.getLogger(VoldemortServerFactory.class);
    private final Map<String, VoldemortCluster> clusters = new ConcurrentHashMap<String, VoldemortCluster>();
    private final StoreClientFactory storeClientFactory;
@@ -33,7 +35,7 @@ public class VoldemortServerFactory implements ManagedServiceFactory {
 
    @Override
    public String getName() {
-      return "com.page5of4.codon.persistence.voldemort.server.Config";
+      return NAME;
    }
 
    @Override
@@ -42,12 +44,21 @@ public class VoldemortServerFactory implements ManagedServiceFactory {
 
       logger.info("Configuring '{}'", pid);
 
-      VoldemortClusterBuilder builder = VoldemortClusterBuilder.make().numberOfNodes(2);
+      VoldemortClusterBuilder builder = VoldemortClusterBuilder.make();
+
+      Map<Object, Object> settings = Dictionaries.asMap(p);
+      if(settings.containsKey("cluster.nodes.number")) {
+         builder = builder.numberOfNodes(Integer.parseInt(settings.get("cluster.nodes.number").toString()));
+      }
+      else {
+         builder = builder.numberOfNodes(2);
+      }
+
       Pattern storePropertyPattern = Pattern.compile("store.([^\\.]+).(\\S+)");
       Collection<ExtractedMap> storeConfigs = Dictionaries.extractPrefixedMaps(p, storePropertyPattern);
       for(ExtractedMap storeConfig : storeConfigs) {
          String keySerializer = (String)storeConfig.getMap().get("serializer.keys");
-         String valueSerializer = (String)storeConfig.getMap().get("serializer.keys");
+         String valueSerializer = (String)storeConfig.getMap().get("serializer.values");
          String valueSchema = (String)storeConfig.getMap().get("schema");
          builder.withStore(storeConfig.getKey(), new SerializerDefinition(keySerializer), new SerializerDefinition(valueSerializer, valueSchema));
          logger.info("Store: {}", storeConfig.getKey());

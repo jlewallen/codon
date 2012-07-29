@@ -17,6 +17,7 @@
 		<bundle start-level='30'>mvn:com.google.guava/guava/12.0</bundle>
 		<bundle start-level='30'>mvn:org.codehaus.jackson/jackson-core-asl/1.7.5</bundle>
 		<bundle start-level='30'>mvn:org.codehaus.jackson/jackson-mapper-asl/1.7.5</bundle>
+		<bundle start-level='30'>mvn:com.google.code.gson/gson/2.2.2</bundle>
 
 		<bundle start-level='30'>mvn:org.apache.activemq/activemq-camel/5.5.0</bundle>
 		<bundle start-level='30'>mvn:org.springframework/spring-core/${spring.version}</bundle>

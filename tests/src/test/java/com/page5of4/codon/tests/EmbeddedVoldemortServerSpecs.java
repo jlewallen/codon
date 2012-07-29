@@ -3,10 +3,6 @@ package com.page5of4.codon.tests;
 import static com.page5of4.codon.tests.support.BundleAssert.assertThat;
 import static com.page5of4.codon.tests.support.CodonKarafDistributionOption.featuresBoot;
 
-import java.io.IOException;
-import java.util.Date;
-import java.util.Dictionary;
-import java.util.Hashtable;
 import java.util.UUID;
 
 import javax.inject.Inject;
@@ -19,8 +15,6 @@ import org.ops4j.pax.exam.junit.ExamReactorStrategy;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 import org.ops4j.pax.exam.spi.reactors.EagerSingleStagedReactorFactory;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceReference;
-import org.osgi.service.cm.ConfigurationAdmin;
 
 import voldemort.client.ClientConfig;
 import voldemort.client.SocketStoreClientFactory;
@@ -74,55 +68,5 @@ public class EmbeddedVoldemortServerSpecs extends WithContainer {
       }
 
       cluster.stop();
-   }
-
-   @Test
-   public void when_setting_configuration() throws IOException {
-      ServiceReference configurationAdminReference = bundleContext.getServiceReference(ConfigurationAdmin.class.getName());
-      if(configurationAdminReference != null) {
-         ConfigurationAdmin confAdmin = (ConfigurationAdmin)bundleContext.getService(configurationAdminReference);
-
-         String name = "com.page5of4.codon.persistence.voldemort.extender.StoreClientFactory";
-         org.osgi.service.cm.Configuration configuration = confAdmin.createFactoryConfiguration(name);
-         Dictionary<String, Object> properties = new Hashtable<String, Object>();
-         properties.put("bootstrap.url", "true");
-         properties.put("cluster.embedded", "true");
-         properties.put("cluster.nodes.number", "2");
-         properties.put("store.user.serializer.keys", "uuid");
-         properties.put("store.user.serializer.values", "gson");
-         properties.put("store.user.schema", User.class.getName());
-         configuration.update(properties);
-      }
-   }
-
-   public static class User {
-      private final UUID id;
-      private final String firstName;
-      private final String lastName;
-      private final Date registeredAt;
-
-      public UUID getId() {
-         return id;
-      }
-
-      public String getFirstName() {
-         return firstName;
-      }
-
-      public String getLastName() {
-         return lastName;
-      }
-
-      public Date getRegisteredAt() {
-         return registeredAt;
-      }
-
-      public User(UUID id, String firstName, String lastName, Date registeredAt) {
-         super();
-         this.id = id;
-         this.firstName = firstName;
-         this.lastName = lastName;
-         this.registeredAt = registeredAt;
-      }
    }
 }

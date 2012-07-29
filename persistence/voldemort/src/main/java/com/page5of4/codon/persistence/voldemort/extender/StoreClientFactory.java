@@ -47,7 +47,8 @@ public class StoreClientFactory implements ManagedServiceFactory {
       String bootstrapUrl = (String)p.get("bootstrap.url");
       logger.info("Configuring '{}' at '{}'", pid, bootstrapUrl);
 
-      SocketStoreClientFactory storeClientFactory = new SocketStoreClientFactory(new ClientConfig().setSerializerFactory(SerializerFactories.defaultChain()).setBootstrapUrls(bootstrapUrl));
+      Map<String, String> schemaMapping = Dictionaries.removePrefixFromKeys(p, "schema.");
+      SocketStoreClientFactory storeClientFactory = new SocketStoreClientFactory(new ClientConfig().setSerializerFactory(SerializerFactories.builder().mapSchema(schemaMapping).build()).setBootstrapUrls(bootstrapUrl));
       RepositoryFactory factory = new VoldemortRepositoryFactory(storeClientFactory);
       Dictionary<String, String> properties = new Hashtable<String, String>();
       properties.put(Repositories.PERSISTENCE_PROVIDER_PROPERTY, factory.getClass().getName());

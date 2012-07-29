@@ -22,7 +22,6 @@ public class Dictionaries {
 
    public static Collection<ExtractedMap> extractPrefixedMaps(Dictionary d, Pattern pattern) {
       Map<String, ExtractedMap> maps = Maps.newHashMap();
-      Map<String, Object> map = Maps.newHashMap();
       for(Entry<String, Object> entry : Dictionaries.<String, Object> asMap(d).entrySet()) {
          Matcher matcher = pattern.matcher(entry.getKey());
          if(matcher.find()) {
@@ -35,6 +34,16 @@ public class Dictionaries {
          }
       }
       return maps.values();
+   }
+
+   public static <V> Map<String, V> removePrefixFromKeys(Dictionary p, String prefix) {
+      Map<String, V> map = Maps.newHashMap();
+      for(Entry<String, V> entry : Dictionaries.<String, V> asMap(p).entrySet()) {
+         if(entry.getKey().startsWith(prefix)) {
+            map.put(entry.getKey().substring(prefix.length()), entry.getValue());
+         }
+      }
+      return map;
    }
 
    public static class ExtractedMap {

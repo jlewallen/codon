@@ -22,6 +22,7 @@ public class StoreClientFactorySpecs {
    public void when_updating_with_configuration() throws ConfigurationException {
       Dictionary<String, Object> properties = new Hashtable<String, Object>();
       properties.put("bootstrap.url", "tcp://127.0.0.1:5466");
+      properties.put("schema.user", User.class.getName());
 
       storeClientFactory.updated("com.page5of4.testing", properties);
 

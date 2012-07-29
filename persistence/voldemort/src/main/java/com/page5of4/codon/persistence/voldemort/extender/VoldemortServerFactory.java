@@ -1,6 +1,7 @@
 package com.page5of4.codon.persistence.voldemort.extender;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Dictionary;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -21,6 +22,10 @@ public class VoldemortServerFactory implements ManagedServiceFactory {
    private static final Logger logger = LoggerFactory.getLogger(VoldemortServerFactory.class);
    private final Map<String, VoldemortCluster> clusters = new ConcurrentHashMap<String, VoldemortCluster>();
    private final StoreClientFactory storeClientFactory;
+
+   public Map<String, VoldemortCluster> getClusters() {
+      return Collections.unmodifiableMap(clusters);
+   }
 
    public VoldemortServerFactory(StoreClientFactory storeClientFactory) {
       this.storeClientFactory = storeClientFactory;

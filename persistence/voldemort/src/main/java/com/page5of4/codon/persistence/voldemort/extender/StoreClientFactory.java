@@ -1,5 +1,6 @@
 package com.page5of4.codon.persistence.voldemort.extender;
 
+import java.util.Collections;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.Map;
@@ -24,6 +25,10 @@ public class StoreClientFactory implements ManagedServiceFactory {
    private static final Logger logger = LoggerFactory.getLogger(StoreClientFactory.class);
    private final Map<String, ServiceRegistration> registrations = new ConcurrentHashMap<String, ServiceRegistration>();
    private final BundleContext bundleContext;
+
+   public Map<String, ServiceRegistration> getRegistrations() {
+      return Collections.unmodifiableMap(registrations);
+   }
 
    public StoreClientFactory(BundleContext bundleContext) {
       super();

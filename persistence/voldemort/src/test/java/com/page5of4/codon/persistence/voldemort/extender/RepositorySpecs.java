@@ -14,7 +14,7 @@ import voldemort.client.SocketStoreClientFactory;
 import voldemort.serialization.SerializerDefinition;
 
 import com.page5of4.codon.persistence.voldemort.VoldemortRepository;
-import com.page5of4.nagini.CustomizableSerializerFactory;
+import com.page5of4.nagini.SerializerFactories;
 import com.page5of4.nagini.VoldemortCluster;
 import com.page5of4.nagini.VoldemortClusterBuilder;
 
@@ -24,8 +24,8 @@ public class RepositorySpecs {
 
    @Before
    public void before() {
-      cluster = VoldemortClusterBuilder.make().numberOfNodes(2).withStore("user", new SerializerDefinition("uuid"), new SerializerDefinition("gson", User.class.getName())).start();
-      SocketStoreClientFactory storeClientFactory = new SocketStoreClientFactory(new ClientConfig().setSerializerFactory(new CustomizableSerializerFactory()).setBootstrapUrls(cluster.getBootstrapUrl()));
+      cluster = VoldemortClusterBuilder.make().numberOfNodes(2).withStore("user", new SerializerDefinition("uuid"), new SerializerDefinition("gson", "user")).start();
+      SocketStoreClientFactory storeClientFactory = new SocketStoreClientFactory(new ClientConfig().setSerializerFactory(SerializerFactories.builder().mapSchema("user", User.class).build()).setBootstrapUrls(cluster.getBootstrapUrl()));
       repository = new VoldemortRepository<UUID, User>(storeClientFactory.<UUID, User> getStoreClient("user"));
    }
 

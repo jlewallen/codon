@@ -30,7 +30,7 @@ import voldemort.serialization.SerializerDefinition;
 import voldemort.versioning.Versioned;
 
 import com.page5of4.codon.tests.support.WithContainer;
-import com.page5of4.nagini.CustomizableSerializerFactory;
+import com.page5of4.nagini.SerializerFactories;
 import com.page5of4.nagini.VoldemortCluster;
 import com.page5of4.nagini.VoldemortClusterBuilder;
 
@@ -62,7 +62,7 @@ public class EmbeddedVoldemortServerSpecs extends WithContainer {
             start();
 
       String bootstrapUrl = cluster.getBootstrapUrl();
-      StoreClientFactory factory = new SocketStoreClientFactory(new ClientConfig().setSerializerFactory(new CustomizableSerializerFactory()).setBootstrapUrls(bootstrapUrl));
+      StoreClientFactory factory = new SocketStoreClientFactory(new ClientConfig().setSerializerFactory(SerializerFactories.defaultChain()).setBootstrapUrls(bootstrapUrl));
       StoreClient<UUID, String> client = factory.getStoreClient("junk");
 
       UUID id = UUID.randomUUID();

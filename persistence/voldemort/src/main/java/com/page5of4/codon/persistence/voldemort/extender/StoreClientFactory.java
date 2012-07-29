@@ -19,7 +19,7 @@ import voldemort.client.SocketStoreClientFactory;
 import com.page5of4.codon.persistence.voldemort.VoldemortRepositoryFactory;
 import com.page5of4.codon.useful.repositories.Repositories;
 import com.page5of4.codon.useful.repositories.RepositoryFactory;
-import com.page5of4.nagini.CustomizableSerializerFactory;
+import com.page5of4.nagini.SerializerFactories;
 
 public class StoreClientFactory implements ManagedServiceFactory {
    private static final Logger logger = LoggerFactory.getLogger(StoreClientFactory.class);
@@ -47,7 +47,7 @@ public class StoreClientFactory implements ManagedServiceFactory {
       String bootstrapUrl = (String)p.get("bootstrap.url");
       logger.info("Configuring '{}' at '{}'", pid, bootstrapUrl);
 
-      SocketStoreClientFactory storeClientFactory = new SocketStoreClientFactory(new ClientConfig().setSerializerFactory(new CustomizableSerializerFactory()).setBootstrapUrls(bootstrapUrl));
+      SocketStoreClientFactory storeClientFactory = new SocketStoreClientFactory(new ClientConfig().setSerializerFactory(SerializerFactories.defaultChain()).setBootstrapUrls(bootstrapUrl));
       RepositoryFactory factory = new VoldemortRepositoryFactory(storeClientFactory);
       Dictionary<String, String> properties = new Hashtable<String, String>();
       properties.put(Repositories.PERSISTENCE_PROVIDER_PROPERTY, factory.getClass().getName());

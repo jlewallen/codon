@@ -37,8 +37,10 @@ public class StoreClientFactory implements ManagedServiceFactory {
 
    @Override
    public void updated(String pid, @SuppressWarnings("rawtypes") Dictionary p) throws ConfigurationException {
+      deleted(pid);
+
       String bootstrapUrl = (String)p.get("bootstrap.url");
-      logger.info("Creating VoldemortRepositoryFactory {} with {}", pid, bootstrapUrl);
+      logger.info("Configuring '{}' at '{}'", pid, bootstrapUrl);
 
       SocketStoreClientFactory storeClientFactory = new SocketStoreClientFactory(new ClientConfig().setSerializerFactory(new CustomizableSerializerFactory()).setBootstrapUrls(bootstrapUrl));
       RepositoryFactory factory = new VoldemortRepositoryFactory(storeClientFactory);

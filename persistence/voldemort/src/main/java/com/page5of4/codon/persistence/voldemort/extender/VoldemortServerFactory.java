@@ -33,9 +33,9 @@ public class VoldemortServerFactory implements ManagedServiceFactory {
 
    @Override
    public void updated(String pid, Dictionary p) throws ConfigurationException {
-      logger.info("Configuring VoldemortServer: {}", pid);
-
       deleted(pid);
+
+      logger.info("Configuring '{}'", pid);
 
       VoldemortClusterBuilder builder = VoldemortClusterBuilder.make().numberOfNodes(2);
       Pattern storePropertyPattern = Pattern.compile("store.([^\\.]+).(\\S+)");

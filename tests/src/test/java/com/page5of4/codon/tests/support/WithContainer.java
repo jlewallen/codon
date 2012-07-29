@@ -114,7 +114,7 @@ public class WithContainer {
    public void pause() {
       logger.info("Provisioned");
       try {
-         Thread.sleep(10000);
+         Thread.sleep(2000);
       }
       catch(InterruptedException e) {
       }

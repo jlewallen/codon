@@ -101,16 +101,26 @@
 
 		<bundle>mvn:${examples.project.groupId}/codon-examples-messages/${project.version}</bundle>
 		<bundle>mvn:${examples.project.groupId}/codon-examples-env/${project.version}</bundle>
-		<bundle>mvn:${examples.project.groupId}/codon-examples-subscriber/${project.version}</bundle>
 		<bundle>mvn:${examples.project.groupId}/codon-examples-application/${project.version}</bundle>
+
+		<bundle>mvn:${examples.project.groupId}/codon-examples-subscriber/${project.version}</bundle>
 	</feature>
 
 	<feature name="codon-example-subscribers" version="${project.version}">
+		<feature>codon-core</feature>
+
+		<bundle>mvn:${examples.project.groupId}/codon-examples-messages/${project.version}</bundle>
+		<bundle>mvn:${examples.project.groupId}/codon-examples-env/${project.version}</bundle>
+
 		<bundle>mvn:${examples.project.groupId}/codon-examples-subscriber/${project.version}</bundle>
 	</feature>
 
 	<feature name="codon-example-webapp" version="${project.version}">
-		<feature>codon-example</feature>
+		<feature>codon-core</feature>
+
+		<bundle>mvn:${examples.project.groupId}/codon-examples-messages/${project.version}</bundle>
+		<bundle>mvn:${examples.project.groupId}/codon-examples-env/${project.version}</bundle>
+		<bundle>mvn:${examples.project.groupId}/codon-examples-application/${project.version}</bundle>
 
 		<bundle>mvn:${examples.project.groupId}/codon-examples-webapp/${project.version}/war</bundle>
 	</feature>

@@ -1,6 +1,7 @@
 package com.page5of4.codon.tests;
 
 import static com.page5of4.codon.tests.support.BundleAssert.assertThat;
+import static com.page5of4.codon.tests.support.CodonKarafDistributionOption.featuresBoot;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -15,6 +16,8 @@ import org.ops4j.pax.exam.junit.Configuration;
 import org.ops4j.pax.exam.junit.ExamReactorStrategy;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 import org.ops4j.pax.exam.spi.reactors.AllConfinedStagedReactorFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.page5of4.codon.tests.support.Provision;
 import com.page5of4.codon.tests.support.WithContainer;
@@ -22,14 +25,16 @@ import com.page5of4.codon.tests.support.WithContainer;
 @RunWith(JUnit4TestRunner.class)
 @ExamReactorStrategy(AllConfinedStagedReactorFactory.class)
 public class WhenRunningExampleApplicationWithWebSpecs extends WithContainer {
+   private static final Logger logger = LoggerFactory.getLogger(WhenRunningExampleApplicationWithWebSpecs.class);
+
    @Configuration
    public Option[] config() {
-      return new Option[] { commonConfiguration() };
+      return new Option[] { commonConfiguration(), featuresBoot("config", "codon-dependencies", "codon-core", "activemq", "activemq-spring") };
    }
 
    @Before
    public void before() {
-      Provision.with(executor()).base().hibernate().web().core();
+      Provision.with(executor()).broker().base().core().hibernate().web();
       executor().executeCommands("features:install codon-example-webapp");
       pause();
    }
@@ -42,6 +47,7 @@ public class WhenRunningExampleApplicationWithWebSpecs extends WithContainer {
             "com.page5of4.codon.examples.webapp"
       };
       for(String name : expected) {
+         logger.info("Checking {}", name);
          assertThat(executor().getInstalledBundle(name)).isActive();
       }
 

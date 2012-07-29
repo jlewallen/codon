@@ -53,4 +53,10 @@ public class Provision {
       executor.executeCommand("features:install codon-persistence-memory");
       return this;
    }
+
+   public Provision broker() {
+      executor.executeCommand("features:install activemq-spring");
+      executor.executeCommand("activemq:create-broker");
+      return this;
+   }
 }

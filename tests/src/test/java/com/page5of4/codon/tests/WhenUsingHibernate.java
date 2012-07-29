@@ -24,7 +24,7 @@ public class WhenUsingHibernate extends WithContainer {
 
    @Before
    public void before() {
-      Provision.with(executor()).hibernate();
+      Provision.with(executor()).base().core().hibernate();
    }
 
    @Test

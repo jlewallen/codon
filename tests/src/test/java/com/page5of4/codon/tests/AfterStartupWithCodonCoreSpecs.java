@@ -6,6 +6,7 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import java.io.Serializable;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.Option;
@@ -15,6 +16,7 @@ import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 import org.ops4j.pax.exam.spi.reactors.EagerSingleStagedReactorFactory;
 
 import com.page5of4.codon.Bus;
+import com.page5of4.codon.tests.support.Provision;
 import com.page5of4.codon.tests.support.WithContainer;
 
 @RunWith(JUnit4TestRunner.class)
@@ -24,8 +26,13 @@ public class AfterStartupWithCodonCoreSpecs extends WithContainer {
    public Option[] config() {
       return new Option[] {
             commonConfiguration(),
-            featuresBoot("config", "codon-dependencies", "codon-core")
+            featuresBoot("config", "codon-dependencies", "codon-core", "activemq", "activemq-spring")
       };
+   }
+
+   @Before
+   public void before() {
+      Provision.with(executor()).broker();
    }
 
    @Test

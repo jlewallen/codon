@@ -23,7 +23,9 @@ public class WhenInstallingMustacheMvc extends WithContainer {
             commonConfiguration(),
             mavenBundle().groupId("org.codehaus.jackson").artifactId("jackson-core-asl").version("1.7.5"),
             mavenBundle().groupId("org.codehaus.jackson").artifactId("jackson-mapper-asl").version("1.7.5"),
-            mavenBundle().groupId("com.google.guava").artifactId("guava").version("12.0")
+            mavenBundle().groupId("com.google.guava").artifactId("guava").version("12.0"),
+            mavenBundle().groupId("commons-io").artifactId("commons-io").versionAsInProject(),
+            mavenBundle().groupId("commons-lang").artifactId("commons-lang").versionAsInProject()
       };
    }
 

@@ -1,6 +1,7 @@
 package com.page5of4.codon.tests;
 
 import static com.page5of4.codon.tests.support.BundleAssert.assertThat;
+import static com.page5of4.codon.tests.support.CodonKarafDistributionOption.featuresBoot;
 
 import org.junit.After;
 import org.junit.Before;
@@ -21,12 +22,12 @@ import com.page5of4.codon.tests.support.WithContainer;
 public class WhenRunningExampleApplicationEnvSpecs extends WithContainer {
    @Configuration
    public Option[] config() {
-      return new Option[] { commonConfiguration() };
+      return new Option[] { commonConfiguration(), featuresBoot("config", "codon-dependencies", "codon-core", "activemq", "activemq-spring") };
    }
 
    @Before
    public void before() {
-      Provision.with(executor()).base().hibernate();
+      Provision.with(executor()).broker().base().hibernate();
       executor().executeCommands("osgi:install -s mvn:com.page5of4.codon.examples/codon-examples-env/" + TestsConfiguration.getProjectVersion());
       pause();
    }

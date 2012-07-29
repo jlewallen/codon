@@ -1,9 +1,7 @@
 package com.page5of4.codon.examples.webapp;
 
 import java.util.ArrayList;
-
 import java.util.List;
-import java.util.UUID;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;

@@ -44,7 +44,6 @@ public class VoldemortServerFactory implements ManagedServiceFactory {
 
       VoldemortClusterBuilder builder = VoldemortClusterBuilder.make().numberOfNodes(2);
       Pattern storePropertyPattern = Pattern.compile("store.([^\\.]+).(\\S+)");
-      Map<Object, Object> config = Dictionaries.asMap(p);
       Collection<ExtractedMap> storeConfigs = Dictionaries.extractPrefixedMaps(p, storePropertyPattern);
       for(ExtractedMap storeConfig : storeConfigs) {
          String keySerializer = (String)storeConfig.getMap().get("serializer.keys");

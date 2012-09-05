@@ -1,18 +1,14 @@
 package com.page5of4.codon.tests.support;
 
-import static org.openengsb.labs.paxexam.karaf.options.KarafDistributionOption.doNotModifyLogConfiguration;
 import static org.openengsb.labs.paxexam.karaf.options.KarafDistributionOption.editConfigurationFilePut;
 import static org.openengsb.labs.paxexam.karaf.options.KarafDistributionOption.karafDistributionConfiguration;
 import static org.openengsb.labs.paxexam.karaf.options.KarafDistributionOption.keepRuntimeFolder;
 import static org.openengsb.labs.paxexam.karaf.options.KarafDistributionOption.logLevel;
-import static org.openengsb.labs.paxexam.karaf.options.KarafDistributionOption.replaceConfigurationFile;
 import static org.ops4j.pax.exam.CoreOptions.junitBundles;
 import static org.ops4j.pax.exam.CoreOptions.maven;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.CoreOptions.systemTimeout;
 import static org.ops4j.pax.exam.CoreOptions.vmOption;
-
-import java.io.File;
 
 import javax.inject.Inject;
 
@@ -61,7 +57,6 @@ public class WithContainer {
    public CompositeOption commonConfiguration() {
       return new DefaultCompositeOption(
             container(),
-            loggingOptions(),
             debuggingOptions(),
             runtimeFolderOption(),
             systemProperties(),
@@ -77,14 +72,6 @@ public class WithContainer {
 
    private Option commonBundles() {
       return new Option() {};
-   }
-
-   private Option loggingOptions() {
-      if(true) return new Option() {};
-      File source = new File("D:\\SS\\workspace\\com.page5of4\\codon\\karaf\\org.ops4j.pax.logging.exam.cfg");
-      return new DefaultCompositeOption(
-            doNotModifyLogConfiguration(),
-            replaceConfigurationFile("etc/org.ops4j.pax.logging.cfg", source));
    }
 
    private Option debuggingOptions() {

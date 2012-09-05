@@ -39,6 +39,7 @@ public class VoldemortServerFactory implements ManagedServiceFactory {
    }
 
    @Override
+   @SuppressWarnings({ "rawtypes", "unchecked" })
    public void updated(String pid, Dictionary p) throws ConfigurationException {
       deleted(pid);
 

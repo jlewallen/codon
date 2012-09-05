@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 
 import com.google.common.collect.Maps;
 
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public class Dictionaries {
    public static <K, V> Map<K, V> asMap(Dictionary d) {
       return new Dictionaries.DictionaryAsMap<K, V>(d);

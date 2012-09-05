@@ -34,7 +34,7 @@ public class ProjectManagementServiceSpecs {
       bus = mock(Bus.class);
 
       EventBus eventBus = new EventBus();
-      DomainEvents domainEvents = new DomainEvents(eventBus);
+      new DomainEvents(eventBus);
       eventBus.register(new ProjectEvents(bus));
 
       service = new ProjectManagementServiceImpl(projectRepository, bus);

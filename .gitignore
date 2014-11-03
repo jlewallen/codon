@@ -8,3 +8,6 @@ tm*.log
 *.epoch
 voldemort-clusters
 activemq-data
+*.iml
+.idea
+*.lck
